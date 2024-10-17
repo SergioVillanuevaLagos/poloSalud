@@ -1,22 +1,22 @@
 package modelos;
 
 import java.sql.Date;
-import java.time.LocalDate;
+
 
 public class evento {
     private int IDevento;
     private String notificacion;
     private boolean estado;
-    private LocalDate fecha;
+    private Date fecha;
     private String direccion;
     private String descripcion;
     private int IDadmin;
 
-    public evento(int IDevento, String notificacion, LocalDate fecha, boolean estado, String direccion, String descripcion, int IDadmin) {
+    public evento(int IDevento, String notificacion, boolean estado, Date fecha, String direccion, String descripcion, int IDadmin) {
         this.IDevento = IDevento;
         this.notificacion = notificacion;
-        this.fecha = fecha;
         this.estado = estado;
+        this.fecha = fecha;
         this.direccion = direccion;
         this.descripcion = descripcion;
         this.IDadmin = IDadmin;
@@ -46,11 +46,11 @@ public class evento {
         this.estado = estado;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
