@@ -12,4 +12,6 @@ public class ControladoreBasico {
 
         return "index";
 }
+
+    @GetMapping(path = {"/login"})
 }
