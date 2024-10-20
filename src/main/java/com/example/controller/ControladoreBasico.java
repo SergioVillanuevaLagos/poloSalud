@@ -14,4 +14,8 @@ public class ControladoreBasico {
 }
 
     @GetMapping(path = {"/login"})
+    public String login() {
+
+        return "login";
+    }
 }
