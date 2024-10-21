@@ -22,7 +22,7 @@ public class colaboradores {
     public int getIdColaborador() {
         return idColaborador;
     }
-
+//hola
     public void setIdColaborador(int idColaborador) {
         this.idColaborador = idColaborador;
     }
