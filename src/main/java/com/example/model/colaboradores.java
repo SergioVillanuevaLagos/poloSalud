@@ -12,7 +12,7 @@ public class colaboradores {
 
     @Column(name = "nom_colab", length = 500)
     private String nombreColaborador;
-
+  
     @Column(name = "url_colab", length = 500)
     private String urlColaborador;
 
