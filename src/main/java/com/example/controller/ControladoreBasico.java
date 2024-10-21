@@ -12,4 +12,10 @@ public class ControladoreBasico {
 
         return "index";
 }
+
+    @GetMapping(path = {"/login"})
+    public String login() {
+
+        return "login";
+    }
 }

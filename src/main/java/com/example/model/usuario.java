@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 public class usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
     @Column(name = "ID_usuario")
     private Integer idUsuario;
 
@@ -25,4 +27,6 @@ public class usuario {
 
     @Column(name = "ID_dept", nullable = true)
     private Integer idDepartamento;
+
+
 }
