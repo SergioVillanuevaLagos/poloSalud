@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             console.log(data);
             // Aquí puedes manejar la respuesta del servidor
             if (data.status === 'success') {
-                window.location.href = '/polo/index';
+                window.location.href = '/polosalud/index';
             } else {
                 document.getElementById('loginError').textContent = data.message;
             }
@@ -65,7 +65,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             console.log(data);
             // Aquí puedes manejar la respuesta del servidor
             if (data.status === 'success') {
-                window.location.href = '/polo/index';
+                window.location.href = '/polosalud/index';
                 alert(data.message);
             } else {
                 document.getElementById('registerError').textContent = data.message;
