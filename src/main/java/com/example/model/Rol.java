@@ -13,6 +13,16 @@ public class Rol {
     @Column(name = "nombre_rol", length = 255)
     private String nombreRol;
 
+    // Constructores, getters y setters
+
+    public Rol() {
+    }
+
+    public Rol(Integer idRol, String nombreRol) {
+        this.idRol = idRol;
+        this.nombreRol = nombreRol;
+    }
+
     public Integer getIdRol() {
         return idRol;
     }

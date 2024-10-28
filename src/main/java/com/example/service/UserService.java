@@ -1,11 +1,12 @@
-package com.example.service;
 
+package com.example.service;
 
 import com.example.model.usuario;
 import com.example.repositorio.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -13,15 +14,23 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public usuario saveUser(usuario user) {
+        return userRepository.save(user);
     }
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public usuario findByEmail(String email) {
+        return userRepository.findByCorreoElectronico(email);
+    }
+
+    public List<usuario> listAllUser() {
+        return userRepository.findAll();
+    }
+
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
+    }
+
+    public usuario updateUser(usuario user) {
+        return userRepository.save(user);
     }
 }
