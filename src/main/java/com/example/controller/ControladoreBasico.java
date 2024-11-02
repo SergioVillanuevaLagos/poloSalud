@@ -22,4 +22,10 @@ public class ControladoreBasico {
         model.addAttribute("mensaje", "Inicia sesión para continuar");
         return "login";
     }
+    @GetMapping(path = {"/nav"})
+    public String nav(Model model) {
+        // Puedes añadir datos al modelo si es necesario
+        model.addAttribute("mensaje", "prueba del nav");
+        return "nav";
+    }
 }
