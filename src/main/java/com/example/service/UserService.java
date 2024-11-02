@@ -1,4 +1,3 @@
-
 package com.example.service;
 
 import com.example.model.usuario;
@@ -15,6 +14,9 @@ public class UserService {
     private UserRepository userRepository;
 
     public usuario saveUser(usuario user) {
+        if (userRepository.existsByCorreoElectronico(user.getCorreoElectronico())) {
+            throw new RuntimeException("El correo electrónico ya está registrado");
+        }
         return userRepository.save(user);
     }
 
@@ -32,5 +34,13 @@ public class UserService {
 
     public usuario updateUser(usuario user) {
         return userRepository.save(user);
+    }
+
+    public boolean validatePassword(String email, String password) {
+        usuario user = userRepository.findByCorreoElectronico(email);
+        if (user != null) {
+            return user.getContraseña().equals(password);
+        }
+        return false;
     }
 }
