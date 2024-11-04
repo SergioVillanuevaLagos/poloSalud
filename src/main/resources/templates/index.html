@@ -1,54 +1,55 @@
 <!DOCTYPE html>
-
 <html lang="es">
-    <head>
-        <title>Polo Salud</title>
-        <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css"/>
+<head>
+    <title>Polo Salud</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css"/>
+    <script th:href="@{/js/jquery-3.7.1.min.js}" src="../static/js/jquery-3.7.1.min.js"> </script>
+    <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"> </script>
+    <link rel="stylesheet" href="/static/css/custom-styles.css">
+</head>
 
-        <script th:href="@{/js/jquery-3.7.1.min.js}" src="../static/js/jquery-3.7.1.min.js"> </script>
-        <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"> </script>
-    </head>
+<body>
+    <h1>Polo de salud</h1>
 
-    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid" id="principio">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a class="nav-link" href="#">Centros</a>
+                    <a class="nav-link" href="#">Calendario</a>
+                    <a class="nav-link" href="#">Noticias</a>
+                    <a class="nav-link" href="#">Facultades</a>
+                    <a class="nav-link" href="#">Colaboradores</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        
-        <h1>Polo de salud </h1>
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-
-            <div class="container-fluid" id="principio">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                        <a class="nav-link" href="#">Centros</a>
-                        <a class="nav-link" href="#">Calendario</a>
-                        <a class="nav-link" href="#">Noticias</a>
-                        <a class="nav-link" href="#">Facultades</a>
-                        <a class="nav-link" href="#">Colaboradores</a>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="width: 18rem;">
+                    <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Prueba uno</h5>
+                        <p class="card-text">Si se logra ver este texto esta funcionando bien.</p>
+                        <a href="#" class="btn btn-primary">sig.</a>
                     </div>
                 </div>
             </div>
-        </nav>
-         <div class="container">
-             <div class="row">
-                 <div class="col-12">
-                     <div class="card" style="width: 18rem;">
-                         <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="card-img-top" alt="...">
-                         <div class="card-body">
-                             <h5 class="card-title">Prueba uno</h5>
-                             <p class="card-text">Si se logra ver este texto esta funcionando bien.</p>
-                             <a href="#" class="btn btn-primary">sig.</a>
-                         </div>
-                     </div>
-                     <a href="#principio"><img src="boton.png" id="botonArriba"></a>
+        </div>
+    </div>
 
+    <!-- Imagen de botón para "volver arriba" -->
+    <a href="#principio">
+        <img th:src="@{/imagenes/boton.jpg}" src="../static/imagenes/boton.jpg" class="card-img-top" alt="...">
+    </a>
 
-    </body>
+    <script src="/static/js/scroll-to-top.js"></script>
+</body>
 </html>
-<link rel="stylesheet" href="/static/css/custom-styles.css">
-<script src="/static/js/scroll-to-top.js"></script>
