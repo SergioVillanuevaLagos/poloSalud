@@ -1,10 +1,11 @@
 package com.example.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "evento")
+@Table(name = "eventos")
 public class evento {
 
     @Id
@@ -12,7 +13,7 @@ public class evento {
     @Column(name = "ID_evento")
     private int ID_evento;
 
-    @Column(name = "fecha_event", nullable = false)
+    @Column(name = "fecha_envent")
     private LocalDate fecha_evento;
 
     @Column(name = "notificacion", length = 500)
@@ -28,7 +29,7 @@ public class evento {
     private Boolean estado;
 
     @Column(name = "ID_admin")
-    private Long idAdmin;
+    private int idAdmin;
 
     public Boolean getEstado() {
         return estado;
@@ -78,11 +79,11 @@ public class evento {
         this.descripcion = descripcion;
     }
 
-    public Long getIdAdmin() {
+    public int getIdAdmin() {
         return idAdmin;
     }
 
-    public void setIdAdmin(Long idAdmin) {
+    public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
 }
