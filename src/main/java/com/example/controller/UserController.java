@@ -88,10 +88,10 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<String> logout() {
+    public ResponseEntity<Void> logout() {
         HttpSession session = getCurrentRequest().getSession();
         session.invalidate();
-        return ResponseEntity.ok("Sesión cerrada exitosamente");
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/polo/login").build();
     }
 
     @GetMapping("/users")
