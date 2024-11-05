@@ -2,12 +2,24 @@
 <html lang="es">
 <head>
     <title>Polo Salud</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css"/>
-    <script th:href="@{/js/jquery-3.7.1.min.js}" src="../static/js/jquery-3.7.1.min.js"> </script>
-    <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"> </script>
-    <link rel="stylesheet" href="/static/css/custom-styles.css">
-</head>
+    <!-- Enlace al archivo CSS personalizado -->
+    <link rel="stylesheet" href="../static/css/custom-styles.css">
+    <!-- Scripts de jQuery y Bootstrap -->
+    <script th:href="@{/js/jquery-3.7.1.min.js}" src="../static/js/jquery-3.7.1.min.js"></script>
+    <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
 
+    <style>
+        .bottom-right-image {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
 <body>
     <h1>Polo de salud</h1>
 
@@ -47,8 +59,9 @@
 
     <!-- Imagen de botón para "volver arriba" -->
     <a href="#principio">
-        <img th:src="@{/imagenes/boton.jpg}" src="../static/imagenes/boton.jpg" class="card-img-top" alt="...">
+        <img th:src="@{/imagenes/boton.png}" src="../static/imagenes/boton.png" alt="Subir" class="bottom-right-image" >
     </a>
+
 
     <script src="/static/js/scroll-to-top.js"></script>
 </body>
