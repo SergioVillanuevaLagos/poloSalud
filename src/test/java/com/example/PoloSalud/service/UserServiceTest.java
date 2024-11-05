@@ -1,7 +1,6 @@
 package com.example.PoloSalud.service;
 
 import com.example.controller.UserController;
-import com.example.model.Rol;
 import com.example.model.usuario;
 import com.example.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,14 +16,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class UserControllerTest {
+class UserServiceTest {
 
     @InjectMocks
     private UserController userController;

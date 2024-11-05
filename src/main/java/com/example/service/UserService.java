@@ -27,11 +27,11 @@ public class UserService {
     public List<usuario> listAllUser() {
         return userRepository.findAll();
     }
-
+//serviara para mas adelante
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
-
+//servira para mas adelante
     public usuario updateUser(usuario user) {
         return userRepository.save(user);
     }
