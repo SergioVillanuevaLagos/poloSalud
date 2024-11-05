@@ -24,7 +24,7 @@ public class eventoServiceImpl implements eventoService {
         nuevoEvento.setFecha_evento(fechaEvento);
         nuevoEvento.setNotificacion(notificacion);
         nuevoEvento.setIdAdmin(idAdmin);
-        nuevoEvento.setEstado(true); // Puedes establecer el estado inicial a 'true' si es necesario
+        nuevoEvento.setEstado(true);
         return eventoRepository.save(nuevoEvento);
     }
 
@@ -36,7 +36,7 @@ public class eventoServiceImpl implements eventoService {
             eventoExistente.setFecha_evento(nuevaFecha);
             return eventoRepository.save(eventoExistente);
         } else {
-            return null; // O puedes lanzar una excepción si prefieres
+            return null;
         }
     }
 

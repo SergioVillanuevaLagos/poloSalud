@@ -8,11 +8,11 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
@@ -32,46 +32,86 @@ h1, h2 {
 
 /* Formulario Crear Evento */
 .card {
-    background-color: #fff;
+    background-color: #ffffff;
     margin: 20px 0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-#crearEventoForm label {
-    display: block;
-    margin-top: 10px;
+.form-label {
     font-weight: bold;
     color: #555;
 }
 
-#crearEventoForm input {
+.form-control {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem; /* Corresponde a $font-size-base */
+    line-height: 1.5; /* Corresponde a $line-height-base */
+    color: #495057;
+    background-color: #f9f9fb;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
+.form-control:focus {
+    outline-width: 2px; /* Simula $focus-ring-width */
+    outline-color: rgba(0, 123, 255, 0.25); /* Simula $focus-ring-color y $focus-ring-opacity */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Simula $focus-ring-box-shadow */
+    border-color: #5cb85c;
+}
+
+/* Tamaños de botones e inputs personalizados */
+.input-btn {
+    padding: 0.375rem 0.75rem;
+    font-family: Arial, sans-serif;
+    font-size: 1rem; /* Base font-size */
+    line-height: 1.5;
+    border-width: 1px; /* Border width variable */
+}
+
+/* Tamaños de botones pequeños */
+.input-btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem; /* Corresponde a $font-size-sm */
+}
+
+/* Tamaños de botones grandes */
+.input-btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem; /* Corresponde a $font-size-lg */
+}
+
+/* Botones */
 .btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #5cb85c;
-    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
 }
 
-.btn.cancelar {
-    background-color: #d9534f;
+.btn-primary {
+    background-color: #007bff;
 }
 
-.btn:hover {
-    opacity: 0.9;
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
 }
 
 /* Lista de Eventos */

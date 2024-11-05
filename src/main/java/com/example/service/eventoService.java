@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface eventoService {
 
-    // Crear un evento con todos sus detalles
+    // Crear un evento
     evento crearEvento(String descripcion, String direccion, LocalDate fechaEvento, String notificacion, int idAdmin);
 
     // Modificar la fecha de un evento existente
