@@ -24,21 +24,9 @@ public class eventoServiceImpl implements eventoService {
         nuevoEvento.setFecha_evento(fechaEvento);
         nuevoEvento.setNotificacion(notificacion);
         nuevoEvento.setIdAdmin(idAdmin);
-        nuevoEvento.setEstado(true);
         return eventoRepository.save(nuevoEvento);
     }
 
-    @Override
-    public evento modificarFechaEvento(int idEvento, LocalDate nuevaFecha) {
-        Optional<evento> eventoOptional = eventoRepository.findById(idEvento);
-        if (eventoOptional.isPresent()) {
-            evento eventoExistente = eventoOptional.get();
-            eventoExistente.setFecha_evento(nuevaFecha);
-            return eventoRepository.save(eventoExistente);
-        } else {
-            return null;
-        }
-    }
 
     @Override
     public evento obtenerEventoPorId(int idEvento) {

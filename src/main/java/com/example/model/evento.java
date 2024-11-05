@@ -24,19 +24,12 @@ public class evento {
     @Column(name = "descripcion", length = 1000)
     private String descripcion;
 
-    @Column(name = "estado")
-    private Boolean estado;
+
 
     @Column(name = "ID_admin")
     private int idAdmin;
 
-    public Boolean getEstado() {
-        return estado;
-    }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
 
     public int getID_evento() {
         return ID_evento;

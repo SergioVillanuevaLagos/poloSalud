@@ -1,4 +1,3 @@
-/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
@@ -47,46 +46,15 @@ h1, h2 {
 .form-control {
     width: 100%;
     padding: 0.375rem 0.75rem;
-    font-size: 1rem; /* Corresponde a $font-size-base */
-    line-height: 1.5; /* Corresponde a $line-height-base */
+    font-size: 1rem;
+    line-height: 1.5;
     color: #495057;
     background-color: #f9f9fb;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
-.form-control:focus {
-    outline-width: 2px; /* Simula $focus-ring-width */
-    outline-color: rgba(0, 123, 255, 0.25); /* Simula $focus-ring-color y $focus-ring-opacity */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Simula $focus-ring-box-shadow */
-    border-color: #5cb85c;
-}
-
-/* Tamaños de botones e inputs personalizados */
-.input-btn {
-    padding: 0.375rem 0.75rem;
-    font-family: Arial, sans-serif;
-    font-size: 1rem; /* Base font-size */
-    line-height: 1.5;
-    border-width: 1px; /* Border width variable */
-}
-
-/* Tamaños de botones pequeños */
-.input-btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem; /* Corresponde a $font-size-sm */
-}
-
-/* Tamaños de botones grandes */
-.input-btn-lg {
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem; /* Corresponde a $font-size-lg */
-}
-
-/* Botones */
 .btn {
     padding: 10px 20px;
     font-size: 1em;
@@ -94,8 +62,6 @@ h1, h2 {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s ease;
 }
 
 .btn-primary {
@@ -103,18 +69,10 @@ h1, h2 {
 }
 
 .btn-secondary {
-    background-color: #6c757d;
+    background-color: #dc3545;
+        color: #fff;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-/* Lista de Eventos */
 #listaEventos {
     margin-top: 20px;
 }
@@ -125,22 +83,14 @@ h1, h2 {
 }
 
 #eventosLista li {
-    background-color: #e9ecef;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
+    padding: 10px;
+    background-color: #f4f4f9;
+    margin-bottom: 10px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
-#eventosLista li:hover {
-    background-color: #f1f3f5;
-}
 
-#eventosLista li strong {
-    font-size: 1.1em;
-    color: #333;
-}
 
 .eliminarEventoBtn {
     display: block;
@@ -158,8 +108,12 @@ h1, h2 {
     background-color: #c9302c;
 }
 
+
 .detallesEvento {
-    font-size: 0.9em;
-    color: #666;
-    margin-top: 5px;
+    margin-top: 10px;
+    color: #555;
+}
+
+.detallesEvento strong {
+    font-weight: bold;
 }

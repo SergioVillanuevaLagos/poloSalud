@@ -31,18 +31,6 @@ public class eventoController {
         return ResponseEntity.ok(nuevoEvento);
     }
 
-    // Modificar la fecha de un evento existente
-    @PutMapping("/modificarFecha/{id}")
-    public ResponseEntity<evento> modificarFechaEvento(@PathVariable int id, @RequestBody LocalDate nuevaFecha) {
-        evento eventoModificado = eventoService.modificarFechaEvento(id, nuevaFecha);
-        if (eventoModificado != null) {
-            return ResponseEntity.ok(eventoModificado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-
     // Obtener un evento por su ID
     @GetMapping("/obtener/{id}")
     public ResponseEntity<evento> obtenerEventoPorId(@PathVariable int id) {
@@ -53,8 +41,6 @@ public class eventoController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 
     @GetMapping("/listar")
     public ResponseEntity<List<Map<String, Object>>> obtenerTodosLosEventos() {

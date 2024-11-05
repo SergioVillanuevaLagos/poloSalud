@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <title>Calendario de Eventos</title>
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/estilos.css"> <!-- Enlazamos el CSS -->
+  <link rel="stylesheet" href="/css/estilos.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/locale/es.js"></script>
-  <script src="/js/calendario.js"></script> <!-- Enlazamos el JavaScript -->
+  <script src="/js/calendario.js"></script>
 </head>
 <body>
 <div class="container">
@@ -19,22 +19,32 @@
   <!-- Formulario Crear Evento -->
   <div id="crearEventoForm" class="card">
     <h2>Crear Evento</h2>
-    <label for="descripcion">Descripción:</label>
-    <input type="text" id="descripcion" placeholder="Descripción del evento"><br>
-    <label for="direccion">Dirección:</label>
-    <input type="text" id="direccion" placeholder="Dirección del evento"><br>
-    <label for="fechaEvento">Fecha del Evento:</label>
-    <input type="date" id="fechaEvento"><br>
-    <label for="notificacion">Notificación:</label>
-    <input type="text" id="notificacion" placeholder="Notificación o recordatorio"><br>
-    <button id="guardarEventoBtn" class="btn guardar">Guardar</button>
-    <button id="cancelarBtn" class="btn cancelar">Cancelar</button>
+    <form>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción:</label>
+        <input type="text" class="form-control" id="descripcion" placeholder="Descripción del evento">
+      </div>
+      <div class="mb-3">
+        <label for="direccion" class="form-label">Dirección:</label>
+        <input type="text" class="form-control" id="direccion" placeholder="Dirección del evento">
+      </div>
+      <div class="mb-3">
+        <label for="fechaEvento" class="form-label">Fecha del Evento:</label>
+        <input type="date" class="form-control" id="fechaEvento">
+      </div>
+      <div class="mb-3">
+        <label for="notificacion" class="form-label">Notificación:</label>
+        <input type="text" class="form-control" id="notificacion" placeholder="Notificación o recordatorio">
+      </div>
+      <button id="guardarEventoBtn" type="button" class="btn btn-primary">Guardar</button>
+      <button id="cancelarBtn" type="button" class="btn btn-secondary">Cancelar</button>
+    </form>
   </div>
 
   <!-- Sección para listar eventos -->
   <div id="listaEventos" class="card">
     <h2>Eventos Creados</h2>
-    <ul id="eventosLista"></ul> <!-- Aquí se mostrarán los eventos -->
+    <ul id="eventosLista"></ul>
   </div>
 </div>
 </body>

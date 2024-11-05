@@ -19,10 +19,10 @@ $(document).ready(function() {
                         <li data-id="${evento.id}">
                             <strong>${evento.notificacion}</strong>
                             <div class="detallesEvento" style="display: none;">
-                                Descripción: ${evento.descripcion} <br>
-                                Dirección: ${evento.direccion} <br>
-                                Fecha: ${moment(evento.fechaEvento).format('DD-MM-YYYY')} <br>
-                                Notificación: ${evento.notificacion}
+                                <strong>Descripción:</strong> ${evento.descripcion} <br>
+                                <strong>Dirección:</strong> ${evento.direccion} <br>
+                                <strong>Fecha:</strong> ${moment(evento.fechaEvento).format('DD-MM-YYYY')} <br>
+                                <strong>Notificación:</strong> ${evento.notificacion}
                                 <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
                             </div>
                         </li>
@@ -96,10 +96,10 @@ $(document).ready(function() {
                     <li data-id="${data.id}">
                         <strong>${data.notificacion}</strong>
                         <div class="detallesEvento" style="display: none;">
-                            Descripción: ${data.descripcion} <br>
-                            Dirección: ${data.direccion} <br>
-                            Fecha: ${moment(data.fechaEvento).format('DD-MM-YYYY')} <br>
-                            Notificación: ${data.notificacion}
+                            <strong>Descripción:</strong> ${data.descripcion} <br>
+                            <strong>Dirección:</strong> ${data.direccion} <br>
+                            <strong>Fecha:</strong> ${moment(data.fechaEvento).format('DD-MM-YYYY')} <br>
+                            <strong>Notificación:</strong> ${data.notificacion}
                             <br><button class="eliminarEventoBtn" data-id="${data.id}">Eliminar</button>
                         </div>
                     </li>
