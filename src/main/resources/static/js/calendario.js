@@ -13,7 +13,7 @@ $(document).ready(function() {
             url: '/api/eventos/listar',
             type: 'GET',
             success: function(data) {
-                // Mostrar los eventos en el calendario y en la lista lateral
+                $('#eventosLista').empty();
                 data.forEach(evento => {
                     $('#eventosLista').append(`
                         <li data-id="${evento.id}">
@@ -21,16 +21,35 @@ $(document).ready(function() {
                             <div class="detallesEvento" style="display: none;">
                                 Descripción: ${evento.descripcion} <br>
                                 Dirección: ${evento.direccion} <br>
-                                Fecha: ${evento.fechaEvento} <br>
+                                Fecha: ${moment(evento.fechaEvento).format('DD-MM-YYYY')} <br>
                                 Notificación: ${evento.notificacion}
+                                <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
                             </div>
                         </li>
                     `);
                 });
 
-                // Al hacer clic en el título del evento, mostrar detalles
                 $('#eventosLista li').on('click', function() {
-                    $(this).find('.detallesEvento').toggle(); // Mostrar u ocultar detalles
+                    $(this).find('.detallesEvento').toggle();
+                });
+
+                $('.eliminarEventoBtn').on('click', function(e) {
+                    e.stopPropagation();
+
+                    const eventId = $(this).data('id');
+                    if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
+                        $.ajax({
+                            url: `/api/eventos/eliminar/${eventId}`,
+                            type: 'DELETE',
+                            success: function() {
+                                $('#calendar').fullCalendar('refetchEvents');
+                                $(`li[data-id="${eventId}"]`).remove();
+                            },
+                            error: function(xhr, status, error) {
+                                alert('Error al eliminar el evento: ' + xhr.responseText);
+                            }
+                        });
+                    }
                 });
             },
             error: function() {
@@ -43,12 +62,17 @@ $(document).ready(function() {
             $('#fechaEvento').val(moment(start).format("YYYY-MM-DD"));
         },
         eventRender: function(event, element) {
+            element.find('.fc-title').text(event.notificacion);
             element.attr('title', event.notificacion);
         }
     });
 
-    // Guardar evento y añadirlo a la lista lateral
     $('#guardarEventoBtn').on('click', function() {
+        if (!$('#descripcion').val() || !$('#direccion').val() || !$('#fechaEvento').val() || !$('#notificacion').val()) {
+            alert('Todos los campos deben estar llenos.');
+            return;
+        }
+
         var event = {
             descripcion: $('#descripcion').val(),
             direccion: $('#direccion').val(),
@@ -63,30 +87,34 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(event),
             success: function(data) {
-                // Recargar eventos en el calendario
                 $('#calendar').fullCalendar('refetchEvents');
-
-                // Añadir el nuevo evento a la lista lateral
+                $('#descripcion').val('');
+                $('#direccion').val('');
+                $('#fechaEvento').val('');
+                $('#notificacion').val('');
                 $('#eventosLista').append(`
                     <li data-id="${data.id}">
                         <strong>${data.notificacion}</strong>
                         <div class="detallesEvento" style="display: none;">
                             Descripción: ${data.descripcion} <br>
                             Dirección: ${data.direccion} <br>
-                            Fecha: ${data.fechaEvento} <br>
+                            Fecha: ${moment(data.fechaEvento).format('DD-MM-YYYY')} <br>
                             Notificación: ${data.notificacion}
+                            <br><button class="eliminarEventoBtn" data-id="${data.id}">Eliminar</button>
                         </div>
                     </li>
                 `);
-
-                // Añadir evento de clic para mostrar detalles
-                $('#eventosLista li').last().on('click', function() {
-                    $(this).find('.detallesEvento').toggle();
-                });
             },
             error: function() {
                 alert('Error al guardar el evento.');
             }
         });
+    });
+
+    $('#cancelarBtn').on('click', function() {
+        $('#descripcion').val('');
+        $('#direccion').val('');
+        $('#fechaEvento').val('');
+        $('#notificacion').val('');
     });
 });

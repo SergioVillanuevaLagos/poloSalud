@@ -4,178 +4,38 @@
   <meta charset="UTF-8">
   <title>Calendario de Eventos</title>
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/estilos.css"> <!-- Enlazamos el CSS -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/locale/es.js"></script>
-  <style>
-    #calendar {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .fc-event {
-        background-color: #378006;
-        color: white;
-        border: 1px solid #378006;
-        border-radius: 3px;
-        padding: 2px;
-        font-size: 0.9em;
-    }
-
-    #crearEventoForm {
-        margin-top: 20px;
-    }
-
-    #listaEventos {
-        margin-top: 40px;
-    }
-
-    #eventosLista {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    #eventosLista li {
-        cursor: pointer;
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: #f0f0f0;
-        border-radius: 5px;
-    }
-
-    #eventosLista li:hover {
-        background-color: #e0e0e0;
-    }
-  </style>
+  <script src="/js/calendario.js"></script> <!-- Enlazamos el JavaScript -->
 </head>
 <body>
-<h1>Calendario de Eventos</h1>
-<div id="calendar"></div>
+<div class="container">
+  <h1>Calendario de Eventos</h1>
+  <div id="calendar"></div>
 
-<!-- Formulario Crear Evento Siempre Visible -->
-<div id="crearEventoForm">
-  <h2>Crear Evento</h2>
-  <label for="descripcion">Descripción:</label>
-  <input type="text" id="descripcion"><br>
-  <label for="direccion">Dirección:</label>
-  <input type="text" id="direccion"><br>
-  <label for="fechaEvento">Fecha del Evento:</label>
-  <input type="date" id="fechaEvento"><br>
-  <label for="notificacion">Notificación:</label>
-  <input type="text" id="notificacion"><br>
-  <button id="guardarEventoBtn">Guardar</button>
-  <button id="cancelarBtn">Cancelar</button>
+  <!-- Formulario Crear Evento -->
+  <div id="crearEventoForm" class="card">
+    <h2>Crear Evento</h2>
+    <label for="descripcion">Descripción:</label>
+    <input type="text" id="descripcion" placeholder="Descripción del evento"><br>
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" placeholder="Dirección del evento"><br>
+    <label for="fechaEvento">Fecha del Evento:</label>
+    <input type="date" id="fechaEvento"><br>
+    <label for="notificacion">Notificación:</label>
+    <input type="text" id="notificacion" placeholder="Notificación o recordatorio"><br>
+    <button id="guardarEventoBtn" class="btn guardar">Guardar</button>
+    <button id="cancelarBtn" class="btn cancelar">Cancelar</button>
+  </div>
+
+  <!-- Sección para listar eventos -->
+  <div id="listaEventos" class="card">
+    <h2>Eventos Creados</h2>
+    <ul id="eventosLista"></ul> <!-- Aquí se mostrarán los eventos -->
+  </div>
 </div>
-
-<!-- Sección para listar eventos -->
-<div id="listaEventos">
-  <h2>Eventos Creados</h2>
-  <ul id="eventosLista"></ul> <!-- Aquí se mostrarán los eventos -->
-</div>
-
-<script>
-  $(document).ready(function() {
-      $('#calendar').fullCalendar({
-          locale: 'es',
-          header: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'month,agendaWeek,agendaDay'
-          },
-          defaultDate: moment().format("YYYY-MM-DD"),
-          editable: true,
-          eventLimit: true,
-          events: {
-              url: '/api/eventos/listar',
-              type: 'GET',
-              success: function(data) {
-                  // Limpiar la lista de eventos antes de cargar
-                  $('#eventosLista').empty();
-
-                  // Mostrar los eventos en el calendario y en la lista lateral
-                  data.forEach(evento => {
-                      $('#eventosLista').append(`
-                          <li data-id="${evento.id}">
-                              <strong>${evento.notificacion}</strong>
-                              <div class="detallesEvento" style="display: none;">
-                                  Descripción: ${evento.descripcion} <br>
-                                  Dirección: ${evento.direccion} <br>
-                                  Fecha: ${evento.fechaEvento} <br>
-                                  Notificación: ${evento.notificacion}
-                              </div>
-                          </li>
-                      `);
-                  });
-
-                  // Al hacer clic en el título del evento, mostrar detalles
-                  $('#eventosLista li').on('click', function() {
-                      $(this).find('.detallesEvento').toggle(); // Mostrar u ocultar detalles
-                  });
-              },
-              error: function() {
-                  alert('Error al cargar los eventos.');
-              }
-          },
-          selectable: true,
-          selectHelper: true,
-          select: function(start) {
-              $('#fechaEvento').val(moment(start).format("YYYY-MM-DD"));
-          },
-          eventRender: function(event, element) {
-              element.attr('title', event.notificacion);
-          }
-      });
-
-      // Guardar evento y añadirlo a la lista lateral
-      $('#guardarEventoBtn').on('click', function() {
-          var event = {
-              descripcion: $('#descripcion').val(),
-              direccion: $('#direccion').val(),
-              fechaEvento: $('#fechaEvento').val(),
-              notificacion: $('#notificacion').val(),
-              idAdmin: 1
-          };
-
-          $.ajax({
-              url: '/api/eventos/crear',
-              type: 'POST',
-              contentType: 'application/json',
-              data: JSON.stringify(event),
-              success: function(data) {
-                  // Recargar eventos en el calendario
-                  $('#calendar').fullCalendar('refetchEvents');
-
-                  // Limpiar el formulario
-                  $('#descripcion').val('');
-                  $('#direccion').val('');
-                  $('#fechaEvento').val('');
-                  $('#notificacion').val('');
-
-                  // Añadir el nuevo evento a la lista lateral
-                  $('#eventosLista').append(`
-                      <li data-id="${data.id}">
-                          <strong>${data.notificacion}</strong>
-                          <div class="detallesEvento" style="display: none;">
-                              Descripción: ${data.descripcion} <br>
-                              Dirección: ${data.direccion} <br>
-                              Fecha: ${data.fechaEvento} <br>
-                              Notificación: ${data.notificacion}
-                          </div>
-                      </li>
-                  `);
-
-                  // Añadir evento de clic para mostrar detalles
-                  $('#eventosLista li').last().on('click', function() {
-                      $(this).find('.detallesEvento').toggle();
-                  });
-              },
-              error: function() {
-                  alert('Error al guardar el evento.');
-              }
-          });
-      });
-  });
-</script>
 </body>
 </html>

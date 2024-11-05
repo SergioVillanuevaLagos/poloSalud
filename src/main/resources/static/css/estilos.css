@@ -1,23 +1,82 @@
-#calendar {
-    max-width: 800px;
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-.fc-event {
-    background-color: #378006;
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+#calendar {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario Crear Evento */
+.card {
+    background-color: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#crearEventoForm label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+#crearEventoForm input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #5cb85c;
     color: white;
-    border: 1px solid #378006;
-    border-radius: 3px;
-    padding: 2px;
-    font-size: 0.9em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-#crearEventoForm {
-    margin-top: 20px;
+.btn.cancelar {
+    background-color: #d9534f;
 }
 
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Lista de Eventos */
 #listaEventos {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 #eventosLista {
@@ -26,13 +85,41 @@
 }
 
 #eventosLista li {
-    cursor: pointer;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
+    background-color: #e9ecef;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #eventosLista li:hover {
-    background-color: #e0e0e0;
+    background-color: #f1f3f5;
+}
+
+#eventosLista li strong {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.eliminarEventoBtn {
+    display: block;
+    background-color: #d9534f;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.eliminarEventoBtn:hover {
+    background-color: #c9302c;
+}
+
+.detallesEvento {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
 }
