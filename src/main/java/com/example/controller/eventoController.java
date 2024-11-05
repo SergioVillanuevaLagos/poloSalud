@@ -48,7 +48,7 @@ public class eventoController {
         LocalDate fecha = LocalDate.parse(params.get("fechaEvento"));
         String notificacion = params.get("notificacion");
 
-        // Usar el ID del usuario autenticado como idAdmin
+        // Usar el ID del usuario autenticado como idAdmin y asignar el estado a 1
         evento nuevoEvento = eventoService.crearEvento(descripcion, direccion, fecha, notificacion, user.getIdUsuario());
 
         Map<String, String> response = new HashMap<>();
@@ -76,10 +76,31 @@ public class eventoController {
         return ResponseEntity.ok(eventosFormato);
     }
 
-    // Eliminar un evento por su ID
+    // Eliminar un evento solo si el usuario autenticado tiene rol de administrador (id_rol = 1)
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Void> eliminarEvento(@PathVariable int id) {
+    public ResponseEntity<Map<String, String>> eliminarEvento(@PathVariable int id, HttpSession session) {
+        usuario user = (usuario) session.getAttribute("user"); // Obtener usuario de la sesión
+
+        // Verificar que el usuario esté autenticado y que tenga rol de administrador
+        if (user == null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("status", "error");
+            response.put("message", "Usuario no autenticado");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        if (user.getRol() == null || user.getRol().getIdRol() != 1) { // Verificar si el rol del usuario no es de administrador
+            Map<String, String> response = new HashMap<>();
+            response.put("status", "error");
+            response.put("message", "Acceso denegado. Solo los administradores pueden eliminar eventos.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+        }
+
+        // Eliminar el evento ya que el usuario es administrador
         eventoService.eliminarEvento(id);
-        return ResponseEntity.noContent().build();
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "Evento eliminado exitosamente");
+        return ResponseEntity.ok(response);
     }
 }
