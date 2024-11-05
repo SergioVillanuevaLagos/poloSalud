@@ -1,0 +1,38 @@
+#calendar {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.fc-event {
+    background-color: #378006;
+    color: white;
+    border: 1px solid #378006;
+    border-radius: 3px;
+    padding: 2px;
+    font-size: 0.9em;
+}
+
+#crearEventoForm {
+    margin-top: 20px;
+}
+
+#listaEventos {
+    margin-top: 40px;
+}
+
+#eventosLista {
+    list-style-type: none;
+    padding: 0;
+}
+
+#eventosLista li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+#eventosLista li:hover {
+    background-color: #e0e0e0;
+}
