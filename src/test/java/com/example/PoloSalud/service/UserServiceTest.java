@@ -1,23 +1,16 @@
 package com.example.PoloSalud.service;
 
-import com.example.controller.UserController;
 import com.example.model.usuario;
+import com.example.repositorio.UserRepository;
 import com.example.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import jakarta.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -25,10 +18,10 @@ import static org.mockito.Mockito.*;
 class UserServiceTest {
 
     @InjectMocks
-    private UserController userController;
+    private UserService userService;
 
     @Mock
-    private UserService userService;
+    private UserRepository userRepository;
 
     @BeforeEach
     void setUp() {
@@ -36,134 +29,99 @@ class UserServiceTest {
     }
 
     @Test
-    void testShowLoginPage() {
-        ResponseEntity<String> response = userController.showLoginPage();
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("login", response.getBody());
-    }
-
-    @Test
-    void testLoginUserSuccess() {
-        String email = "test@example.com";
-        String password = "password";
-        usuario user = new usuario();
-        user.setCorreoElectronico(email);
-        user.setContraseña(password);
-
-        when(userService.findByEmail(email)).thenReturn(user);
-        when(userService.validatePassword(email, password)).thenReturn(true);
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<Map<String, String>> response = userController.loginUser(user);
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("success", response.getBody().get("status"));
-        assertEquals("Inicio de sesión exitoso", response.getBody().get("message"));
-    }
-
-    @Test
-    void testLoginUserInvalidCredentials() {
-        String email = "test@example.com";
-        String password = "wrongpassword";
-        usuario user = new usuario();
-        user.setCorreoElectronico(email);
-        user.setContraseña(password);
-
-        when(userService.findByEmail(email)).thenReturn(user);
-        when(userService.validatePassword(email, password)).thenReturn(false);
-
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<Map<String, String>> response = userController.loginUser(user);
-
-        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        assertEquals("error", response.getBody().get("status"));
-        assertEquals("Credenciales inválidas", response.getBody().get("message"));
-    }
-
-    @Test
-    void testRegisterUserSuccess() {
+    void testSaveUserSuccess() {
         usuario user = new usuario();
         user.setCorreoElectronico("test@example.com");
         user.setContraseña("password");
 
-        when(userService.saveUser(user)).thenReturn(user);
+        when(userRepository.existsByCorreoElectronico(user.getCorreoElectronico())).thenReturn(false);
+        when(userRepository.save(user)).thenReturn(user);
 
-        ResponseEntity<Map<String, String>> response = userController.registerUser(user);
+        usuario savedUser = userService.saveUser(user);
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals("success", response.getBody().get("status"));
-        assertEquals("Usuario registrado exitosamente", response.getBody().get("message"));
+        assertNotNull(savedUser);
+        assertEquals("test@example.com", savedUser.getCorreoElectronico());
     }
 
     @Test
-    void testRegisterUserFailure() {
+    void testSaveUserEmailAlreadyExists() {
         usuario user = new usuario();
         user.setCorreoElectronico("test@example.com");
         user.setContraseña("password");
 
-        when(userService.saveUser(user)).thenThrow(new RuntimeException("Error al registrar usuario"));
+        when(userRepository.existsByCorreoElectronico(user.getCorreoElectronico())).thenReturn(true);
 
-        ResponseEntity<Map<String, String>> response = userController.registerUser(user);
-
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("error", response.getBody().get("status"));
-        assertEquals("Error al registrar usuario", response.getBody().get("message"));
+        assertThrows(RuntimeException.class, () -> {
+            userService.saveUser(user);
+        });
     }
 
     @Test
-    void testHomeUnauthorized() {
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<String> response = userController.home();
-
-        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        assertEquals("Acceso no autorizado", response.getBody());
-    }
-
-    @Test
-    void testHomeAuthorized() {
-        String email = "test@example.com";
+    void testFindByEmail() {
         usuario user = new usuario();
-        user.setCorreoElectronico(email);
+        user.setCorreoElectronico("test@example.com");
+        user.setContraseña("password");
 
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        when(userRepository.findByCorreoElectronico("test@example.com")).thenReturn(user);
 
-        ResponseEntity<String> response = userController.home();
+        usuario foundUser = userService.findByEmail("test@example.com");
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("index", response.getBody());
+        assertNotNull(foundUser);
+        assertEquals("test@example.com", foundUser.getCorreoElectronico());
     }
 
     @Test
-    void testLogout() {
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        ResponseEntity<Void> response = userController.logout();
-
-        assertEquals(HttpStatus.FOUND, response.getStatusCode());
-        assertEquals("/polo/login", response.getHeaders().get("Location").get(0));
-    }
-
-    @Test
-    void testListAllUsers() {
+    void testListAllUser() {
         usuario user1 = new usuario();
+        user1.setCorreoElectronico("test1@example.com");
+        user1.setContraseña("password1");
+
         usuario user2 = new usuario();
+        user2.setCorreoElectronico("test2@example.com");
+        user2.setContraseña("password2");
+
         List<usuario> users = Arrays.asList(user1, user2);
 
-        when(userService.listAllUser()).thenReturn(users);
+        when(userRepository.findAll()).thenReturn(users);
 
-        ResponseEntity<List<usuario>> response = userController.listAllUsers();
+        List<usuario> usersObtenidos = userService.listAllUser();
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(2, response.getBody().size());
+        assertNotNull(usersObtenidos);
+        assertEquals(2, usersObtenidos.size());
+    }
+
+    @Test
+    void testValidatePasswordSuccess() {
+        usuario user = new usuario();
+        user.setCorreoElectronico("test@example.com");
+        user.setContraseña("password");
+
+        when(userRepository.findByCorreoElectronico("test@example.com")).thenReturn(user);
+
+        boolean isValid = userService.validatePassword("test@example.com", "password");
+
+        assertTrue(isValid);
+    }
+
+    @Test
+    void testValidatePasswordWrongPassword() {
+        usuario user = new usuario();
+        user.setCorreoElectronico("test@example.com");
+        user.setContraseña("password");
+
+        when(userRepository.findByCorreoElectronico("test@example.com")).thenReturn(user);
+
+        boolean isValid = userService.validatePassword("test@example.com", "wrongpassword");
+
+        assertFalse(isValid);
+    }
+
+    @Test
+    void testValidatePasswordUserNotFound() {
+        when(userRepository.findByCorreoElectronico("test@example.com")).thenReturn(null);
+
+        boolean isValid = userService.validatePassword("test@example.com", "password");
+
+        assertFalse(isValid);
     }
 }
