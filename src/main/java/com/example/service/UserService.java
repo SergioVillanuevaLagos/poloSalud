@@ -27,7 +27,7 @@ public class UserService {
     public List<usuario> listAllUser() {
         return userRepository.findAll();
     }
-    //serviara para mas adelante
+    //servira para mas adelante
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
