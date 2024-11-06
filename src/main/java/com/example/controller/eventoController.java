@@ -66,7 +66,7 @@ public class eventoController {
             eventoMap.put("id", evento.getID_evento());
             eventoMap.put("descripcion", evento.getDescripcion());
             eventoMap.put("direccion", evento.getDireccion());
-            eventoMap.put("fechaEvento", evento.getFecha_evento().toString()); // Asegúrate de que la fecha esté en formato YYYY-MM-DD
+            eventoMap.put("fechaEvento", evento.getFecha_evento().toString());
             eventoMap.put("notificacion", evento.getNotificacion());
             return eventoMap;
         }).collect(Collectors.toList());
