@@ -88,10 +88,13 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<String> logout() {
+    public ResponseEntity<Map<String, String>> logout() {
         HttpSession session = getCurrentRequest().getSession();
         session.invalidate();
-        return ResponseEntity.ok("Sesión cerrada exitosamente");
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "Sesión cerrada exitosamente");
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/users")
