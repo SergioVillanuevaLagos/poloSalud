@@ -86,7 +86,7 @@ public class UserController {
         }
         return ResponseEntity.ok("index"); // Retorna la vista de inicio después de iniciar sesión
     }
-
+    //configuracion de la salida de seccion
     @GetMapping("/logout")
     public ResponseEntity<Map<String, String>> logout() {
         HttpSession session = getCurrentRequest().getSession();

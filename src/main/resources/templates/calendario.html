@@ -17,19 +17,21 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/locale/es.js"></script>
   <script src="/js/calendario.js"></script>
   <script th:src="@{/js/nav.js}" defer></script>
-</head>
 
-<style>
-  .bottom-right-image {
+  <style>
+    .bottom-right-image {
       position: fixed;
       bottom: 0;
       right: 0;
       width: 50px;
       height: 50px;
-  }
-</style>
+    }
+  </style>
+
+</head>
 
 <body>
+
 <!-- Barra de navegación -->
 <header class="header">
   <div class="logo">
@@ -63,8 +65,9 @@
 </header>
 
 <!-- Contenido de la página -->
-   <!-- ancla -->
-   <div class="container-fluid" id="principio"></div>
+<!-- ancla -->
+<div class="container-fluid" id="principio"></div>
+
 <div class="container">
   <h1>Calendario de Eventos</h1>
   <div id="calendar"></div>
@@ -99,14 +102,14 @@
     <h2>Eventos Creados</h2>
     <ul id="eventosLista"></ul>
   </div>
+
+  <!-- Imagen de botón para "volver arriba" -->
+  <a href="#principio">
+    <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" alt="Subir" class="bottom-right-image" >
+  </a>
+
+  <script src="/static/js/top.js"></script>
+
 </div>
-<!-- Imagen de botón para "volver arriba" -->
-<a href="#principio">
-  <img th:src="@{/imagenes/boton.png}" src="../static/imagenes/boton.png" alt="Subir" class="bottom-right-image" >
-</a>
-
-<script src="/static/js/scroll-to-top.js"></script>
-
 </body>
 </html>
-
