@@ -64,8 +64,6 @@ public class eventoController {
         List<Map<String, Object>> eventosFormato = eventos.stream().map(evento -> {
             Map<String, Object> eventoMap = new HashMap<>();
             eventoMap.put("id", evento.getID_evento());
-            eventoMap.put("title", evento.getDescripcion());
-            eventoMap.put("start", evento.getFecha_evento().toString()); // FullCalendar requiere formato YYYY-MM-DD
             eventoMap.put("descripcion", evento.getDescripcion());
             eventoMap.put("direccion", evento.getDireccion());
             eventoMap.put("fechaEvento", evento.getFecha_evento().toString()); // Asegúrate de que la fecha esté en formato YYYY-MM-DD
