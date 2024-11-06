@@ -10,7 +10,15 @@
     </head>
 
     <body>
-
+        <style>
+            .bottom-right-image {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 50px;
+                height: 50px;
+            }
+        </style>
 
         <h1>Polo de salud </h1>
 
@@ -43,9 +51,16 @@
                              <h5 class="card-title">Prueba uno</h5>
                              <p class="card-text">Si se logra ver este texto esta funcionando bien.</p>
                              <a href="#" class="btn btn-primary">sig.</a>
-                         </div>
-                     </div>
-
-
+                             <!-- Botón añadido para Hospital Asociado -->
+                            <button onclick="location.href='https://hospitaldechillan.cl/web/'" class="btn btn-secondary mt-2">Hospital Asociado</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Imagen de botón para "volver arriba" -->
+    <a href="#principio">
+        <img th:src="@{/imagenes/boton.png}" src="../static/imagenes/boton.png" alt="Subir" class="bottom-right-image" >
+    </a>
+    <script src="/static/js/scroll-to-top.js"></script>
     </body>
 </html>
