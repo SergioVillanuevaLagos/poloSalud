@@ -28,6 +28,8 @@ public class evento {
     @Column(name = "ID_admin")
     private int idAdmin;
 
+    //getter y setter
+
     public int getID_evento() {
         return ID_evento;
     }

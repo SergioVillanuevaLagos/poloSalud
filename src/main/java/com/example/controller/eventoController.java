@@ -32,14 +32,14 @@ public class eventoController {
             Map<String, String> response = new HashMap<>();
             response.put("status", "error");
             response.put("message", "Usuario no autenticado");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);// enviara un error al usuario que debe autenticarse
         }
 
         if (user.getRol() == null || user.getRol().getIdRol() != 1) { // Verificar si el rol del usuario no es de administrador
             Map<String, String> response = new HashMap<>();
             response.put("status", "error");
             response.put("message", "Acceso denegado. Solo los administradores pueden crear eventos.");
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);// enviara un error al  usurio diciendo que solo es para los admin
         }
 
         // Crear el evento ya que el usuario es administrador
@@ -48,7 +48,7 @@ public class eventoController {
         LocalDate fecha = LocalDate.parse(params.get("fechaEvento"));
         String notificacion = params.get("notificacion");
 
-        // Usar el ID del usuario autenticado como idAdmin y asignar el estado a 1
+        // Usar el ID del usuario autenticado como idAdmin
         evento nuevoEvento = eventoService.crearEvento(descripcion, direccion, fecha, notificacion, user.getIdUsuario());
 
         Map<String, String> response = new HashMap<>();
