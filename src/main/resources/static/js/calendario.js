@@ -13,15 +13,30 @@ $(document).ready(function() {
             url: '/api/eventos/listar',
             type: 'GET',
             success: function(data) {
+                // Elimina eventos previos para evitar duplicados
+                $('#calendar').fullCalendar('removeEvents');
+
+                const events = data.map(evento => ({
+                    id: evento.id,
+                    title: evento.notificacion, // Esto muestra la notificación en el calendario
+                    start: evento.fechaEvento,
+                    descripcion: evento.descripcion,
+                    direccion: evento.direccion,
+                    notificacion: evento.notificacion
+                }));
+
+                // Renderiza los eventos en el calendario
+                $('#calendar').fullCalendar('renderEvents', events, true);
+
                 $('#eventosLista').empty();
-                data.forEach(evento => {
+                events.forEach(evento => {
                     $('#eventosLista').append(`
                         <li data-id="${evento.id}">
-                            <strong>${evento.notificacion}</strong>
+                            <strong>${evento.title}</strong>
                             <div class="detallesEvento" style="display: none;">
                                 <strong>Descripción:</strong> ${evento.descripcion} <br>
                                 <strong>Dirección:</strong> ${evento.direccion} <br>
-                                <strong>Fecha:</strong> ${moment(evento.fechaEvento).format('DD-MM-YYYY')} <br>
+                                <strong>Fecha:</strong> ${moment(evento.start).format('DD-MM-YYYY')} <br>
                                 <strong>Notificación:</strong> ${evento.notificacion}
                                 <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
                             </div>
@@ -42,7 +57,8 @@ $(document).ready(function() {
                             url: `/api/eventos/eliminar/${eventId}`,
                             type: 'DELETE',
                             success: function() {
-                                $('#calendar').fullCalendar('refetchEvents');
+                                // Elimina el evento del calendario y de la lista
+                                $('#calendar').fullCalendar('removeEvents', eventId);
                                 $(`li[data-id="${eventId}"]`).remove();
                             },
                             error: function(xhr, status, error) {
@@ -62,7 +78,8 @@ $(document).ready(function() {
             $('#fechaEvento').val(moment(start).format("YYYY-MM-DD"));
         },
         eventRender: function(event, element) {
-            element.find('.fc-title').text(event.notificacion);
+            // Mostrar la notificación como título del evento en el calendario
+            element.find('.fc-title').text(event.title);
             element.attr('title', event.notificacion);
         }
     });
@@ -73,7 +90,7 @@ $(document).ready(function() {
             return;
         }
 
-        var event = {
+        const event = {
             descripcion: $('#descripcion').val(),
             direccion: $('#direccion').val(),
             fechaEvento: $('#fechaEvento').val(),
