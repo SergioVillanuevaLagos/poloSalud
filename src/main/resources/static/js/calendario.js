@@ -4,7 +4,7 @@ $(document).ready(function() {
         header: {
             left: 'prev, today',
             center: 'title',
-            right: 'today, next'
+            right: 'today,next'
         },
         defaultDate: moment().format("YYYY-MM-DD"),
         editable: true,
@@ -13,30 +13,15 @@ $(document).ready(function() {
             url: '/api/eventos/listar',
             type: 'GET',
             success: function(data) {
-                // Elimina eventos previos para evitar duplicados
-                $('#calendar').fullCalendar('removeEvents');
-
-                const events = data.map(evento => ({
-                    id: evento.id,
-                    title: evento.notificacion, // Esto muestra la notificación en el calendario
-                    start: evento.fechaEvento,
-                    descripcion: evento.descripcion,
-                    direccion: evento.direccion,
-                    notificacion: evento.notificacion
-                }));
-
-                // Renderiza los eventos en el calendario
-                $('#calendar').fullCalendar('renderEvents', events, true);
-
                 $('#eventosLista').empty();
-                events.forEach(evento => {
+                data.forEach(evento => {
                     $('#eventosLista').append(`
                         <li data-id="${evento.id}">
-                            <strong>${evento.title}</strong>
+                            <strong>${evento.notificacion}</strong>
                             <div class="detallesEvento" style="display: none;">
                                 <strong>Descripción:</strong> ${evento.descripcion} <br>
                                 <strong>Dirección:</strong> ${evento.direccion} <br>
-                                <strong>Fecha:</strong> ${moment(evento.start).format('DD-MM-YYYY')} <br>
+                                <strong>Fecha:</strong> ${moment(evento.fechaEvento).format('DD-MM-YYYY')} <br>
                                 <strong>Notificación:</strong> ${evento.notificacion}
                                 <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
                             </div>
@@ -57,8 +42,7 @@ $(document).ready(function() {
                             url: `/api/eventos/eliminar/${eventId}`,
                             type: 'DELETE',
                             success: function() {
-                                // Elimina el evento del calendario y de la lista
-                                $('#calendar').fullCalendar('removeEvents', eventId);
+                                $('#calendar').fullCalendar('refetchEvents');
                                 $(`li[data-id="${eventId}"]`).remove();
                             },
                             error: function(xhr, status, error) {
@@ -78,8 +62,7 @@ $(document).ready(function() {
             $('#fechaEvento').val(moment(start).format("YYYY-MM-DD"));
         },
         eventRender: function(event, element) {
-            // Mostrar la notificación como título del evento en el calendario
-            element.find('.fc-title').text(event.title);
+            element.find('.fc-title').text(event.notificacion);
             element.attr('title', event.notificacion);
         }
     });
@@ -90,7 +73,7 @@ $(document).ready(function() {
             return;
         }
 
-        const event = {
+        var event = {
             descripcion: $('#descripcion').val(),
             direccion: $('#direccion').val(),
             fechaEvento: $('#fechaEvento').val(),
