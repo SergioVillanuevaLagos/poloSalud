@@ -2,9 +2,9 @@ $(document).ready(function() {
     $('#calendar').fullCalendar({
         locale: 'es',
         header: {
-            left: 'prev,next today',
+            left: 'prev, today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            right: 'today, next'
         },
         defaultDate: moment().format("YYYY-MM-DD"),
         editable: true,
