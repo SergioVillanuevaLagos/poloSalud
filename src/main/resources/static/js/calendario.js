@@ -7,7 +7,9 @@ $(document).ready(function () {
       right: 'today,next'
     },
     defaultDate: moment().format("YYYY-MM-DD"),
-    editable: true,
+    editable: false,
+    eventStartEditable: false, 
+    eventDurationEditable: false, 
     eventLimit: true,
     events: {
       url: '/api/eventos/listar',
@@ -26,7 +28,6 @@ $(document).ready(function () {
                 <strong>Dirección:</strong> ${evento.direccion} <br>
                 <strong>Fecha:</strong> ${fecha} <br>
                 <strong>Hora:</strong> ${hora} <br>
-                <strong>Notificación:</strong> ${evento.notificacion}
                 <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
               </div>
             </li>
