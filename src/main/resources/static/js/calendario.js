@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#calendar').fullCalendar({
         locale: 'es',
         header: {
@@ -12,7 +12,7 @@ $(document).ready(function() {
         events: {
             url: '/api/eventos/listar',
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
                 $('#eventosLista').empty();
                 data.forEach(evento => {
                     $('#eventosLista').append(`
@@ -21,7 +21,7 @@ $(document).ready(function() {
                             <div class="detallesEvento" style="display: none;">
                                 <strong>Descripción:</strong> ${evento.descripcion} <br>
                                 <strong>Dirección:</strong> ${evento.direccion} <br>
-                                <strong>Fecha:</strong> ${moment(evento.fechaEvento).format('DD-MM-YYYY')} <br>
+                                <strong>Fecha:</strong> ${moment(evento.fechaEvento).format('DD-MM-YYYY HH:mm')} <br>
                                 <strong>Notificación:</strong> ${evento.notificacion}
                                 <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
                             </div>
@@ -29,11 +29,11 @@ $(document).ready(function() {
                     `);
                 });
 
-                $('#eventosLista li').on('click', function() {
+                $('#eventosLista li').on('click', function () {
                     $(this).find('.detallesEvento').toggle();
                 });
 
-                $('.eliminarEventoBtn').on('click', function(e) {
+                $('.eliminarEventoBtn').on('click', function (e) {
                     e.stopPropagation();
 
                     const eventId = $(this).data('id');
@@ -41,42 +41,44 @@ $(document).ready(function() {
                         $.ajax({
                             url: `/api/eventos/eliminar/${eventId}`,
                             type: 'DELETE',
-                            success: function() {
+                            success: function () {
                                 $('#calendar').fullCalendar('refetchEvents');
                                 $(`li[data-id="${eventId}"]`).remove();
                             },
-                            error: function(xhr, status, error) {
+                            error: function (xhr) {
                                 alert('Error al eliminar el evento: ' + xhr.responseText);
                             }
                         });
                     }
                 });
             },
-            error: function() {
+            error: function () {
                 alert('Error al cargar los eventos.');
             }
         },
         selectable: true,
         selectHelper: true,
-        select: function(start) {
-            $('#fechaEvento').val(moment(start).format("YYYY-MM-DD"));
+        select: function (start) {
+            $('#fechaEvento').val(moment(start).format("YYYY-MM-DDTHH:mm"));
         },
-        eventRender: function(event, element) {
+        eventRender: function (event, element) {
             element.find('.fc-title').text(event.notificacion);
             element.attr('title', event.notificacion);
         }
     });
 
-    $('#guardarEventoBtn').on('click', function() {
+    $('#guardarEventoBtn').on('click', function () {
         if (!$('#descripcion').val() || !$('#direccion').val() || !$('#fechaEvento').val() || !$('#notificacion').val()) {
             alert('Todos los campos deben estar llenos.');
             return;
         }
 
+        const fechaEvento = moment($('#fechaEvento').val()).format("YYYY-MM-DDTHH:mm:ss");
+
         var event = {
             descripcion: $('#descripcion').val(),
             direccion: $('#direccion').val(),
-            fechaEvento: $('#fechaEvento').val(),
+            fechaEvento: fechaEvento,
             notificacion: $('#notificacion').val(),
             idAdmin: 1
         };
@@ -86,7 +88,7 @@ $(document).ready(function() {
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(event),
-            success: function(data) {
+            success: function (data) {
                 $('#calendar').fullCalendar('refetchEvents');
                 $('#descripcion').val('');
                 $('#direccion').val('');
@@ -98,20 +100,20 @@ $(document).ready(function() {
                         <div class="detallesEvento" style="display: none;">
                             <strong>Descripción:</strong> ${data.descripcion} <br>
                             <strong>Dirección:</strong> ${data.direccion} <br>
-                            <strong>Fecha:</strong> ${moment(data.fechaEvento).format('DD-MM-YYYY')} <br>
+                            <strong>Fecha:</strong> ${moment(data.fechaEvento).format('DD-MM-YYYY HH:mm')} <br>
                             <strong>Notificación:</strong> ${data.notificacion}
                             <br><button class="eliminarEventoBtn" data-id="${data.id}">Eliminar</button>
                         </div>
                     </li>
                 `);
             },
-            error: function() {
+            error: function () {
                 alert('Error al guardar el evento.');
             }
         });
     });
 
-    $('#cancelarBtn').on('click', function() {
+    $('#cancelarBtn').on('click', function () {
         $('#descripcion').val('');
         $('#direccion').val('');
         $('#fechaEvento').val('');

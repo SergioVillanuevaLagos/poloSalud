@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class eventoController {
     public ResponseEntity<evento> crearEvento(@RequestBody Map<String, String> params) {
         String descripcion = params.get("descripcion");
         String direccion = params.get("direccion");
-        LocalDate fecha = LocalDate.parse(params.get("fechaEvento"));
+        LocalDateTime fecha = LocalDateTime.parse(params.get("fechaEvento"));
         String notificacion = params.get("notificacion");
         int idAdmin = Integer.parseInt(params.get("idAdmin"));
 
