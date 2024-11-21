@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendario de Eventos</title>
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/estilos.css"> <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="/css/estilos.css">
   <link th:href="@{/css/estilos.css}" rel="stylesheet" />
-  <link th:href="@{/css/stilenav.css}" rel="stylesheet" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <!-- Scripts y CSS de FullCalendar -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
@@ -28,53 +24,32 @@
       height: 50px;
     }
   </style>
-
 </head>
 
 <body>
-
-  <!-- Barra de navegación -->
   <header class="header">
     <div class="logo">
       <a href="/polosalud/index">
-        <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top"
-          alt="...">
+        <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" alt="Logo">
       </a>
     </div>
     <nav>
       <ul class="nav-links">
-        <li><a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a></li>
-        <li><a class="nav-link" href="#">Calendario</a></li>
-        <li><a class="nav-link" href="#">Noticias</a></li>
-        <li><a class="nav-link" href="#">Facultades</a></li>
-        <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
-        <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
+        <li><a href="/polosalud/index">Inicio</a></li>
+        <li><a href="#">Calendario</a></li>
+        <li><a href="#">Noticias</a></li>
+        <li><a href="#">Facultades</a></li>
+        <li><a href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+        <li><a href="/polosalud/login">Registro</a></li>
       </ul>
     </nav>
     <a class="btn" href="#"><button>Contactanos</button></a>
-    <a onclick="openNav()" class="menu" href="/polosalud/index"><button>Menu</button></a>
-    <div id="mobile-menu" class="overlay">
-      <a onclick="closeNav()" href="" class="close">&times;</a>
-      <div class="overlay-content">
-        <a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a>
-        <a class="nav-link" href="/calendario">Calendario</a></li>
-        <a class="nav-link" href="#">Noticias</a>
-        <a class="nav-link" href="#">Facultades</a>
-        <a class="nav-link" href="#">Colaboradores</a>
-        <a class="nav-link" href="/polosalud/login">Registro</a>
-      </div>
-    </div>
   </header>
-
-  <!-- Contenido de la página -->
-  <!-- ancla -->
-  <div class="container-fluid" id="principio"></div>
 
   <div class="container">
     <h1>Calendario de Eventos</h1>
     <div id="calendar"></div>
 
-    <!-- Formulario Crear Evento -->
     <div id="crearEventoForm" class="card">
       <h2>Crear Evento</h2>
       <form>
@@ -90,7 +65,6 @@
           <label for="fechaEvento" class="form-label">Fecha y Hora del Evento:</label>
           <input type="datetime-local" class="form-control" id="fechaEvento">
         </div>
-
         <div class="mb-3">
           <label for="notificacion" class="form-label">Notificación:</label>
           <input type="text" class="form-control" id="notificacion" placeholder="Notificación o recordatorio">
@@ -100,19 +74,10 @@
       </form>
     </div>
 
-    <!-- Sección para listar eventos -->
     <div id="listaEventos" class="card">
       <h2>Eventos Creados</h2>
       <ul id="eventosLista"></ul>
     </div>
-
-    <!-- Imagen de botón para "volver arriba" -->
-    <a href="#principio">
-      <img th:src="@{/imagenes/boton.png}" src="../static/imagenes/boton.png" alt="Subir" class="bottom-right-image">
-    </a>
-
-    <script src="/js/top.js"></script>
-
   </div>
 </body>
 
