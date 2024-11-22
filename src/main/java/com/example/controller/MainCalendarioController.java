@@ -8,6 +8,12 @@ public class MainCalendarioController {
 
     @GetMapping("/calendario")
     public String mostrarCalendario() {
-        return "calendario";
+        return "calendarioAdmin";
     }
+
+    @GetMapping("/calendarioUsuario")
+    public String mostrarCalendarioUsurio() {
+        return "calendarioUsuario";
+    }
+
 }

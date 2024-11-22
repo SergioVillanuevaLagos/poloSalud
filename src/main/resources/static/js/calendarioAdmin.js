@@ -4,7 +4,7 @@ $(document).ready(function () {
     header: {
       left: 'prev, today',
       center: 'title',
-      right: 'next'
+      right: 'today,next'
     },
     defaultDate: moment().format("YYYY-MM-DD"),
     editable: false,
