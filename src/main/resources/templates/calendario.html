@@ -47,8 +47,8 @@
       <h2>Crear Evento</h2>
       <form>
         <div class="mb-3">
-          <label for="descripcion" class="form-label">Descripción:</label>
-          <input type="text" class="form-control" id="descripcion" placeholder="Descripción del evento">
+          <label for="notificacion" class="form-label">Notificación:</label>
+          <input type="text" class="form-control" id="notificacion" placeholder="Notificación o recordatorio">
         </div>
         <div class="mb-3">
           <label for="direccion" class="form-label">Dirección:</label>
@@ -59,16 +59,15 @@
           <input type="datetime-local" class="form-control" id="fechaEvento">
         </div>
         <div class="mb-3">
-          <label for="notificacion" class="form-label">Notificación:</label>
-          <input type="text" class="form-control" id="notificacion" placeholder="Notificación o recordatorio">
-        </div>
+          <label for="descripcion" class="form-label">Descripción:</label>
+          <textarea class="form-control" id="descripcion" placeholder="Descripción del evento" rows="3"></textarea>      
         <button id="guardarEventoBtn" type="button" class="btn btn-primary">Guardar</button>
         <button id="cancelarBtn" type="button" class="btn btn-secondary">Cancelar</button>
       </form>
     </div>
 
     <div id="listaEventos" class="card">
-      <h2>Eventos Creados</h2>
+      <h2>Eventos </h2>
       <ul id="eventosLista"></ul>
     </div>
   </div>

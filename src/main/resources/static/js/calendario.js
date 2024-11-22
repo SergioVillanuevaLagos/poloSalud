@@ -4,43 +4,41 @@ $(document).ready(function () {
     header: {
       left: 'prev, today',
       center: 'title',
-      right: 'today,next'
+      right: 'next'
     },
     defaultDate: moment().format("YYYY-MM-DD"),
     editable: false,
-    eventStartEditable: false, 
-    eventDurationEditable: false, 
     eventLimit: true,
     events: {
       url: '/api/eventos/listar',
       type: 'GET',
       success: function (data) {
-        $('#eventosLista').empty();
+        $('#eventosLista').empty(); 
         data.forEach(evento => {
           const fecha = moment(evento.fechaEvento).format('DD-MM-YYYY');
           const hora = moment(evento.fechaEvento).format('HH:mm');
-
-          $('#eventosLista').append(`
-            <li data-id="${evento.id}">
+          const listItem = `
+            <li data-id="${evento.id}" class="evento-item">
               <strong>${evento.notificacion}</strong>
               <div class="detallesEvento" style="display: none;">
-                <strong>Descripción:</strong> ${evento.descripcion} <br>
-                <strong>Dirección:</strong> ${evento.direccion} <br>
-                <strong>Fecha:</strong> ${fecha} <br>
-                <strong>Hora:</strong> ${hora} <br>
-                <br><button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
+                <strong>Dirección:</strong> <span>${evento.direccion}</span><br>
+                <strong>Fecha:</strong> <span>${fecha}</span><br>
+                <strong>Hora:</strong> <span>${hora}</span><br>
+                <strong>Descripción:</strong> <span>${evento.descripcion}</span><br>
+                <button class="eliminarEventoBtn" data-id="${evento.id}">Eliminar</button>
               </div>
             </li>
-          `);
+          `;
+          $('#eventosLista').append(listItem);
         });
 
-        $('#eventosLista li').on('click', function () {
+        // Agrega eventos a los nuevos elementos
+        $('#eventosLista li').off('click').on('click', function () {
           $(this).find('.detallesEvento').toggle();
         });
 
-        $('.eliminarEventoBtn').on('click', function (e) {
+        $('.eliminarEventoBtn').off('click').on('click', function (e) {
           e.stopPropagation();
-
           const eventId = $(this).data('id');
           if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
             $.ajax({
@@ -67,54 +65,48 @@ $(document).ready(function () {
       $('#fechaEvento').val(moment(start).format("YYYY-MM-DDTHH:mm"));
     },
     eventRender: function (event, element) {
-      element.find('.fc-title').text(event.notificacion);
-      element.attr('title', event.notificacion);
+      element.find('.fc-title').html(event.notificacion); 
+      element.attr('title', `${event.descripcion}`); 
     }
   });
 
   $('#guardarEventoBtn').on('click', function () {
-    if (!$('#descripcion').val() || !$('#direccion').val() || !$('#fechaEvento').val() || !$('#notificacion').val()) {
+    const descripcion = $('#descripcion').val();
+    const direccion = $('#direccion').val();
+    const fechaEvento = moment($('#fechaEvento').val()).format("YYYY-MM-DDTHH:mm:ss");
+    const notificacion = $('#notificacion').val();
+
+    if (!descripcion || !direccion || !fechaEvento || !notificacion) {
       alert('Todos los campos deben estar llenos.');
       return;
     }
 
-    const fechaEvento = moment($('#fechaEvento').val()).format("YYYY-MM-DDTHH:mm:ss");
-
-    const event = {
-      descripcion: $('#descripcion').val(),
-      direccion: $('#direccion').val(),
-      fechaEvento: fechaEvento,
-      notificacion: $('#notificacion').val(),
-      idAdmin: 1
-    };
+    const evento = { descripcion, direccion, fechaEvento, notificacion, idAdmin: 1 };
 
     $.ajax({
       url: '/api/eventos/crear',
       type: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify(event),
+      data: JSON.stringify(evento),
       success: function (data) {
         $('#calendar').fullCalendar('refetchEvents');
-        $('#descripcion').val('');
-        $('#direccion').val('');
-        $('#fechaEvento').val('');
-        $('#notificacion').val('');
+        $('#descripcion, #direccion, #fechaEvento, #notificacion').val('');
         const fecha = moment(data.fechaEvento).format('DD-MM-YYYY');
         const hora = moment(data.fechaEvento).format('HH:mm');
 
-        $('#eventosLista').append(`
-          <li data-id="${data.id}">
+        const newItem = `
+          <li data-id="${data.id}" class="evento-item">
             <strong>${data.notificacion}</strong>
             <div class="detallesEvento" style="display: none;">
-              <strong>Descripción:</strong> ${data.descripcion} <br>
-              <strong>Dirección:</strong> ${data.direccion} <br>
-              <strong>Fecha:</strong> ${fecha} <br>
-              <strong>Hora:</strong> ${hora} <br>
-              <strong>Notificación:</strong> ${data.notificacion}
-              <br><button class="eliminarEventoBtn" data-id="${data.id}">Eliminar</button>
+              <strong>Descripción:</strong> <span>${data.descripcion}</span><br>
+              <strong>Dirección:</strong> <span>${data.direccion}</span><br>
+              <strong>Fecha:</strong> <span>${fecha}</span><br>
+              <strong>Hora:</strong> <span>${hora}</span><br>
+              <button class="eliminarEventoBtn" data-id="${data.id}">Eliminar</button>
             </div>
           </li>
-        `);
+        `;
+        $('#eventosLista').append(newItem);
       },
       error: function () {
         alert('Error al guardar el evento.');
@@ -123,9 +115,6 @@ $(document).ready(function () {
   });
 
   $('#cancelarBtn').on('click', function () {
-    $('#descripcion').val('');
-    $('#direccion').val('');
-    $('#fechaEvento').val('');
-    $('#notificacion').val('');
+    $('#descripcion, #direccion, #fechaEvento, #notificacion').val('');
   });
 });

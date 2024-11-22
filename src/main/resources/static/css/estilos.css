@@ -277,3 +277,17 @@ h2 {
 .detallesEvento strong {
     font-weight: 700;
 }
+
+.evento-item .detallesEvento span {
+    white-space: pre-line;
+}
+
+
+
+#crearEventoForm .form-label {
+    margin-bottom: 10px;
+}
+
+#crearEventoForm .form-control {
+    margin-bottom: 10px;
+}
