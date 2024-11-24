@@ -16,4 +16,9 @@ public class MainCalendarioController {
         return "calendarioUsuario";
     }
 
+    @GetMapping("/xd")
+    public String xd() {
+        return "xd";
+    }
+
 }
