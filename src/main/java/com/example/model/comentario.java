@@ -2,7 +2,8 @@ package com.example.model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "comentario")
@@ -10,13 +11,13 @@ public class comentario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_comen")
-    private int idComen;
+    private int idComenentario;
 
     @Column(name = "comentario", length = 1000)
     private String comentario;
 
-    @Column(name = "crea_comentario")
-    private Date creaComentario;
+    @Column(name = "fecha_creacion")
+    private LocalDateTime creaComentario;
 
     @ManyToOne
     @JoinColumn(name = "ID_publi")
@@ -26,13 +27,12 @@ public class comentario {
     @JoinColumn(name = "ID_usuario")
     private usuario usuario;
 
-
-    public int getIdComen() {
-        return idComen;
+    public int getIdComenentario() {
+        return idComenentario;
     }
 
-    public void setIdComen(int idComen) {
-        this.idComen = idComen;
+    public void setIdComenentario(int idComenentario) {
+        this.idComenentario = idComenentario;
     }
 
     public String getComentario() {
@@ -43,27 +43,28 @@ public class comentario {
         this.comentario = comentario;
     }
 
-    public Date getCreaComentario() {
+    public LocalDateTime getCreaComentario() {
         return creaComentario;
     }
 
-    public void setCreaComentario(Date creaComentario) {
+    public void setCreaComentario(LocalDateTime creaComentario) {
         this.creaComentario = creaComentario;
     }
 
-    public com.example.model.publicacion getPublicacion() {
+    public publicacion getPublicacion() {
         return publicacion;
     }
 
-    public void setPublicacion(com.example.model.publicacion publicacion) {
+    public void setPublicacion(publicacion publicacion) {
         this.publicacion = publicacion;
     }
 
-    public com.example.model.usuario getUsuario() {
+    public usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(com.example.model.usuario usuario) {
+    public void setUsuario(usuario usuario) {
         this.usuario = usuario;
-    }
+    }    
+
 }
