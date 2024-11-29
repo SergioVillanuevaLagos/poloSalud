@@ -49,28 +49,27 @@ $(document).ready(function () {
         comentarios.forEach(comentario => mostrarComentario(comentario));
     }
 
-    // Función para mostrar un solo comentario
     function mostrarComentario(comentario, agregarAlInicio = false) {
-        // Extraer información del usuario y manejar casos donde no esté definido
-        const nombreUsuario = comentario.usuario?.nombre || "Usuario desconocido";
-        const comentarioHTML = `
-            <li data-id="${comentario.id}" class="comentario-item">
-                <div class="comentario">
-                    <div class="avatar">•</div>
-                    <div class="contenido-comentario">
-                        <p class="usuario">${nombreUsuario}</p>
-                        <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
-                        <a href="#" class="responder">Responder</a>
-                        <p class="fecha">${comentario.fecha || "Fecha no disponible"}</p>
-                    </div>
+    // Usar "Usuario desconocido" solo si el nombre no está disponible
+    const nombreUsuario = comentario.usuario || "Usuario desconocido";
+    const comentarioHTML = `
+        <li data-id="${comentario.id}" class="comentario-item">
+            <div class="comentario">
+                <div class="avatar">•</div>
+                <div class="contenido-comentario">
+                    <p class="usuario">${nombreUsuario}</p>
+                    <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
+                    <a href="#" class="responder">Responder</a>
+                    <p class="fecha">${comentario.fecha || "Fecha no disponible"}</p>
                 </div>
-            </li>
-        `;
+            </div>
+        </li>
+    `;
 
-        if (agregarAlInicio) {
-            $('#lista-comentarios').prepend(comentarioHTML);
-        } else {
-            $('#lista-comentarios').append(comentarioHTML);
-        }
+    if (agregarAlInicio) {
+        $('#lista-comentarios').prepend(comentarioHTML);
+    } else {
+        $('#lista-comentarios').append(comentarioHTML);
     }
+}
 });
