@@ -8,7 +8,7 @@ $(document).ready(function () {
     // Manejar envío del formulario
     $('#form-comentario').on('submit', async function (event) {
         event.preventDefault();
-        const contenido = $('#contenido').val();
+        const contenido = $('#contenido').val().trim(); // Eliminar espacios en blanco
 
         if (!contenido) {
             alert('El contenido del comentario no puede estar vacío.');
@@ -49,27 +49,27 @@ $(document).ready(function () {
         comentarios.forEach(comentario => mostrarComentario(comentario));
     }
 
+    // Función para mostrar un comentario
     function mostrarComentario(comentario, agregarAlInicio = false) {
-    // Usar "Usuario desconocido" solo si el nombre no está disponible
-    const nombreUsuario = comentario.usuario || "Usuario desconocido";
-    const comentarioHTML = `
-        <li data-id="${comentario.id}" class="comentario-item">
-            <div class="comentario">
-                <div class="avatar">•</div>
-                <div class="contenido-comentario">
-                    <p class="usuario">${nombreUsuario}</p>
-                    <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
-                    <a href="#" class="responder">Responder</a>
-                    <p class="fecha">${comentario.fecha || "Fecha no disponible"}</p>
+        const nombreUsuario = comentario.usuario || "Usuario desconocido";
+        const comentarioHTML = `
+            <li data-id="${comentario.id}" class="comentario-item">
+                <div class="comentario">
+                    <div class="avatar">•</div>
+                    <div class="contenido-comentario">
+                        <p class="usuario">${nombreUsuario}</p>
+                        <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
+                        <a href="#" class="responder">Responder</a>
+                        <p class="fecha">${comentario.fecha || "Fecha no disponible"}</p>
+                    </div>
                 </div>
-            </div>
-        </li>
-    `;
+            </li>
+        `;
 
-    if (agregarAlInicio) {
-        $('#lista-comentarios').prepend(comentarioHTML);
-    } else {
-        $('#lista-comentarios').append(comentarioHTML);
+        if (agregarAlInicio) {
+            $('#lista-comentarios').prepend(comentarioHTML);
+        } else {
+            $('#lista-comentarios').append(comentarioHTML);
+        }
     }
-}
 });

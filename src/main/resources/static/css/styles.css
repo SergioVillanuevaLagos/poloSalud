@@ -29,11 +29,21 @@ h2 {
 
 #form-comentario textarea {
     resize: none;
+    /* Evita que el usuario cambie el tamaño del campo */
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    width: 100%;
+    /* El campo ocupará todo el ancho del contenedor */
+    height: 100px;
+    /* Altura inicial */
+    box-sizing: border-box;
+    /* Incluye padding en el ancho total */
+    overflow-wrap: break-word;
+    /* Permite dividir palabras largas */
+    white-space: pre-wrap;
+    /* Conserva saltos de línea */
 }
 
 #form-comentario button {
@@ -52,6 +62,10 @@ h2 {
 #lista-comentarios {
     list-style: none;
     padding: 0;
+    max-height: 400px;
+    /* Límite de altura para evitar desbordamiento */
+    overflow-y: auto;
+    /* Scroll vertical si hay demasiados comentarios */
 }
 
 #lista-comentarios li {
@@ -59,6 +73,8 @@ h2 {
     align-items: flex-start;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+    max-width: 100%;
+    /* Limitar ancho */
 }
 
 .comentario {
@@ -93,6 +109,12 @@ h2 {
 .contenido-comentario .texto {
     margin: 5px 0;
     color: #555;
+    word-wrap: break-word;
+    /* Cortar palabras largas */
+    overflow-wrap: break-word;
+    /* Compatibilidad adicional */
+    white-space: pre-wrap;
+    /* Mantener saltos de línea */
 }
 
 .contenido-comentario .responder {
