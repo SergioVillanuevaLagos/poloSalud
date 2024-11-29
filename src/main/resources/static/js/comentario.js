@@ -51,12 +51,14 @@ $(document).ready(function () {
 
     // Función para mostrar un solo comentario
     function mostrarComentario(comentario, agregarAlInicio = false) {
+        // Extraer información del usuario y manejar casos donde no esté definido
+        const nombreUsuario = comentario.usuario?.nombre || "Usuario desconocido";
         const comentarioHTML = `
             <li data-id="${comentario.id}" class="comentario-item">
                 <div class="comentario">
                     <div class="avatar">•</div>
                     <div class="contenido-comentario">
-                        <p class="usuario">${comentario.usuario || "Usuario desconocido"}</p>
+                        <p class="usuario">${nombreUsuario}</p>
                         <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
                         <a href="#" class="responder">Responder</a>
                         <p class="fecha">${comentario.fecha || "Fecha no disponible"}</p>
