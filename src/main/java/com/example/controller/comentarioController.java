@@ -33,6 +33,8 @@ public class comentarioController {
     @GetMapping("/listar/{idPublicacion}")
     public ResponseEntity<List<Map<String, Object>>> obtenerComentariosPorPublicacion(@PathVariable int idPublicacion) {
         List<comentario> comentarios = comentarioService.obtenerComentariosPorPublicacion(idPublicacion);
+
+        // Formatear la respuesta para incluir el nombre del usuario
         List<Map<String, Object>> comentariosFormato = comentarios.stream().map(comentario -> {
             Map<String, Object> comentarioMap = new HashMap<>();
             comentarioMap.put("id", comentario.getIdComenentario());
@@ -40,6 +42,7 @@ public class comentarioController {
             comentarioMap.put("fecha", comentario.getCreaComentario().toString());
             comentarioMap.put("idPublicacion", comentario.getPublicacion().getIdPublicacion());
             comentarioMap.put("idUsuario", comentario.getUsuario().getIdUsuario());
+            comentarioMap.put("usuario", comentario.getUsuario().getNombreUsuario()); // Incluir el nombre del usuario
             return comentarioMap;
         }).collect(Collectors.toList());
 
