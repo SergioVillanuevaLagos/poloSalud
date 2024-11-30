@@ -1,33 +1,219 @@
 <!DOCTYPE html>
-<html lang "en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name=""viewport" content="width=device-width, initial-scale=1.0">
-        <title>document</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-    </head>
-    <body>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8"></div>
-            <div class="col-md-2"></div>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticia Editable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
 
-        </div>
-        <div> 
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row"></div>
+        header {
+            background-color: #5CB8E4;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
 
+        .logo img {
+            max-height: 50px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            gap: 15px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 5px 10px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: transparent;
+            color: #fff;
+        }
+
+        .search-bar input::placeholder {
+            color: #fff;
+        }
+
+        .search-bar button {
+            background-color: #fff;
+            color: #5CB8E4;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #e0f7ff;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            color: #333;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .content h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #5CB8E4;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .edit-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .edit-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .edit-buttons .edit-title {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .edit-buttons .edit-content {
+            background-color: #28A745;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="#"><img src="../static/imagenes/logoPoloSalud.png" alt="Logo"></a>
     </div>
-    
+    <nav>
+        <ul class="nav-links">
+            <li><a class="nav-link" href="#">Inicio</a></li>
+            <li><a class="nav-link" href="#">Noticias</a></li>
+            <li><a class="nav-link" href="#">Contacto</a></li>
+        </ul>
+    </nav>
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar...">
+        <button>Buscar</button>
+    </div>
+</header>
 
+<main>
+    <div class="title-container">
+        <h1 id="title">Título de la Noticia</h1>
+    </div>
+    <div class="image-container">
+        <img src="imagenes/imagen1.jpg" alt="Imagen de la noticia" id="news-image">
+    </div>
+    <div class="content">
+        <h2 id="subtitle">Subtítulo de la Noticia</h2>
+        <p id="paragraph">
+            Este es un párrafo de ejemplo. Puedes editarlo para añadir el contenido de tu noticia.
+        </p>
+    </div>
+</main>
 
-    <script src="../js/bootstrap.min.js"></script>
-    </body>
+<div class="edit-buttons">
+    <button class="edit-title" onclick="editTitle()">Editar Título</button>
+    <button class="edit-content" onclick="editContent()">Editar Contenido</button>
+</div>
+
+<footer>
+    <p>&copy; 2024 Tu Página de Noticias</p>
+</footer>
+
+<script>
+    function editTitle() {
+        const newTitle = prompt("Ingresa el nuevo título:");
+        if (newTitle) {
+            document.getElementById("title").textContent = newTitle;
+        }
+    }
+
+    function editContent() {
+        const newSubtitle = prompt("Ingresa el nuevo subtítulo:");
+        if (newSubtitle) {
+            document.getElementById("subtitle").textContent = newSubtitle;
+        }
+
+        const newParagraph = prompt("Ingresa el nuevo contenido del párrafo:");
+        if (newParagraph) {
+            document.getElementById("paragraph").textContent = newParagraph;
+        }
+    }
+</script>
+
+</body>
 </html>
