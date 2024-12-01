@@ -103,6 +103,48 @@ footer {
     color: #fff;
     margin-top: 20px;
 }
+/* Posicionar la barra más arriba */
+.sidebar {
+    position: fixed;
+    top: 30%; /* Ajusta según sea necesario */
+    left: 0;
+    transform: translateY(-30%);
+    background-color: #5CB8E4;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 5px;
+    gap: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilizar los botones */
+.sidebar .sidebar-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco detrás del ícono */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.sidebar-btn:hover {
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustar los íconos */
+.icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
 
 .edit-buttons {
     text-align: center;
