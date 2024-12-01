@@ -60,12 +60,10 @@ h2 {
 }
 
 #lista-comentarios {
-    list-style: none;
-    padding: 0;
     max-height: 400px;
-    /* Límite de altura para evitar desbordamiento */
+   
     overflow-y: auto;
-    /* Scroll vertical si hay demasiados comentarios */
+    
 }
 
 #lista-comentarios li {
@@ -74,7 +72,8 @@ h2 {
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
     max-width: 100%;
-    /* Limitar ancho */
+    overflow-wrap: break-word;
+   
 }
 
 .comentario {
@@ -107,16 +106,18 @@ h2 {
 }
 
 .contenido-comentario .texto {
-    margin: 5px 0;
     color: #555;
     word-wrap: break-word;
-    /* Cortar palabras largas */
-    overflow-wrap: break-word;
-    /* Compatibilidad adicional */
+    /* Compatibilidad para cortar palabras largas */
+    overflow-wrap: anywhere;
+    /* Corta palabras en cualquier lugar necesario */
     white-space: pre-wrap;
-    /* Mantener saltos de línea */
+    /* Mantén saltos de línea y texto responsivo */
+    max-height: 200px;
+    /* Altura máxima visible antes de desplazarse */
+    overflow-y: auto;
+    /* Permitir desplazamiento vertical */
 }
-
 .contenido-comentario .responder {
     color: #007bff;
     text-decoration: none;
