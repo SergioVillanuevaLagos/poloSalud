@@ -15,4 +15,9 @@ public interface comentarioService {
     //listar comentarios por publicacion
     List<comentario> obtenerComentariosPorPublicacion(int idPublicacion);
 
+    //crear respuesta a comentario
+    comentario respuesComentario(int comentarioId, String respuesta);
+
+
+
 }

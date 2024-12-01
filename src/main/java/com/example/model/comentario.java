@@ -16,6 +16,9 @@ public class comentario {
     @Column(name = "comentario", length = 1000)
     private String comentario;
 
+    @Column(name = "respuesta")
+    private String respuesta;
+
     @Column(name = "fecha_creacion")
     private LocalDateTime creaComentario;
 
@@ -65,6 +68,14 @@ public class comentario {
 
     public void setUsuario(usuario usuario) {
         this.usuario = usuario;
-    }    
+    }
+    
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
 
 }

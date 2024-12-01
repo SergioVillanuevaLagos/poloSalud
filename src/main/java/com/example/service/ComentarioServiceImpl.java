@@ -68,4 +68,18 @@ public class ComentarioServiceImpl implements comentarioService {
         // Retornar los comentarios asociados a la publicación
         return comentarioRepository.findByPublicacion(publi);
     }
+
+    public comentario responderComentario(Integer id, String respuesta) {
+        // Buscar el comentario original
+        comentario comentarioOriginal = comentarioRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Comentario no encontrado"));
+
+        // Asignar la respuesta
+        comentarioOriginal.setRespuesta(respuesta);
+        comentarioOriginal.setCreaComentario(LocalDateTime.now()); // Establecer la fecha y hora de la respuesta
+
+        // Guardar la actualización
+        return comentarioRepository.save(comentarioOriginal);
+    }
+
 }

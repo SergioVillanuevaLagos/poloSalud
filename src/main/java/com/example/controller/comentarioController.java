@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.model.comentario;
 import com.example.service.ComentarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,4 +66,20 @@ public class comentarioController {
         comentarioService.eliminarComentario(id);
         return ResponseEntity.noContent().build();
     }
+
+    // Endpoint para responder un comentario
+    @PostMapping("/responder/{id}")
+    public ResponseEntity<?> responderComentario(@PathVariable Integer id,@RequestBody Map<String, String> respuestaJson) {
+        try {
+            // Extraer el campo "respuesta" del JSON
+            String respuesta = respuestaJson.get("respuesta");
+
+            // Llama al servicio para guardar la respuesta
+            comentarioService.responderComentario(id, respuesta);
+            return ResponseEntity.ok("Respuesta enviada con éxito");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al responder");
+        }
+    }
+
 }
