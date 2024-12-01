@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,6 +7,7 @@ body {
 
 .comentarios-container {
     max-width: 600px;
+    /* Ancho máximo del contenedor */
     margin: auto;
     background: #fff;
     padding: 20px;
@@ -35,7 +35,7 @@ h2 {
     border-radius: 4px;
     font-size: 16px;
     width: 100%;
-    /* El campo ocupará todo el ancho del contenedor */
+    /* Ocupa todo el ancho del contenedor */
     height: 100px;
     /* Altura inicial */
     box-sizing: border-box;
@@ -53,6 +53,7 @@ h2 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #form-comentario button:hover {
@@ -60,24 +61,35 @@ h2 {
 }
 
 #lista-comentarios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     max-height: 400px;
+    /* Altura máxima del contenedor de comentarios */
     overflow-y: auto;
+    /* Habilita el scroll vertical */
 }
 
-#lista-comentarios li {
-    display: flex;
-    align-items: flex-start;
+.comentario-item,
+.respuesta-item {
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
-    max-width: 100%;
-    overflow-wrap: break-word;
+    word-wrap: break-word;
+    /* Rompe palabras largas */
+    overflow-wrap: anywhere;
+    /* Permite cortar palabras en cualquier punto */
 }
 
 .comentario {
     display: flex;
-    align-items: flex-start;
     gap: 10px;
-    position: relative;
+}
+
+.respuesta {
+    display: flex;
+    gap: 10px;
+    margin-left: 40px;
+    /* Indentación para las respuestas */
 }
 
 .avatar {
@@ -95,78 +107,95 @@ h2 {
 
 .contenido-comentario {
     flex: 1;
-    
 }
 
-.contenido-comentario .usuario {
+.usuario {
     font-weight: bold;
-    margin: 0;
     color: #333;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
-    
 }
 
-.contenido-comentario .usuario .fecha {
+.fecha {
     font-size: 12px;
     color: #aaa;
     margin-left: 10px;
     font-weight: normal;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
 }
 
-.contenido-comentario .texto {
+.texto {
     color: #555;
     word-wrap: break-word;
-    /* Compatibilidad para cortar palabras largas */
     overflow-wrap: anywhere;
-    /* Corta palabras en cualquier lugar necesario */
     white-space: pre-wrap;
-    /* Mantén saltos de línea y texto responsivo */
     max-height: 200px;
-    /* Altura máxima visible antes de desplazarse */
     overflow-y: auto;
-    /* Permitir desplazamiento vertical */
 }
 
-.contenido-comentario .acciones {
+.acciones {
+    margin-top: 10px;
     display: flex;
-    align-items: right;
-    gap: 300px;
-    margin-top: 20px;
-    justify-content: space-between;
+    gap: 10px;
 }
 
-.contenido-comentario .responder {
+.responder,
+.eliminar {
     color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.contenido-comentario .responder:hover {
-    text-decoration: underline;
-}
-
-.contenido-comentario .fecha {
-    font-size: 12px;
-    color: #aaa;
-    margin: 0;
-    flex-grow: 1;
-    text-align: right;
-}
-
-.contenido-comentario .eliminar {
-    color: #dc3545;
     text-decoration: none;
     font-size: 14px;
     cursor: pointer;
 }
 
-.contenido-comentario .eliminar:hover {
+.eliminar {
+    color: #dc3545;
+}
+
+.responder:hover,
+.eliminar:hover {
     text-decoration: underline;
+}
+
+.form-respuesta {
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;   
+    margin-top: 10px;
+}
+
+.textarea-respuesta {
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.btn-enviar-respuesta,
+
+.btn-cancelar-respuesta {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 8px;
+    margin: 5px;
+    border: none;
+    width: 100px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-cancelar-respuesta {
+    background-color: #dc3545;
+}
+
+.btn-enviar-respuesta:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancelar-respuesta:hover {
+    background-color: #c82333;
 }

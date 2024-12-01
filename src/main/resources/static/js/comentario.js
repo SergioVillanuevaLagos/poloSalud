@@ -2,10 +2,10 @@ $(document).ready(function () {
     const idUsuario = 1; // ID de usuario predeterminado
     const idPublicacion = $('#idPublicacion').val();
 
-    // Cargar comentarios cuando se carga la página
+    // Cargar comentarios al cargar la página
     cargarComentarios();
 
-    // Manejador para el formulario de comentarios
+    // Manejador para agregar un nuevo comentario
     $('#form-comentario').on('submit', async function (event) {
         event.preventDefault();
         const contenido = $('#contenido').val().trim();
@@ -44,7 +44,7 @@ $(document).ready(function () {
         }
     }
 
-    // Función para mostrar los comentarios en la página
+    // Función para mostrar todos los comentarios
     function mostrarComentarios(comentarios) {
         comentarios.forEach(comentario => mostrarComentario(comentario));
     }
@@ -53,41 +53,41 @@ $(document).ready(function () {
     function mostrarComentario(comentario, agregarAlInicio = false) {
         const nombreUsuario = comentario.usuario || "Usuario desconocido";
         const fechaComentario = comentario.fecha || "Fecha no disponible";
-        const comentarioHTML = `
-            <li data-id="${comentario.id}" class="comentario-item">
-                <div class="comentario">
-                    <div class="avatar">•</div>
-                    <div class="contenido-comentario">
-                        <div class="usuario">
-                            <span>${nombreUsuario}</span>
-                            <span class="fecha">${fechaComentario}</span>
-                        </div>
-                        <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
-                        <div class="acciones">
-                            <a href="#" class="responder" data-id="${comentario.id}">Responder</a>
-                            <a href="#" class="eliminar" data-id="${comentario.id}">Eliminar</a>
-                        </div>
+
+            const comentarioHTML = `
+        <li data-id="${comentario.id}" class="comentario-item">
+            <div class="comentario">
+                <div class="avatar">•</div>
+                <div class="contenido-comentario">
+                    <div class="usuario">
+                        <span>${nombreUsuario}</span>
+                        <span class="fecha">${fechaComentario}</span>
                     </div>
+                    <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
+                    <div class="acciones">
+                        <a href="#" class="responder" data-id="${comentario.id}">Responder</a>
+                        <a href="#" class="eliminar" data-id="${comentario.id}">Eliminar</a>
+                    </div>
+                    <ul class="respuestas"></ul>
                 </div>
-            </li>
-        `;
+            </div>
+        </li>
+    `;
 
-        if (agregarAlInicio) {
-            $('#lista-comentarios').prepend(comentarioHTML);
-        } else {
-            $('#lista-comentarios').append(comentarioHTML);
-        }
-
-        // Añadir evento al enlace eliminar
+    if (agregarAlInicio) {
+        $('#lista-comentarios').prepend(comentarioHTML);
+    } else {
+        $('#lista-comentarios').append(comentarioHTML);
+    }
+            // Eventos de acciones
         $(`.eliminar[data-id="${comentario.id}"]`).on('click', function (event) {
             event.preventDefault();
             eliminarComentario(comentario.id);
         });
 
-        // Añadir evento al enlace responder
         $(`.responder[data-id="${comentario.id}"]`).on('click', function (event) {
             event.preventDefault();
-            responderComentario(comentario.id); // Aquí usamos el ID del comentario directamente
+            mostrarFormularioRespuesta(comentario.id);
         });
     }
 
@@ -106,29 +106,78 @@ $(document).ready(function () {
         }
     }
 
-    // Función para responder un comentario
-    async function responderComentario(idComentario) {
-        const respuesta = prompt("Escribe tu respuesta:");
+    // Función para mostrar el formulario de respuesta
+    function mostrarFormularioRespuesta(idComentario) {
+        const comentarioItem = $(`li[data-id="${idComentario}"]`);
+        const respuestasContainer = comentarioItem.find('.respuestas');
 
-        if (!respuesta) {
-            alert("La respuesta no puede estar vacía.");
-            return;
+        if (respuestasContainer.find('.form-respuesta').length > 0) {
+            return; // Ya hay un formulario visible
         }
 
-        try {
-            const response = await fetch(`/api/comentarios/responder/${idComentario}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ respuesta }),
-            });
+        const formularioHTML = `
+            <form class="form-respuesta">
+                <textarea class="textarea-respuesta" placeholder="Escribe tu respuesta..." required></textarea>
+                <button type="submit" class="btn-enviar-respuesta">Responder</button>
+                <button type="button" class="btn-cancelar-respuesta">Cancelar</button>
+            </form>
+        `;
 
-            if (!response.ok) throw new Error("Error al responder comentario");
+        respuestasContainer.append(formularioHTML);
 
-            // Si la respuesta fue exitosa, podemos hacer algo con el comentario respondido
-            alert("Respuesta enviada correctamente");
-            cargarComentarios(); // Recargar los comentarios después de responder
-        } catch (error) {
-            console.error("Error al responder comentario:", error);
-        }
+        // Manejar envío de respuesta
+        respuestasContainer.find('.btn-enviar-respuesta').on('click', async function (event) {
+            event.preventDefault();
+            const respuesta = respuestasContainer.find('.textarea-respuesta').val().trim();
+
+            if (!respuesta) {
+                alert("La respuesta no puede estar vacía.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/comentarios/responder/${idComentario}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ respuesta }),
+                });
+
+                if (!response.ok) throw new Error("Error al responder comentario");
+
+                const nuevaRespuesta = await response.json();
+                mostrarRespuesta(nuevaRespuesta, idComentario);
+                respuestasContainer.find('.form-respuesta').remove(); // Eliminar formulario tras responder
+            } catch (error) {
+                console.error("Error al responder comentario:", error);
+            }
+        });
+
+        // Manejar cancelación del formulario
+        respuestasContainer.find('.btn-cancelar-respuesta').on('click', function () {
+            respuestasContainer.find('.form-respuesta').remove();
+        });
+    }
+
+    // Función para mostrar una respuesta
+    function mostrarRespuesta(respuesta, idComentario) {
+        const comentarioItem = $(`li[data-id="${idComentario}"]`);
+        const respuestasContainer = comentarioItem.find('.respuestas');
+
+        const respuestaHTML = `
+            <li class="comentario-item">
+                <div class="comentario">
+                    <div class="avatar">•</div>
+                    <div class="contenido-comentario">
+                        <div class="usuario">
+                            <span>${respuesta.usuario || "Usuario desconocido"}</span>
+                            <span class="fecha">${respuesta.fecha || "Fecha no disponible"}</span>
+                        </div>
+                        <p class="texto">${respuesta.contenido}</p>
+                    </div>
+                </div>
+            </li>
+        `;
+
+        respuestasContainer.append(respuestaHTML);
     }
 });
