@@ -61,9 +61,7 @@ h2 {
 
 #lista-comentarios {
     max-height: 400px;
-   
     overflow-y: auto;
-    
 }
 
 #lista-comentarios li {
@@ -73,13 +71,13 @@ h2 {
     border-bottom: 1px solid #ddd;
     max-width: 100%;
     overflow-wrap: break-word;
-   
 }
 
 .comentario {
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    position: relative;
 }
 
 .avatar {
@@ -97,12 +95,29 @@ h2 {
 
 .contenido-comentario {
     flex: 1;
+    
 }
 
 .contenido-comentario .usuario {
     font-weight: bold;
     margin: 0;
     color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    
+}
+
+.contenido-comentario .usuario .fecha {
+    font-size: 12px;
+    color: #aaa;
+    margin-left: 10px;
+    font-weight: normal;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
 }
 
 .contenido-comentario .texto {
@@ -118,12 +133,19 @@ h2 {
     overflow-y: auto;
     /* Permitir desplazamiento vertical */
 }
+
+.contenido-comentario .acciones {
+    display: flex;
+    align-items: right;
+    gap: 300px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
 .contenido-comentario .responder {
     color: #007bff;
     text-decoration: none;
     font-size: 14px;
-    margin-bottom: 5px;
-    display: inline-block;
 }
 
 .contenido-comentario .responder:hover {
@@ -133,4 +155,18 @@ h2 {
 .contenido-comentario .fecha {
     font-size: 12px;
     color: #aaa;
+    margin: 0;
+    flex-grow: 1;
+    text-align: right;
+}
+
+.contenido-comentario .eliminar {
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.contenido-comentario .eliminar:hover {
+    text-decoration: underline;
 }

@@ -2,13 +2,11 @@ $(document).ready(function () {
     const idUsuario = 1; // ID de usuario predeterminado
     const idPublicacion = $('#idPublicacion').val();
 
-    // Cargar comentarios al iniciar la página
     cargarComentarios();
 
-    // Manejar envío del formulario
     $('#form-comentario').on('submit', async function (event) {
         event.preventDefault();
-        const contenido = $('#contenido').val().trim(); // Eliminar espacios en blanco
+        const contenido = $('#contenido').val().trim();
 
         if (!contenido) {
             alert('El contenido del comentario no puede estar vacío.');
@@ -26,50 +24,73 @@ $(document).ready(function () {
 
             const nuevoComentario = await response.json();
             mostrarComentario(nuevoComentario, true);
-            $('#form-comentario')[0].reset(); // Limpiar formulario
+            $('#form-comentario')[0].reset();
         } catch (error) {
             console.error("Error al crear comentario:", error);
         }
     });
 
-    // Función para cargar comentarios
     async function cargarComentarios() {
         try {
             const response = await fetch(`/api/comentarios/listar/${idPublicacion}`);
             const comentarios = await response.json();
-            $('#lista-comentarios').empty(); // Limpiar lista
+            $('#lista-comentarios').empty();
             mostrarComentarios(comentarios);
         } catch (error) {
             console.error("Error al obtener comentarios:", error);
         }
     }
 
-    // Función para mostrar múltiples comentarios
     function mostrarComentarios(comentarios) {
         comentarios.forEach(comentario => mostrarComentario(comentario));
     }
 
-    // Función para mostrar un comentario
-    function mostrarComentario(comentario, agregarAlInicio = false) {
-        const nombreUsuario = comentario.usuario || "Usuario desconocido";
-        const comentarioHTML = `
-            <li data-id="${comentario.id}" class="comentario-item">
-                <div class="comentario">
-                    <div class="avatar">•</div>
-                    <div class="contenido-comentario">
-                        <p class="usuario">${nombreUsuario}</p>
-                        <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
+ function mostrarComentario(comentario, agregarAlInicio = false) {
+    const nombreUsuario = comentario.usuario || "Usuario desconocido";
+    const fechaComentario = comentario.fecha || "Fecha no disponible";
+    const comentarioHTML = `
+        <li data-id="${comentario.id}" class="comentario-item">
+            <div class="comentario">
+                <div class="avatar">•</div>
+                <div class="contenido-comentario">
+                    <div class="usuario">
+                        <span>${nombreUsuario}</span>
+                        <span class="fecha">${fechaComentario}</span>
+                    </div>
+                    <p class="texto">${comentario.contenido || "Contenido no disponible"}</p>
+                    <div class="acciones">
                         <a href="#" class="responder">Responder</a>
-                        <p class="fecha">${comentario.fecha || "Fecha no disponible"}</p>
+                        <a href="#" class="eliminar" data-id="${comentario.id}">Eliminar</a>
                     </div>
                 </div>
-            </li>
-        `;
+            </div>
+        </li>
+    `;
 
-        if (agregarAlInicio) {
-            $('#lista-comentarios').prepend(comentarioHTML);
-        } else {
-            $('#lista-comentarios').append(comentarioHTML);
+    if (agregarAlInicio) {
+        $('#lista-comentarios').prepend(comentarioHTML);
+    } else {
+        $('#lista-comentarios').append(comentarioHTML);
+    }
+
+    // Añadir evento al enlace eliminar
+    $(`.eliminar[data-id="${comentario.id}"]`).on('click', function (event) {
+        event.preventDefault();
+        eliminarComentario(comentario.id);
+    });
+}
+
+    async function eliminarComentario(id) {
+        try {
+            const response = await fetch(`/api/comentarios/eliminar/${id}`, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) throw new Error("Error al eliminar comentario");
+
+            $(`li[data-id="${id}"]`).remove(); // Eliminar visualmente el comentario
+        } catch (error) {
+            console.error("Error al eliminar comentario:", error);
         }
     }
 });
