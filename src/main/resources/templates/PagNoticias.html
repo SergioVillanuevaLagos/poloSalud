@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css"> <!-- Archivo CSS externo -->
 </head>
 <body>
-
+    <!-- Barra de navegación -->
     <header class="header">
         <div class="logo">
           <a href="/polosalud/index">
@@ -52,24 +52,25 @@
             <p id="paragraph">Editar Parrafo</p>
         </div>
     </main>
-
+    
+    <div class="edit-buttons">
+        <button class="edit-title" onclick="openTitleModal()">Editar Título</button>
+        <button class="edit-content" onclick="openModal('content')">Editar Contenido</button>
+    </div>
+    
+    
     <div class="sidebar">
-        <a  href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
-            <img th:src="@{/imagenes/Facebook.png}" src="../static/imagenes/Facebook.png" alt="Facebook" class="icon"
+        <a href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
+            <img th:src="@{/imagenes/Facebook.png}" src="../static/imagenes/Facebook.png" alt="Facebook" class="icon">
         </a>
         <a href="https://www.instagram.com/PoloDeSalud" target="_blank" class="sidebar-btn">
-            <img th:src="@{/imagenes/Instagram.png}" src="../static/imagenes/Instagram.png" alt="instagram" class="icon"
+            <img th:src="@{/imagenes/Instagram.png}" src="../static/imagenes/Instagram.png" alt="Instagram" class="icon">
         </a>
         <a href="https://www.twitter.com/PoloDeSalud" target="_blank" class="sidebar-btn">
-            <img th:src="@{/imagenes/Twitter.png}" src="../static/imagenes/Twitter.png" alt="Twitter" class="icon" 
+            <img th:src="@{/imagenes/Twitter.png}" src="../static/imagenes/Twitter.png" alt="Twitter" class="icon">
         </a>
     </div>
     
-    <div class="edit-buttons">
-        <button class="edit-title" onclick="editTitle()">Editar Título</button>
-        <button class="edit-content" onclick="editContent()">Editar Contenido</button>
-    </div>
-
     <footer>
         <p>&copy; 2024 Polo de Salud</p>
     </footer>
@@ -94,6 +95,28 @@
             }
         }
     </script>
+    <!-- Modal de edición -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Editar Contenido</h2>
+      <input type="text" id="newSubtitle" placeholder="Nuevo subtítulo">
+      <textarea id="newParagraph" placeholder="Nuevo contenido del párrafo"></textarea>
+      <button onclick="saveChanges()">Guardar</button>
+    </div>
+  </div>
+  <script th:src="@{/js/editContent.js}"></script>
+  
+<!-- Modal para editar título -->
+<div id="editTitleModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeTitleModal()">&times;</span>
+        <h2>Editar Título</h2>
+        <input type="text" id="newTitleInput" placeholder="Nuevo título"> <!-- Asegúrate de tener este input -->
+        <button onclick="saveTitleChanges()">Guardar</button>
+    </div>
+</div>
+
 
 </body>
 </html>
