@@ -24,7 +24,7 @@ $(document).ready(function () {
               <div class="detallesEvento" style="display: none;">
                 <strong>Dirección:</strong> <span>${evento.direccion}</span><br>
                 <strong>Fecha:</strong> <span>${fecha}</span><br>
-                <strong>Hora:</strong> <span>${hora}</span><br>
+                <strong>Hora del evento:</strong> <span>${hora}</span><br>
                 <strong>Descripción:</strong> <span>${evento.descripcion}</span><br>
               </div>
             </li>
