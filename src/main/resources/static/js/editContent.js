@@ -13,20 +13,35 @@ function openModal(editType) {
     const newTitleField = document.getElementById('newTitleInput');
     const newSubtitleField = document.getElementById('newSubtitle');
     const newParagraphField = document.getElementById('newParagraph');
+    const newCategoryField = document.getElementById('newCategory');
+    const newFileField = document.getElementById('newFile');
+    const newUrlField = document.getElementById('newUrl');
+    const newDateField = document.getElementById('newDate');
 
     if (editType === 'title') {
         newTitleField.style.display = 'block';
         newSubtitleField.style.display = 'none';
         newParagraphField.style.display = 'none';
+        newCategoryField.style.display = 'none';
+        newFileField.style.display = 'none';
+        newUrlField.style.display = 'none';
+        newDateField.style.display = 'none';
         // Precargar el valor actual del título
         newTitleField.value = document.getElementById('title').textContent;
     } else {
         newTitleField.style.display = 'none';
         newSubtitleField.style.display = 'block';
         newParagraphField.style.display = 'block';
-        // Precargar valores actuales del subtítulo y párrafo
+        newCategoryField.style.display = 'block';
+        newFileField.style.display = 'block';
+        newUrlField.style.display = 'block';
+        newDateField.style.display = 'block';
+        // Precargar valores actuales del subtítulo, párrafo, categoría, URL y fecha
         newSubtitleField.value = document.getElementById('subtitle').textContent;
         newParagraphField.value = document.getElementById('paragraph').textContent;
+        newCategoryField.value = document.getElementById('category').textContent;
+        newUrlField.value = document.getElementById('url').textContent;
+        newDateField.value = document.getElementById('date').textContent;
     }
 }
 
@@ -97,53 +112,44 @@ function saveTitleChanges() {
 // Guardar los cambios realizados en el modal de contenido
 function saveChanges() {
     const noticiaId = 1; // Reemplaza con el ID de la noticia actual
-    if (currentEditType === 'title') {
-        const newTitle = document.getElementById('newTitleInput').value;
-        if (newTitle) {
-            document.getElementById('title').textContent = newTitle;
-            // Llamar al servicio para actualizar el título en el servidor
-            fetch(`/noticias/actualizarTitulo/${noticiaId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newTitle)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Título actualizado:', data);
-            })
-            .catch(error => {
-                console.error('Error al actualizar el título:', error);
-            });
-        }
-    } else {
-        const newSubtitle = document.getElementById('newSubtitle').value;
-        const newParagraph = document.getElementById('newParagraph').value;
+    const newSubtitle = document.getElementById('newSubtitle').value;
+    const newParagraph = document.getElementById('newParagraph').value;
+    const newCategory = document.getElementById('newCategory').value;
+    const newFile = document.getElementById('newFile').files[0];
+    const newUrl = document.getElementById('newUrl').value;
+    const newDate = document.getElementById('newDate').value;
 
-        if (newSubtitle && newParagraph) {
-            document.getElementById('subtitle').textContent = newSubtitle;
-            document.getElementById('paragraph').textContent = newParagraph;
-            // Llamar al servicio para actualizar el subtítulo y contenido en el servidor
-            const noticia = {
-                subtitulo: newSubtitle,
-                contenido: newParagraph
-            };
-            fetch(`/noticias/actualizarSubtituloYContenido/${noticiaId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(noticia)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Subtítulo y contenido actualizados:', data);
-            })
-            .catch(error => {
-                console.error('Error al actualizar el subtítulo y contenido:', error);
-            });
-        }
+    if (newSubtitle && newParagraph && newCategory && newUrl && newDate) {
+        document.getElementById('subtitle').textContent = newSubtitle;
+        document.getElementById('paragraph').textContent = newParagraph;
+        document.getElementById('category').textContent = newCategory;
+        document.getElementById('url').textContent = newUrl;
+        document.getElementById('date').textContent = newDate;
+
+        // Llamar al servicio para actualizar la noticia en el servidor
+        const noticia = {
+            subtitulo: newSubtitle,
+            contenido: newParagraph,
+            categoria: newCategory,
+            archivoAdjunto: newFile ? newFile.name : "",
+            urlPublicacion: newUrl,
+            fechPublicacion: newDate
+        };
+
+        fetch(`/noticias/actualizar/${noticiaId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(noticia)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Noticia actualizada:', data);
+        })
+        .catch(error => {
+            console.error('Error al actualizar la noticia:', error);
+        });
     }
     closeModal(); // Cerrar el modal tras guardar
 }
@@ -153,16 +159,19 @@ function saveNews() {
     const title = document.getElementById('title').textContent;
     const subtitle = document.getElementById('subtitle').textContent;
     const content = document.getElementById('paragraph').textContent;
-    const publicationDate = new Date().toISOString().split('T')[0]; // Fecha de publicación actual
+    const category = document.getElementById('category').textContent;
+    const file = document.getElementById('newFile').files[0];
+    const url = document.getElementById('url').textContent;
+    const publicationDate = document.getElementById('date').textContent;
 
     const noticia = {
         titulo: title,
         subtitulo: subtitle,
         contenido: content,
-        categoria: "General", // Puedes cambiar esto según sea necesario
-        archivoAdjunto: "",
-        urlPublicacion: "",
-        fechPublicacion: publicationDate, // Agregar la fecha de publicación
+        categoria: category,
+        archivoAdjunto: file ? file.name : "",
+        urlPublicacion: url,
+        fechPublicacion: publicationDate,
         idAdmin: 1 // Reemplaza con el ID del administrador actual
     };
 
