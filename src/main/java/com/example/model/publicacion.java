@@ -27,11 +27,16 @@ public class publicacion {
     @Column(name = "titulo", length = 500)
     private String titulo;
 
+    @Column(name = "subtitulo", length = 500)
+    private String subtitulo;
+
     @Column(name = "contenido", columnDefinition = "MEDIUMTEXT")
     private String contenido;
 
     @Column(name = "ID_admin")
     private Integer idAdmin;
+
+    // Getters y Setters
 
     public Integer getIdPublicacion() {
         return idPublicacion;
@@ -79,6 +84,14 @@ public class publicacion {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getSubtitulo() {
+        return subtitulo;
+    }
+
+    public void setSubtitulo(String subtitulo) {
+        this.subtitulo = subtitulo;
     }
 
     public String getContenido() {

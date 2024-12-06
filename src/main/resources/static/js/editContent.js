@@ -74,34 +74,112 @@ function saveTitleChanges() {
     const newTitle = document.getElementById('newTitleInput').value; // Corregido el ID
     if (newTitle) {
         document.getElementById('title').textContent = newTitle; // Actualizar el título
+        // Llamar al servicio para actualizar el título en el servidor
+        const noticiaId = 1; // Reemplaza con el ID de la noticia actual
+        fetch(`/noticias/actualizarTitulo/${noticiaId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newTitle)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Título actualizado:', data);
+        })
+        .catch(error => {
+            console.error('Error al actualizar el título:', error);
+        });
     }
     closeTitleModal(); // Cerrar el modal tras guardar
 }
 
-
-f// Guardar los cambios realizados en el modal de contenido
+// Guardar los cambios realizados en el modal de contenido
 function saveChanges() {
+    const noticiaId = 1; // Reemplaza con el ID de la noticia actual
     if (currentEditType === 'title') {
         const newTitle = document.getElementById('newTitleInput').value;
         if (newTitle) {
             document.getElementById('title').textContent = newTitle;
+            // Llamar al servicio para actualizar el título en el servidor
+            fetch(`/noticias/actualizarTitulo/${noticiaId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newTitle)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Título actualizado:', data);
+            })
+            .catch(error => {
+                console.error('Error al actualizar el título:', error);
+            });
         }
     } else {
         const newSubtitle = document.getElementById('newSubtitle').value;
         const newParagraph = document.getElementById('newParagraph').value;
 
-        if (newSubtitle) {
+        if (newSubtitle && newParagraph) {
             document.getElementById('subtitle').textContent = newSubtitle;
-        }
-
-        if (newParagraph) {
-            // Convertir saltos de línea a <p> para mantener el formato
-            const paragraphContainer = document.getElementById('paragraph');
-            const paragraphs = newParagraph.split('\n'); // Dividir en líneas
-            paragraphContainer.innerHTML = paragraphs
-                .map(line => `<p>${line.trim()}</p>`) // Crear un párrafo por línea
-                .join(''); // Combinar los párrafos en un solo contenido
+            document.getElementById('paragraph').textContent = newParagraph;
+            // Llamar al servicio para actualizar el subtítulo y contenido en el servidor
+            const noticia = {
+                subtitulo: newSubtitle,
+                contenido: newParagraph
+            };
+            fetch(`/noticias/actualizarSubtituloYContenido/${noticiaId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(noticia)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Subtítulo y contenido actualizados:', data);
+            })
+            .catch(error => {
+                console.error('Error al actualizar el subtítulo y contenido:', error);
+            });
         }
     }
     closeModal(); // Cerrar el modal tras guardar
+}
+
+// Guardar la noticia
+function saveNews() {
+    const title = document.getElementById('title').textContent;
+    const subtitle = document.getElementById('subtitle').textContent;
+    const content = document.getElementById('paragraph').textContent;
+    const publicationDate = new Date().toISOString().split('T')[0]; // Fecha de publicación actual
+
+    const noticia = {
+        titulo: title,
+        subtitulo: subtitle,
+        contenido: content,
+        categoria: "General", // Puedes cambiar esto según sea necesario
+        archivoAdjunto: "",
+        urlPublicacion: "",
+        fechPublicacion: publicationDate, // Agregar la fecha de publicación
+        idAdmin: 1 // Reemplaza con el ID del administrador actual
+    };
+
+    fetch('/noticias/crear', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(noticia)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Noticia creada:', data);
+        alert('Noticia guardada exitosamente');
+    })
+    .catch(error => {
+        console.error('Error al guardar la noticia:', error);
+        alert('Error al guardar la noticia');
+    });
 }

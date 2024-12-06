@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,6 @@
             <a class="nav-link" href="#">Noticias</a>
             <a class="nav-link" href="#">Facultades</a>
             <a class="nav-link" href="#">Colaboradores</a>
-            <a class="nav-link" href="/polosalud/login">Registro</a>
           </div>
         </div>
     </header>
@@ -50,12 +49,14 @@
         <div class="content">
             <h2 id="subtitle">La Universidad del Bío-Bío lanza nuevo sitio web del Polo de Salud para fortalecer la vinculación con la comunidad</h2>
             <p id="paragraph">Editar Parrafo</p>
+            <p id="publicationDate">Fecha de Publicación: <span id="date">2023-12-01</span></p>
         </div>
     </main>
     
     <div class="edit-buttons">
         <button class="edit-title" onclick="openTitleModal()">Editar Título</button>
         <button class="edit-content" onclick="openModal('content')">Editar Contenido</button>
+        <button class="save-news" onclick="saveNews()">Guardar Noticia</button>
     </div>
     
     
@@ -75,48 +76,27 @@
         <p>&copy; 2024 Polo de Salud</p>
     </footer>
 
-    <script>
-        function editTitle() {
-            const newTitle = prompt("Ingresa el nuevo título:");
-            if (newTitle) {
-                document.getElementById("title").textContent = newTitle;
-            }
-        }
+    <script th:src="@{/js/editContent.js}"></script>
+    
+    <!-- Modal para editar título -->
+    <div id="editTitleModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTitleModal()">&times;</span>
+            <h2>Editar Título</h2>
+            <input type="text" id="newTitleInput" placeholder="Nuevo título">
+            <button onclick="saveTitleChanges()">Guardar</button>
+        </div>
+    </div>
 
-        function editContent() {
-            const newSubtitle = prompt("Ingresa el nuevo subtítulo:");
-            if (newSubtitle) {
-                document.getElementById("subtitle").textContent = newSubtitle;
-            }
-
-            const newParagraph = prompt("Ingresa el nuevo contenido del párrafo:");
-            if (newParagraph) {
-                document.getElementById("paragraph").textContent = newParagraph;
-            }
-        }
-    </script>
     <!-- Modal de edición -->
-<div id="editModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Editar Contenido</h2>
-      <input type="text" id="newSubtitle" placeholder="Nuevo subtítulo">
-      <textarea id="newParagraph" placeholder="Nuevo contenido del párrafo"></textarea>
-      <button onclick="saveChanges()">Guardar</button>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Editar Contenido</h2>
+            <input type="text" id="newSubtitle" placeholder="Nuevo subtítulo">
+            <textarea id="newParagraph" placeholder="Nuevo contenido del párrafo"></textarea>
+            <button onclick="saveChanges()">Guardar</button>
+        </div>
     </div>
-  </div>
-  <script th:src="@{/js/editContent.js}"></script>
-  
-<!-- Modal para editar título -->
-<div id="editTitleModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeTitleModal()">&times;</span>
-        <h2>Editar Título</h2>
-        <input type="text" id="newTitleInput" placeholder="Nuevo título"> <!-- Asegúrate de tener este input -->
-        <button onclick="saveTitleChanges()">Guardar</button>
-    </div>
-</div>
-
-
 </body>
 </html>
