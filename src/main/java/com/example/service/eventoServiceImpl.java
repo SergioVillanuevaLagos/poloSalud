@@ -34,4 +34,6 @@ public class eventoServiceImpl implements eventoService {
     public void eliminarEvento(int idEvento) {
         eventoRepository.deleteById(idEvento);
     }
+    
+
 }

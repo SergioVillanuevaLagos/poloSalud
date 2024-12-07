@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface NoticiaService {
-    publicacion crearNoticia(String titulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin);
+
+    public publicacion crearNoticia(String titulo, String subtitulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin);
     List<publicacion> obtenerTodasLasNoticias();
     publicacion obtenerNoticiaPorId(Integer id);
     publicacion actualizarNoticia(Integer id, String titulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin);

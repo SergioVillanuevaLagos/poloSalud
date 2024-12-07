@@ -29,9 +29,17 @@ public class NoticiasController {
     @ResponseBody
     public publicacion crearNoticia(@RequestBody publicacion noticia) {
         logger.debug("Recibiendo solicitud para crear noticia: {}", noticia);
-        return noticiaService.crearNoticia(noticia.getTitulo(), noticia.getContenido(), noticia.getCategoria(), noticia.getArchivoAdjunto(), noticia.getUrlPublicacion(), noticia.getFechPublicacion(), noticia.getIdAdmin());
+        return noticiaService.crearNoticia(
+            noticia.getTitulo(),
+            noticia.getSubtitulo(), // Asegúrate de incluir el subtitulo aquí
+            noticia.getContenido(),
+            noticia.getCategoria(),
+            noticia.getArchivoAdjunto(),
+            noticia.getUrlPublicacion(),
+            noticia.getFechPublicacion(),
+            noticia.getIdAdmin()
+        );
     }
-
     @GetMapping("/listar")
     @ResponseBody
     public List<publicacion> obtenerTodasLasNoticias() {

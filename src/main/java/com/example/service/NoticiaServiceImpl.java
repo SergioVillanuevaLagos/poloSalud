@@ -19,9 +19,10 @@ public class NoticiaServiceImpl implements NoticiaService {
     private PublicacionRepository publicacionRepository;
 
     @Override
-    public publicacion crearNoticia(String titulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin) {
+    public publicacion crearNoticia(String titulo, String subtitulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin) {
         publicacion nuevaNoticia = new publicacion();
         nuevaNoticia.setTitulo(titulo);
+        nuevaNoticia.setSubtitulo(subtitulo); // Asegúrate de asignar el subtitulo aquí
         nuevaNoticia.setContenido(contenido);
         nuevaNoticia.setCategoria(categoria);
         nuevaNoticia.setArchivoAdjunto(archivoAdjunto);
@@ -87,4 +88,6 @@ public class NoticiaServiceImpl implements NoticiaService {
         logger.debug("Eliminando noticia con ID: {}", id);
         publicacionRepository.deleteById(id);
     }
+
+    
 }
