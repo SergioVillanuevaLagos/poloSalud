@@ -4,6 +4,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #283629;
+    /* Color uniforme para todo el texto */
 }
 
 form {
@@ -18,17 +20,13 @@ form {
     display: flex;
     flex-direction: column;
     text-align: left;
-
 }
 
 h2 {
-    color: #283629;
     font-size: 35px;
 }
 
 label {
-
-    color: #283629;
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 15px;
@@ -39,15 +37,17 @@ textarea {
     padding: 17px 25px;
     border-radius: 25px;
     margin-bottom: 20px;
-    background-color: #EDFFF0;
-    border: 2px solid #F0FAF1;
+    background-color: #d0e7ff;
+    border: 2px solid #b3d8ff;
     color: #283629;
+    /* Color del texto dentro de los inputs */
     outline: none;
 }
 
-input ::placeholder,
+input::placeholder,
 textarea::placeholder {
-    color: #b5cab6;
+    color: #283629;
+    /* Color de los placeholders */
 }
 
 .form-txt {
@@ -55,11 +55,9 @@ textarea::placeholder {
     display: flex;
     justify-content: space-between;
     text-align: center;
-
 }
 
 .form-txt a {
-    color: #76b28e;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
@@ -70,8 +68,8 @@ textarea::placeholder {
     color: #FFFFFF;
     border: 0;
     border-radius: 25px;
-    background-color: #51D94C;
-    box-shadow: 0 0 20px rgba(25, 254, 0, 0.4);
+    background-color: #4c89d9;
+    box-shadow: 0 0 20px rgba(0, 140, 254, 0.4);
     cursor: pointer;
 }
 
