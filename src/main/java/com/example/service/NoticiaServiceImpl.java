@@ -4,11 +4,11 @@ import com.example.model.publicacion;
 import com.example.repositorio.PublicacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class NoticiaServiceImpl implements NoticiaService {
@@ -25,21 +25,24 @@ public class NoticiaServiceImpl implements NoticiaService {
         nuevaNoticia.setSubtitulo(subtitulo); // Asegúrate de asignar el subtitulo aquí
         nuevaNoticia.setContenido(contenido);
         nuevaNoticia.setCategoria(categoria);
-        nuevaNoticia.setArchivoAdjunto(archivoAdjunto); // Almacenando el archivo como un BLOB (byte[])
+        nuevaNoticia.setArchivoAdjunto(archivoAdjunto);
         nuevaNoticia.setUrlPublicacion(urlPublicacion);
         nuevaNoticia.setFechPublicacion(fechPublicacion);
         nuevaNoticia.setIdAdmin(idAdmin);
+
         logger.debug("Guardando nueva noticia: {}", nuevaNoticia);
         return publicacionRepository.save(nuevaNoticia);
     }
 
     @Override
     public List<publicacion> obtenerTodasLasNoticias() {
+        logger.debug("Obteniendo todas las noticias.");
         return publicacionRepository.findAll();
     }
 
     @Override
     public publicacion obtenerNoticiaPorId(Integer id) {
+        logger.debug("Obteniendo noticia con ID: {}", id);
         return publicacionRepository.findById(id).orElse(null);
     }
 
@@ -50,13 +53,15 @@ public class NoticiaServiceImpl implements NoticiaService {
             noticiaExistente.setTitulo(titulo);
             noticiaExistente.setContenido(contenido);
             noticiaExistente.setCategoria(categoria);
-            noticiaExistente.setArchivoAdjunto(archivoAdjunto); // Actualizando el archivo adjunto como BLOB
+            noticiaExistente.setArchivoAdjunto(archivoAdjunto);
             noticiaExistente.setUrlPublicacion(urlPublicacion);
             noticiaExistente.setFechPublicacion(fechPublicacion);
             noticiaExistente.setIdAdmin(idAdmin);
+
             logger.debug("Actualizando noticia existente: {}", noticiaExistente);
             return publicacionRepository.save(noticiaExistente);
         }
+        logger.warn("No se encontró la noticia con ID: {}", id);
         return null;
     }
 
@@ -68,6 +73,7 @@ public class NoticiaServiceImpl implements NoticiaService {
             logger.debug("Actualizando título de la noticia: {}", noticiaExistente);
             return publicacionRepository.save(noticiaExistente);
         }
+        logger.warn("No se encontró la noticia con ID: {}", id);
         return null;
     }
 
@@ -80,6 +86,7 @@ public class NoticiaServiceImpl implements NoticiaService {
             logger.debug("Actualizando subtítulo y contenido de la noticia: {}", noticiaExistente);
             return publicacionRepository.save(noticiaExistente);
         }
+        logger.warn("No se encontró la noticia con ID: {}", id);
         return null;
     }
 
