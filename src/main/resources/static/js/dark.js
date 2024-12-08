@@ -19,6 +19,7 @@
         } else {
             document.documentElement.setAttribute('data-bs-theme', theme)
         }
+        document.body.classList.toggle('dark-mode', theme === 'dark')
     }
 
     setTheme(getPreferredTheme())
@@ -52,10 +53,7 @@
     }
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        const storedTheme = getStoredTheme()
-        if (storedTheme !== 'light' && storedTheme !== 'dark') {
-            setTheme(getPreferredTheme())
-        }
+        setTheme(getPreferredTheme())
     })
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -70,5 +68,17 @@
                     showActiveTheme(theme, true)
                 })
             })
+
+        // Agrega el evento de clic al botón de modo oscuro
+        const themeToggleButton = document.getElementById('theme-toggle')
+        if (themeToggleButton) {
+            themeToggleButton.addEventListener('click', () => {
+                const currentTheme = getPreferredTheme()
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+                setStoredTheme(newTheme)
+                setTheme(newTheme)
+                showActiveTheme(newTheme, true)
+            })
+        }
     })
 })()
