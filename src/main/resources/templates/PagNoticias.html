@@ -49,16 +49,13 @@
         <div class="content">
             <h2 id="subtitle">La Universidad del Bío-Bío lanza nuevo sitio web del Polo de Salud para fortalecer la vinculación con la comunidad</h2>
             <p id="paragraph">Editar Parrafo</p>
-            <p id="publicationDate">Fecha de Publicación: <span id="date">2023-12-01</span></p>
         </div>
     </main>
     
     <div class="edit-buttons">
-        <button class="edit-title" onclick="openTitleModal()">Editar Título</button>
-        <button class="edit-content" onclick="openModal('content')">Editar Contenido</button>
+        <button class="edit-content" onclick="openModal()">Editar Contenido</button>
         <button class="save-news" onclick="saveNews()">Guardar Noticia</button>
     </div>
-    
     
     <div class="sidebar">
         <a href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
@@ -84,28 +81,17 @@
 
     <script th:src="@{/js/editContent.js}"></script>
     
-    <!-- Modal para editar título -->
-    <div id="editTitleModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeTitleModal()">&times;</span>
-            <h2>Editar Título</h2>
-            <input type="text" id="newTitleInput" placeholder="Nuevo título">
-            <button onclick="saveTitleChanges()">Guardar</button>
-        </div>
-    </div>
-
     <!-- Modal de edición -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Editar Contenido</h2>
+            <input type="text" id="newTitleInput" placeholder="Nuevo título">
             <input type="text" id="newSubtitle" placeholder="Nuevo subtítulo">
             <textarea id="newParagraph" placeholder="Nuevo contenido del párrafo"></textarea>
             <input type="text" id="newCategory" placeholder="Nueva categoría">
-            <input type="file" id="newFile" accept="image/*">
             <input type="text" id="newUrl" placeholder="Nueva URL de publicación">
-            <input type="date" id="newDate" placeholder="Nueva fecha de publicación">
-            <button onclick="saveChanges()">Guardar</button>
+            <button onclick="saveChanges(); closeModal();">Guardar y Cerrar</button>
         </div>
     </div>
 </body>

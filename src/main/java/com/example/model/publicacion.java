@@ -14,8 +14,9 @@ public class publicacion {
     @Column(name = "categoria", length = 500)
     private String categoria;
 
-    @Column(name = "arch_adj", columnDefinition = "TEXT")
-    private String archivoAdjunto;
+    @Column(name = "arch_adj", columnDefinition = "BLOB")
+    private byte[] archivoAdjunto;
+    
 
     @Column(name = "URL_publi", length = 500)
     private String urlPublicacion;
@@ -54,11 +55,11 @@ public class publicacion {
         this.categoria = categoria;
     }
 
-    public String getArchivoAdjunto() {
+    public byte[] getArchivoAdjunto() {
         return archivoAdjunto;
     }
 
-    public void setArchivoAdjunto(String archivoAdjunto) {
+    public void setArchivoAdjunto(byte[] archivoAdjunto) {
         this.archivoAdjunto = archivoAdjunto;
     }
 

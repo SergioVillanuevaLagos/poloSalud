@@ -19,13 +19,13 @@ public class NoticiaServiceImpl implements NoticiaService {
     private PublicacionRepository publicacionRepository;
 
     @Override
-    public publicacion crearNoticia(String titulo, String subtitulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin) {
+    public publicacion crearNoticia(String titulo, String subtitulo, String contenido, String categoria, byte[] archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin) {
         publicacion nuevaNoticia = new publicacion();
         nuevaNoticia.setTitulo(titulo);
         nuevaNoticia.setSubtitulo(subtitulo); // Asegúrate de asignar el subtitulo aquí
         nuevaNoticia.setContenido(contenido);
         nuevaNoticia.setCategoria(categoria);
-        nuevaNoticia.setArchivoAdjunto(archivoAdjunto);
+        nuevaNoticia.setArchivoAdjunto(archivoAdjunto); // Almacenando el archivo como un BLOB (byte[])
         nuevaNoticia.setUrlPublicacion(urlPublicacion);
         nuevaNoticia.setFechPublicacion(fechPublicacion);
         nuevaNoticia.setIdAdmin(idAdmin);
@@ -44,13 +44,13 @@ public class NoticiaServiceImpl implements NoticiaService {
     }
 
     @Override
-    public publicacion actualizarNoticia(Integer id, String titulo, String contenido, String categoria, String archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin) {
+    public publicacion actualizarNoticia(Integer id, String titulo, String contenido, String categoria, byte[] archivoAdjunto, String urlPublicacion, Date fechPublicacion, Integer idAdmin) {
         publicacion noticiaExistente = publicacionRepository.findById(id).orElse(null);
         if (noticiaExistente != null) {
             noticiaExistente.setTitulo(titulo);
             noticiaExistente.setContenido(contenido);
             noticiaExistente.setCategoria(categoria);
-            noticiaExistente.setArchivoAdjunto(archivoAdjunto);
+            noticiaExistente.setArchivoAdjunto(archivoAdjunto); // Actualizando el archivo adjunto como BLOB
             noticiaExistente.setUrlPublicacion(urlPublicacion);
             noticiaExistente.setFechPublicacion(fechPublicacion);
             noticiaExistente.setIdAdmin(idAdmin);
@@ -88,6 +88,4 @@ public class NoticiaServiceImpl implements NoticiaService {
         logger.debug("Eliminando noticia con ID: {}", id);
         publicacionRepository.deleteById(id);
     }
-
-    
 }

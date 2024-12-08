@@ -5,74 +5,51 @@ import com.example.service.NoticiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/noticias")
 public class NoticiasController {
 
-    private static final Logger logger = LoggerFactory.getLogger(NoticiasController.class);
-
     @Autowired
     private NoticiaService noticiaService;
 
-    @GetMapping
-    public String mostrarNoticias() {
-        return "PagNoticias";
-    }
-
     @PostMapping("/crear")
     @ResponseBody
-    public publicacion crearNoticia(@RequestBody publicacion noticia) {
-        logger.debug("Recibiendo solicitud para crear noticia: {}", noticia);
+    public publicacion crearNoticia(
+            @RequestParam("titulo") String titulo,
+            @RequestParam("subtitulo") String subtitulo,
+            @RequestParam("contenido") String contenido,
+            @RequestParam("categoria") String categoria,
+            @RequestParam("archivoAdjunto") MultipartFile archivoAdjunto,
+            @RequestParam("urlPublicacion") String urlPublicacion,
+            @RequestParam("fechPublicacion") String fechPublicacionStr, // Recibimos la fecha como String
+            @RequestParam("idAdmin") Integer idAdmin) {
+
+        // Convertir el String de fecha a Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // El formato debe coincidir con el de entrada
+        Date fechPublicacion = null;
+        try {
+            fechPublicacion = sdf.parse(fechPublicacionStr); // Convertir String a Date
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Maneja el error de conversión
+        }
+
+        // Convertir archivo adjunto a byte[]
+        byte[] archivoBytes = null;
+        try {
+            archivoBytes = archivoAdjunto.getBytes(); // Obtener los bytes del archivo
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Crear la noticia y guardarla
         return noticiaService.crearNoticia(
-            noticia.getTitulo(),
-            noticia.getSubtitulo(), // Asegúrate de incluir el subtitulo aquí
-            noticia.getContenido(),
-            noticia.getCategoria(),
-            noticia.getArchivoAdjunto(),
-            noticia.getUrlPublicacion(),
-            noticia.getFechPublicacion(),
-            noticia.getIdAdmin()
+                titulo, subtitulo, contenido, categoria, archivoBytes, urlPublicacion, fechPublicacion, idAdmin
         );
-    }
-    @GetMapping("/listar")
-    @ResponseBody
-    public List<publicacion> obtenerTodasLasNoticias() {
-        return noticiaService.obtenerTodasLasNoticias();
-    }
-
-    @GetMapping("/{id}")
-    @ResponseBody
-    public publicacion obtenerNoticiaPorId(@PathVariable Integer id) {
-        return noticiaService.obtenerNoticiaPorId(id);
-    }
-
-    @PutMapping("/actualizar/{id}")
-    @ResponseBody
-    public publicacion actualizarNoticia(@PathVariable Integer id, @RequestBody publicacion noticia) {
-        return noticiaService.actualizarNoticia(id, noticia.getTitulo(), noticia.getContenido(), noticia.getCategoria(), noticia.getArchivoAdjunto(), noticia.getUrlPublicacion(), noticia.getFechPublicacion(), noticia.getIdAdmin());
-    }
-
-    @PutMapping("/actualizarTitulo/{id}")
-    @ResponseBody
-    public publicacion actualizarTitulo(@PathVariable Integer id, @RequestBody String titulo) {
-        return noticiaService.actualizarTitulo(id, titulo);
-    }
-
-    @PutMapping("/actualizarSubtituloYContenido/{id}")
-    @ResponseBody
-    public publicacion actualizarSubtituloYContenido(@PathVariable Integer id, @RequestBody publicacion noticia) {
-        return noticiaService.actualizarSubtituloYContenido(id, noticia.getSubtitulo(), noticia.getContenido());
-    }
-
-    @DeleteMapping("/eliminar/{id}")
-    @ResponseBody
-    public void eliminarNoticia(@PathVariable Integer id) {
-        noticiaService.eliminarNoticia(id);
     }
 }
