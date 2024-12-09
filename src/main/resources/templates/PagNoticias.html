@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticia Editable</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Archivo CSS externo -->
+    <title>Noticia</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Barra de navegación -->
     <header class="header">
         <div class="logo">
           <a href="/polosalud/index">
@@ -41,17 +40,18 @@
 
     <main>
         <div class="title-container">
-            <h1 id="title">Nueva Pagina Polo de Salud</h1>
+            <h1 th:text="${noticia.titulo}">Título de la noticia</h1>
         </div>
         <div class="image-container">
-            <img th:src="@{/imagenes/NoticiaEjemplo.jpg}" src="/imagenes/NoticiaEjemplo.jpg" alt="Imagen de la noticia" id="news-image">
+            <img th:src="${noticia.imagenUrl}" alt="Imagen de la noticia" id="news-image">
         </div>
         <div class="content">
-            <h2 id="subtitle">La Universidad del Bío-Bío lanza nuevo sitio web del Polo de Salud para fortalecer la vinculación con la comunidad</h2>
-            <p id="paragraph">Editar Parrafo</p>
+            <h2 th:text="${noticia.subtitulo}">Subtítulo de la noticia</h2>
+            <p th:text="'Publicado: ' + ${#dates.format(noticia.fechPublicacion, 'dd/MM/yyyy')}">Fecha de publicación: </p>
+        <p th:utext="${#strings.replace(noticia.contenido, '\n', '<br>')}">Contenido de la noticia</p>
+
         </div>
     </main>
-    
     
     <div class="sidebar">
         <a href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
@@ -63,20 +63,18 @@
         <a href="https://www.twitter.com/PoloDeSalud" target="_blank" class="sidebar-btn">
             <img th:src="@{/imagenes/Twitter.png}" src="../static/imagenes/Twitter.png" alt="Twitter" class="icon">
         </a>
-        <a href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
-            <img th:src="@{/imagenes/Spotify.png}" src="../static/imagenes/Spotify.png" alt="Spotify" class="icon">
-        </a>
         <a href="https://www.youtube.com/@UBBTVCHILE" target="_blank" class="sidebar-btn">
-            <img th:src="@{/imagenes/Youtube.png}" src="../static/imagenes/Youtube.png" alt="Facebook" class="icon">
+            <img th:src="@{/imagenes/Youtube.png}" src="../static/imagenes/Youtube.png" alt="Youtube" class="icon">
+        </a>
+        <a href="https://spotify.com" target="_blank" class="sidebar-btn">
+            <img th:src="@{/imagenes/Spotify.png}" src="../static/imagenes/Spotify.png" alt="Spotify" class="icon">
         </a>
     </div>
     
     <footer>
-        <p>&copy;2024 Polo de Salud UBB |  Todos los derechos reservados.</p>
+        <p>&copy;2024 Polo de Salud UBB | Todos los derechos reservados.</p>
     </footer>
 
     <script th:src="@{/js/editContent.js}"></script>
-    
-
 </body>
 </html>

@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", async () => {
     await cargarNoticias();
 
-    // Manejar el envío del formulario para crear una noticia
     document.getElementById("form-noticia").addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const fechPublicacion = document.getElementById("fechPublicacion").value;
 
-        // Asegúrate de que todos los campos estén incluidos en el FormData
         formData.append("titulo", document.getElementById("titulo").value);
         formData.append("subtitulo", document.getElementById("subtitulo").value);
         formData.append("contenido", document.getElementById("contenido").value);
         formData.append("categoria", document.getElementById("categoria").value);
         formData.append("archivoAdjunto", document.getElementById("archivoAdjunto").files[0]);
         formData.append("urlPublicacion", document.getElementById("urlPublicacion").value);
-        formData.append("fechPublicacion", fechPublicacion);
+        formData.append("fechPublicacion", document.getElementById("fechPublicacion").value);
         formData.append("idAdmin", document.getElementById("idAdmin").value);
 
         try {
@@ -24,14 +21,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             if (response.ok) {
-                const result = await response.json();
-                document.getElementById("resultado").textContent = "Noticia creada con éxito: " + result.titulo;
+                document.getElementById("resultado").textContent = "Noticia creada con éxito.";
                 await cargarNoticias();
+                event.target.reset();
             } else {
                 document.getElementById("resultado").textContent = "Error al crear la noticia.";
             }
         } catch (error) {
-            document.getElementById("resultado").textContent = "Ocurrió un error: " + error.message;
+            document.getElementById("resultado").textContent = "Error: " + error.message;
         }
     });
 });
@@ -39,70 +36,58 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Función para cargar todas las noticias
 async function cargarNoticias() {
     try {
-        const response = await fetch("/noticias/todas"); // Solicita todas las noticias
+        const response = await fetch("/noticias/todas");
         const noticias = await response.json();
-        
+
         const listaNoticias = document.getElementById("noticias-lista-items");
-        listaNoticias.innerHTML = ''; // Limpia la lista antes de recargarla
+        listaNoticias.innerHTML = ''; // Limpia la lista
 
         noticias.forEach(noticia => {
-            console.log("Noticia obtenida:", noticia); // Verifica el JSON de cada noticia
-
-            // Crear elementos para la lista
             const noticiaItem = document.createElement("li");
             noticiaItem.classList.add("noticia-item");
 
+            // Mostrar solo el título
             const noticiaTitulo = document.createElement("span");
-            noticiaTitulo.textContent = noticia.titulo; // Muestra solo el título de la noticia
+            noticiaTitulo.textContent = noticia.titulo;
+            noticiaTitulo.style.marginRight = "10px"; // Espaciado entre título y botón
 
+            // Botón eliminar
             const botonEliminar = document.createElement("button");
             botonEliminar.textContent = "Eliminar";
             botonEliminar.classList.add("eliminar-boton");
-            botonEliminar.dataset.id = noticia.id; // Asigna el ID de la noticia
+            botonEliminar.dataset.id = noticia.id;
 
-            // Evento para eliminar la noticia
+            // Evento para eliminar noticia
             botonEliminar.addEventListener("click", async () => {
-                const id = botonEliminar.dataset.id;
-
-                if (!id || id === "undefined" || id === "") {
-                    console.error("Error: ID no válido.");
-                    alert("ID de noticia no válido.");
-                    return;
-                }
-
                 const confirmacion = confirm("¿Estás seguro de que quieres eliminar esta noticia?");
                 if (confirmacion) {
-                    console.log("Eliminando noticia con ID:", id);
-                    await eliminarNoticia(id);
-                    await cargarNoticias(); // Recarga la lista después de eliminar
+                    await eliminarNoticia(noticia.id);
+                    await cargarNoticias();
                 }
             });
 
-            // Añadir los elementos al contenedor
+            // Añadir título y botón al contenedor
             noticiaItem.appendChild(noticiaTitulo);
             noticiaItem.appendChild(botonEliminar);
             listaNoticias.appendChild(noticiaItem);
         });
     } catch (error) {
-        console.error("Error al cargar las noticias:", error);
+        console.error("Error al cargar noticias:", error);
     }
 }
 
-// Función para eliminar una noticia
+// Función para eliminar noticia
 async function eliminarNoticia(id) {
     try {
-        const response = await fetch(`/noticias/eliminar/${id}`, {
-            method: "DELETE"
-        });
+        const response = await fetch(`/noticias/eliminar/${id}`, { method: "DELETE" });
 
         if (response.ok) {
-            console.log(`Noticia con ID ${id} eliminada correctamente.`);
+            console.log(`Noticia con ID ${id} eliminada.`);
         } else {
-            console.error("Error al eliminar la noticia.");
             alert("No se pudo eliminar la noticia.");
         }
     } catch (error) {
-        console.error("Error al eliminar la noticia:", error);
+        console.error("Error al eliminar noticia:", error);
         alert("Ocurrió un error al intentar eliminar la noticia.");
     }
 }
