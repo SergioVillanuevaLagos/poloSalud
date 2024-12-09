@@ -87,28 +87,40 @@ main {
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px; /* Espacio entre los campos */
 }
 
 label {
-    margin-top: 10px;
     font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
 }
 
 input, textarea, button {
-    margin-top: 5px;
-    padding: 10px;
+    padding: 12px; /* Más padding para los campos */
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #5CB8E4; /* Color de borde al enfocar el campo */
+    outline: none; /* Eliminar el borde por defecto al enfocar */
+}
+
+textarea {
+    resize: vertical; /* Permitir redimensionar el campo de texto */
 }
 
 button {
-    margin-top: 20px;
     background-color: #5cb85c;
     color: white;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: bold;
 }
 
 button:hover {
@@ -132,6 +144,12 @@ footer {
     color: #fff;
     margin-top: 20px;
 }
+
+/* Eliminar los estilos de la lista de noticias */
+#noticias-lista-items {
+    display: none; /* No mostrar la lista */
+}
+
 .noticia-contenido {
     display: none;
     margin-top: 10px;
@@ -151,27 +169,10 @@ footer {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-/* Estilo para la lista de noticias */
-#noticias-lista-items {
-    list-style-type: none;
-    padding: 0;
-}
 
-.noticia-titulo {
-    font-weight: bold;
-}
-
+/* Eliminar el estilo del botón de eliminar */
 .eliminar-boton {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.eliminar-boton:hover {
-    background-color: darkred;
+    display: none; /* Ocultar el botón */
 }
 
 @media (min-width: 768px) {
@@ -179,4 +180,3 @@ footer {
         display: none;
     }
 }
-
