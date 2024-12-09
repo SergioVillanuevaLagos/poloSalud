@@ -6,9 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
     <link rel="stylesheet" href="/css/contacto.css">
+    <link th:href="@{/css/stilenav.css}" rel="stylesheet"/>
 </head>
 
 <body>
+
+
+<header class="header">
+    <div class="logo">
+        <a href="/polosalud/index">
+            <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="Logo Polo Salud">
+        </a>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a></li>
+            <li><a class="nav-link" href="/calendario">Calendario</a></li>
+            <li><a class="nav-link" href="#">Noticias</a></li>
+            <li><a class="nav-link" href="/polosalud/colab">Facultades</a></li>
+            <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+            <li><a class="nav-link" href="/polosalud/contac">Hablemos</a></li>
+            <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
+        </ul>
+    </nav>
+
+    <a onclick="openNav()" class="menu" href="/polosalud/index"><button>Menu</button></a>
+    <div id="mobile-menu" class="overlay">
+        <a onclick="closeNav()" href="" class="close">&times;</a>
+        <div class="overlay-content">
+            <a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a>
+            <a class="nav-link" href="/calendario">Calendario</a>
+            <a class="nav-link" href="#">Noticias</a>
+            <a class="nav-link" href="#">Facultades</a>
+            <a class="nav-link" href="#">Colaboradores</a>
+            <a class="nav-link" href="#">Hablemos</a>
+            <a class="nav-link" href="/polosalud/login">Registro</a>
+        </div>
+    </div>
+
+</header>
+
     <form action="https://formsubmit.co/polosalud586@gmail.com" method="POST">
 
         <h2>Contacto</h2>
@@ -24,11 +61,6 @@
 
             <label for="message">Mensaje</label>
             <textarea name="message" id="message" cols="30" rows="5" placeholder="Mensaje" required></textarea>
-
-            <div class="form-txt">
-                <a href="#">Política de privacidad</a>
-                <a href="#">Términos y condiciones</a>
-            </div>
 
             <input class="btn" type="submit" value="Enviar">
 
