@@ -7,9 +7,37 @@
     <link rel="stylesheet" href="/css/styles1.css">
 </head>
 <body>
-    <header>
-        <h1>Gestión de Noticias</h1>
+    <header class="header">
+        <div class="logo">
+          <a href="/polosalud/index">
+            <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="...">
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a class="nav-link" href="/polosalud/index">Inicio</a></li>
+            <li><a class="nav-link" href="#">Calendario</a></li>
+            <li><a class="nav-link" href="#">Noticias</a></li>
+            <li><a class="nav-link" href="#">Facultades</a></li>
+            <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+            <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
+          </ul>
+        </nav>
+        <a class="btn" href="#"><button>Contactanos</button></a>
+        
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="overlay">
+          <a onclick="closeNav()" href="#" class="close">&times;</a>
+          <div class="overlay-content">
+            <a class="nav-link" href="/polosalud/index">Inicio</a>
+            <a class="nav-link" href="#">Calendario</a>
+            <a class="nav-link" href="#">Noticias</a>
+            <a class="nav-link" href="#">Facultades</a>
+            <a class="nav-link" href="#">Colaboradores</a>
+          </div>
+        </div>
     </header>
+
 
     <main>
         <h2>Crear Noticia</h2>

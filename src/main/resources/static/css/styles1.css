@@ -40,11 +40,32 @@ nav {
     gap: 15px;
 }
 
+.nav-links li {
+    display: inline;
+}
+
 .nav-link {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
+
+.header .btn button, .header .menu button {
+    margin-left: 20px;
+    font-weight: 700;
+    color: #50b4e4;
+    padding: 9px 25px;
+    background: #eceff1;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.btn button:hover {
+    background-color: #e0f7ff;
+}
+
 
 /* ============================================
    MAIN CONTENT
@@ -151,6 +172,12 @@ footer {
 
 .eliminar-boton:hover {
     background-color: darkred;
+}
+
+@media (min-width: 768px) {
+    #mobile-menu {
+        display: none;
+    }
 }
 
 

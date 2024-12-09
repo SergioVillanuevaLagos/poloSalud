@@ -52,10 +52,6 @@
         </div>
     </main>
     
-    <div class="edit-buttons">
-        <button class="edit-content" onclick="openModal()">Editar Contenido</button>
-        <button class="save-news" onclick="saveNews()">Guardar Noticia</button>
-    </div>
     
     <div class="sidebar">
         <a href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
@@ -81,18 +77,6 @@
 
     <script th:src="@{/js/editContent.js}"></script>
     
-    <!-- Modal de edición -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Editar Contenido</h2>
-            <input type="text" id="newTitleInput" placeholder="Nuevo título">
-            <input type="text" id="newSubtitle" placeholder="Nuevo subtítulo">
-            <textarea id="newParagraph" placeholder="Nuevo contenido del párrafo"></textarea>
-            <input type="text" id="newCategory" placeholder="Nueva categoría">
-            <input type="text" id="newUrl" placeholder="Nueva URL de publicación">
-            <button onclick="saveChanges(); closeModal();">Guardar y Cerrar</button>
-        </div>
-    </div>
+
 </body>
 </html>
