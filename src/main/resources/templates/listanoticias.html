@@ -8,15 +8,12 @@
     <link th:href="@{/css/carrusel.css}" rel="stylesheet"/>
     <link th:href="@{/css/stilenav.css}" rel="stylesheet"/>
     <link th:href="@{/css/card.css}" rel="stylesheet"/>
-
 </head>
 
 <body>
-
-
 <header class="header">
     <div class="logo">
-        <a href="/polosalud/index">
+        <a href="/polosalud/listanoticias">
             <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="Logo Polo Salud">
         </a>
     </div>
@@ -24,7 +21,7 @@
         <ul class="nav-links">
             <li><a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a></li>
             <li><a class="nav-link" href="/calendario">Calendario</a></li>
-            <li><a class="nav-link" href="/polosalud/listanoticias">Noticias</a></li>
+            <li><a class="nav-link" href="#">Noticias</a></li>
             <li><a class="nav-link" href="/polosalud/colab">Conocenos</a></li>
             <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
             <li><a class="nav-link" href="/polosalud/contac">Hablemos</a></li>
@@ -45,42 +42,7 @@
             <a class="nav-link" href="/polosalud/login">Registro</a>
         </div>
     </div>
-
 </header>
-
-<div id="carouselExampleCaptions" class="carousel slide" style="width: 100%; height: 400px;">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active" th:each="publicacion, iterStat : ${publicaciones}" th:if="${iterStat.first}">
-            <img th:src="${publicacion.imagenUrl}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <a th:href="@{'/noticia?id=' + ${publicacion.idPublicacion}}" class="text-white">
-                    <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
-                </a>
-            </div>
-        </div>
-        <div class="carousel-item" th:each="publicacion, iterStat : ${publicaciones}" th:if="${!iterStat.first}">
-            <img th:src="${publicacion.imagenUrl}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <a th:href="@{'/noticia?id=' + ${publicacion.idPublicacion}}" class="text-white">
-                    <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
-                </a>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
 
 <div class="container">
     <div class="row">
@@ -99,6 +61,5 @@
 </div>
 
 <script th:src="@{/js/carrusel.js}" defer></script>
-
 </body>
 </html>

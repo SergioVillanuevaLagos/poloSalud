@@ -32,4 +32,5 @@ public class publicacionService1 {
     public void eliminarPublicacion(Integer id) {
         publicacionRepository.deleteById(id);
     }
+    
 }
