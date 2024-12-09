@@ -2,6 +2,7 @@ package com.example.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.Base64;
 
 @Entity
 @Table(name = "publicacion")
@@ -109,5 +110,11 @@ public class publicacion {
 
     public void setIdAdmin(Integer idAdmin) {
         this.idAdmin = idAdmin;
+    }
+    public String getImagenUrl() {
+        if (archivoAdjunto != null) {
+            return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(archivoAdjunto);
+        }
+        return null;
     }
 }
