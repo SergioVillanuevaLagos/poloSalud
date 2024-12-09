@@ -5,36 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticia</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/stylescomentario.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/comentario.js" defer></script>z|
 </head>
 <body>
     <header class="header">
         <div class="logo">
-          <a href="/polosalud/index">
-            <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="...">
-          </a>
+            <a href="/polosalud/index">
+                <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="...">
+            </a>
         </div>
         <nav>
-          <ul class="nav-links">
-            <li><a class="nav-link" href="/polosalud/index">Inicio</a></li>
-            <li><a class="nav-link" href="#">Calendario</a></li>
-            <li><a class="nav-link" href="#">Noticias</a></li>
-            <li><a class="nav-link" href="#">Facultades</a></li>
-            <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
-            <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
-          </ul>
+            <ul class="nav-links">
+                <li><a class="nav-link" href="/polosalud/index">Inicio</a></li>
+                <li><a class="nav-link" href="#">Calendario</a></li>
+                <li><a class="nav-link" href="#">Noticias</a></li>
+                <li><a class="nav-link" href="#">Facultades</a></li>
+                <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+                <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
+            </ul>
         </nav>
         <a class="btn" href="#"><button>Contactanos</button></a>
         
         <!-- Menú móvil -->
         <div id="mobile-menu" class="overlay">
-          <a onclick="closeNav()" href="#" class="close">&times;</a>
-          <div class="overlay-content">
-            <a class="nav-link" href="/polosalud/index">Inicio</a>
-            <a class="nav-link" href="#">Calendario</a>
-            <a class="nav-link" href="#">Noticias</a>
-            <a class="nav-link" href="#">Facultades</a>
-            <a class="nav-link" href="#">Colaboradores</a>
-          </div>
+            <a onclick="closeNav()" href="#" class="close">&times;</a>
+            <div class="overlay-content">
+                <a class="nav-link" href="/polosalud/index">Inicio</a>
+                <a class="nav-link" href="#">Calendario</a>
+                <a class="nav-link" href="#">Noticias</a>
+                <a class="nav-link" href="#">Facultades</a>
+                <a class="nav-link" href="#">Colaboradores</a>
+            </div>
         </div>
     </header>
 
@@ -49,11 +52,31 @@
             <h2 th:text="${noticia.subtitulo}">Subtítulo de la noticia</h2>
             <p th:text="'Publicado: ' + ${#dates.format(noticia.fechPublicacion, 'dd/MM/yyyy')}">Fecha de publicación: </p>
             <p th:text="'Etiquetas: ' + ${noticia.categoria}">Categoría: </p>
-        <p th:utext="${#strings.replace(noticia.contenido, '\n', '<br>')}">Contenido de la noticia</p>
+            <p th:utext="${#strings.replace(noticia.contenido, '\n', '<br>')}">Contenido de la noticia</p>
+        </div>
+        <!-- Campo oculto para el ID de la publicación -->
+        <input type="hidden" id="idPublicacion" th:value="${noticia.idPublicacion}">
+        <!-- Separador entre la noticia y los comentarios -->
+        <div class="separador-comentarios"></div>
 
+        <!-- Caja de comentarios -->
+        <div class="comentarios-container">
+            <h2>Comentarios</h2>
+            <!-- Formulario para agregar un nuevo comentario -->
+            <form id="form-comentario">
+                <label for="contenido">Comentario:</label>
+                <textarea id="contenido" placeholder="Escribe un comentario..." maxlength="250" required></textarea>
+                <input type="hidden" id="idPublicacion" value="1">
+                <button type="submit">Agregar Comentario</button>
+            </form>
+
+            <!-- Lista de comentarios -->
+            <ul id="lista-comentarios">
+                <!-- Los comentarios se añadirán dinámicamente con JavaScript -->
+            </ul>
         </div>
     </main>
-    
+
     <div class="sidebar">
         <a href="https://www.facebook.com/PoloDeSalud" target="_blank" class="sidebar-btn">
             <img th:src="@{/imagenes/Facebook.png}" src="../static/imagenes/Facebook.png" alt="Facebook" class="icon">
@@ -71,7 +94,7 @@
             <img th:src="@{/imagenes/Spotify.png}" src="../static/imagenes/Spotify.png" alt="Spotify" class="icon">
         </a>
     </div>
-    
+
     <footer>
         <p>&copy;2024 Polo de Salud UBB | Todos los derechos reservados.</p>
     </footer>

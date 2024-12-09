@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caja de Comentarios</title>
+    <link rel="stylesheet" href="/css/stylescomentario.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/comentario.js" defer></script>
+</head>
+
+<body>
+    <div class="comentarios-container">
+        <h2>Comentarios</h2>
+        <!-- Formulario para agregar un nuevo comentario -->
+        <form id="form-comentario">
+            <label for="contenido">Comentario:</label>
+            <textarea id="contenido" placeholder="Escribe un comentario..." maxlength="250" required></textarea>
+            <input type="hidden" id="idPublicacion" value="1">
+            <button type="submit">Agregar Comentario</button>
+        </form>
+
+        <!-- Lista de comentarios -->
+        <ul id="lista-comentarios">
+            <!-- Los comentarios se añadirán dinámicamente con JavaScript -->
+        </ul>
+    </div>
+</body>
+
+</html>

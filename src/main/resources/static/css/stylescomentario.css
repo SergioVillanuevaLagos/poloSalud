@@ -1,0 +1,375 @@
+/* ============================================
+   GLOBAL STYLES
+============================================ */
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    background-color: #d5f2f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ============================================
+   HEADER
+============================================ */
+header {
+    background-color: #5CB8E4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header .btn button, .header .menu button {
+    margin-left: 20px;
+    font-weight: 700;
+    color: #50b4e4;
+    padding: 9px 25px;
+    background: #eceff1;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.btn button:hover {
+    background-color: #e0f7ff;
+}
+
+/* ============================================
+   MAIN CONTENT
+============================================ */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, textarea, button {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #5CB8E4;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.noticia-contenido {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+.noticia-titulo {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.noticia-imagen {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para la lista de noticias */
+#noticias-lista-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.noticia-titulo {
+    font-weight: bold;
+}
+
+.eliminar-boton {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.eliminar-boton:hover {
+    background-color: darkred;
+}
+
+@media (min-width: 768px) {
+    #mobile-menu {
+        display: none;
+    }
+}
+
+/* ============================================
+   COMMENT STYLES
+============================================ */
+.comentarios-container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 40px; /* Añade un margen para separar los comentarios de la noticia */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+#form-comentario {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#form-comentario textarea {
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+#form-comentario button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#form-comentario button:hover {
+    background-color: #0056b3;
+}
+
+#lista-comentarios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.comentario-item,
+.respuesta-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.comentario {
+    display: flex;
+    gap: 10px;
+}
+
+.respuesta {
+    display: flex;
+    gap: 10px;
+    margin-left: 40px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.contenido-comentario {
+    flex: 1;
+}
+
+.usuario {
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fecha {
+    font-size: 12px;
+    color: #aaa;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.texto {
+    color: #555;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.acciones {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.responder,
+.eliminar {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.eliminar {
+    color: #dc3545;
+}
+
+.responder:hover,
+.eliminar:hover {
+    text-decoration: underline;
+}
+
+.form-respuesta {
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.textarea-respuesta {
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.btn-enviar-respuesta,
+.btn-cancelar-respuesta {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 8px;
+    margin: 5px;
+    border: none;
+    width: 100px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-cancelar-respuesta {
+    background-color: #dc3545;
+}
+
+.btn-enviar-respuesta:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancelar-respuesta:hover {
+    background-color: #c82333;
+}
+
+/* Separador entre noticia y comentarios */
+.separador-comentarios {
+    margin-top: 40px; /* Ajusta el espacio según lo necesites */
+    height: 1px;
+    background-color: #ccc;
+}
