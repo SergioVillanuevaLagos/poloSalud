@@ -49,6 +49,11 @@ public class ControladoreBasico {
         model.addAttribute("mensaje", "prueba del nav");
         return "componentes";
     }
+    @GetMapping(path = {"/contac"})
+    public String contac(Model model) {
+        model.addAttribute("mensaje", "prueba del contactanos");
+        return "contacto";
+    }
 
     @GetMapping(path = {"/publicaciones/{id}"})
     public String verPublicacion(@PathVariable Integer id, Model model) {

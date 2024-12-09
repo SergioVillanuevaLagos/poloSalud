@@ -1,12 +1,10 @@
 package com.example.service;
 
 import com.example.model.evento;
-import com.example.repository.eventoRepository;
-import com.example.service.eventoService;
+import com.example.repositorio.eventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
