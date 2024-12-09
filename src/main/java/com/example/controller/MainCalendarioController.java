@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -8,6 +8,17 @@ public class MainCalendarioController {
 
     @GetMapping("/calendario")
     public String mostrarCalendario() {
-        return "calendario";
+        return "calendarioAdmin";
     }
+
+    @GetMapping("/calendarioUsuario")
+    public String mostrarCalendarioUsurio() {
+        return "calendarioUsuario";
+    }
+
+    @GetMapping("/xd")
+    public String xd() {
+        return "xd";
+    }
+
 }

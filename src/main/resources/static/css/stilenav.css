@@ -9,30 +9,37 @@
 }
 
 body {
-    background-color: #d5f2f6; /* Cambiado a color turquesa */
+    background-color: #d5f2f6;
+    /* Cambiado a color turquesa */
     min-width: 400px;
-    padding-top: 85px; /* Añadido para dar espacio arriba del navbar */
+    padding-top: 85px;
+    /* Añadido para dar espacio arriba del navbar */
 }
 
 .navbar {
-    position: sticky; /*posición fija*/
-    top: 0; /*distancia superior*/
-    z-index: 1; /*posiciona el elemento sobre los demás*/
+    position: sticky;
+    /*posición fija*/
+    top: 0;
+    /*distancia superior*/
+    z-index: 1;
+    /*posiciona el elemento sobre los demás*/
 }
 
 .header {
     /*color del cuerpo */
-    background-color:  #50b4e4 ;
+    background-color: #50b4e4;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 85px;
     padding: 5px 10%;
     width: 100%;
-    position: fixed; /* Fijo en la parte superior */
+    position: fixed;
+    /* Fijo en la parte superior */
     top: 0;
     left: 0;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    z-index: 1000;
+    /* Asegura que esté por encima de otros elementos */
 }
 
 .header .logo {
@@ -65,7 +72,8 @@ body {
 }
 
 .header .nav-links a {
-    font-weight: 700; /* Corregido de 'font-size: 700' a 'font-weight: 700' */
+    font-weight: 700;
+    /* Corregido de 'font-size: 700' a 'font-weight: 700' */
     color: #eceff1;
 }
 
@@ -82,7 +90,7 @@ body {
     margin-left: 20px;
     font-weight: 700;
     /*color de fondo*/
-    color: 	 #50b4e4 ;
+    color: #50b4e4;
     padding: 9px 25px;
     background: #eceff1;
     border: none;
@@ -99,9 +107,12 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-    .nav-links, .btn {
+
+    .nav-links,
+    .btn {
         display: none;
     }
+
     .menu {
         display: inherit;
     }
@@ -159,6 +170,7 @@ body {
     .header .overlay a {
         font-size: 20px;
     }
+
     .header .overlay .close {
         font-size: 40px;
         top: 15px;

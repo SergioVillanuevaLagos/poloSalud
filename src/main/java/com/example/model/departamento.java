@@ -25,43 +25,7 @@ public class departamento {
     @JoinColumn(name = "ID_facultad", nullable = true)
     private Facultad facultad;
 
-    public Integer getIdDept() {
-        return idDept;
-    }
 
-    public void setIdDept(Integer idDept) {
-        this.idDept = idDept;
-    }
+    
 
-    public String getNombreDept() {
-        return nombreDept;
-    }
-
-    public void setNombreDept(String nombreDept) {
-        this.nombreDept = nombreDept;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public Facultad getFacultad() {
-        return facultad;
-    }
-
-    public void setFacultad(Facultad facultad) {
-        this.facultad = facultad;
-    }
-
-    public colaboradores getId_colaborador() {
-        return id_colaborador;
-    }
-
-    public void setId_colaborador(colaboradores id_colaborador) {
-        this.id_colaborador = id_colaborador;
-    }
 }

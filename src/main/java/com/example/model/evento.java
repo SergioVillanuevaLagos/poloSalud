@@ -1,8 +1,8 @@
 package com.example.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "eventos")
@@ -14,7 +14,7 @@ public class evento {
     private int ID_evento;
 
     @Column(name = "fecha_envent")
-    private LocalDate fecha_evento;
+    private LocalDateTime fecha_evento;
 
     @Column(name = "notificacion", length = 500)
     private String notificacion;
@@ -25,8 +25,12 @@ public class evento {
     @Column(name = "descripcion", length = 1000)
     private String descripcion;
 
+
+
     @Column(name = "ID_admin")
     private int idAdmin;
+
+
 
     public int getID_evento() {
         return ID_evento;
@@ -36,11 +40,11 @@ public class evento {
         this.ID_evento = ID_evento;
     }
 
-    public LocalDate getFecha_evento() {
+    public LocalDateTime getFecha_evento() {
         return fecha_evento;
     }
 
-    public void setFecha_evento(LocalDate fecha_evento) {
+    public void setFecha_evento(LocalDateTime fecha_evento) {
         this.fecha_evento = fecha_evento;
     }
 

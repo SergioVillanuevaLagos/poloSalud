@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Eventos</title>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <link th:href="@{/css/estilos.css}" rel="stylesheet" />
+    <link th:href="@{/css/stilenav.css}" rel="stylesheet" />
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/locale/es.js"></script>
+    <script src="/js/calendarioUsuario.js"></script>
+    <script th:src="@{/js/nav.js}" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/polosalud/index">
+                <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" alt="Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/polosalud/index">Inicio</a></li>
+                <li><a href="#">Calendario</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Facultades</a></li>
+                <li><a href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+                <li><a href="/polosalud/login">Registro</a></li>
+            </ul>
+        </nav>
+        <a class="btn" href="#"><button>Contactanos</button></a>
+    </header>
+
+    <div class="container">
+        <h1>Calendario de Eventos </h1>
+        <div id="calendar"></div>
+
+        <div id="listaEventos" class="card">
+            <h2>Eventos </h2>
+            <ul id="eventosLista"></ul>
+        </div>
+    </div>
+</body>
+
+</html>
