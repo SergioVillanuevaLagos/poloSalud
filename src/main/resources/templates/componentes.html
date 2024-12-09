@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-bs-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oferta Académica</title>
-  <!-- Vinculación de los estilos -->
-  <link href="/css/stilenav.css" rel="stylesheet">
-  <link href="/css/colab.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polo de Salud Región de Ñuble</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link th:href="@{/css/stilenav.css}" rel="stylesheet"/>
+  <link th:href="@{/css/com.css}" rel="stylesheet"/>
 </head>
-
-
 <body>
+
 
 <header class="header">
   <div class="logo">
@@ -23,7 +22,7 @@
       <li><a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a></li>
       <li><a class="nav-link" href="/calendario">Calendario</a></li>
       <li><a class="nav-link" href="#">Noticias</a></li>
-      <li><a class="nav-link" href="/polosalud/colab">Facultades</a></li>
+      <li><a class="nav-link" href="/polosalud/colab">Conocenos</a></li>
       <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
       <li><a class="nav-link" href="/polosalud/contac">Hablemos</a></li>
       <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
@@ -47,68 +46,97 @@
 </header>
 
 
-<main class="container mt-5">
-  <div class="row">
-    <!-- Primera fila -->
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-1">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Carrera de Medicina, especialidades Médicas y carreras no médicas.</h6>
-        </div>
-      </a>
-    </div>
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-2">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Centro de Simulación en Salud.</h6>
-        </div>
-      </a>
-    </div>
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-3">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Centro Integral de Atención Comunitaria en Salud (CIAS).</h6>
-        </div>
-      </a>
-    </div>
-    <!-- Segunda fila -->
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-4">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Formación Capital Humano.</h6>
-        </div>
-      </a>
-    </div>
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-5">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Centro Epidemiológico Regional.</h6>
-        </div>
-      </a>
-    </div>
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-6">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Salud Digital.</h6>
-        </div>
-      </a>
-    </div>
-    <!-- Tercera fila -->
-    <div class="col-11 col-sm-6 col-md-4 text-center mb-4">
-      <a href="https://ubiobio.cl/postgrado/" target="_blank">
-        <div class="modulo-perfil perfil-7">
-          <img class="img-fluid py-4" src="/static/img/modulos/icono_postgrado.svg" alt="">
-          <h6 class="mb-0 pb-4">Pedagogía Hospitalaria.</h6>
-        </div>
-      </a>
+
+
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+    <div class="col-md-6 p-lg-5 mx-auto my-5">
+      <h1 class="display-3 fw-bold">Polo de Salud Región de Ñuble</h1>
+      <h3 class="fw-normal text-muted mb-3">Impulsando el desarrollo en salud</h3>
     </div>
   </div>
+
+  <section id="introduccion" class="container my-5">
+    <h2>Introducción</h2>
+    <p>El Polo de Salud, nace producto de un trabajo entre la Universidad y el Gobierno Regional de Ñuble, y se materializó a través de un convenio firmado el 8 de junio 2022, lo anterior respaldado por la Estrategia Regional de Desarrollo 2020-2028.</p>
+    <p>El objetivo del Polo es impulsar el desarrollo de iniciativas que aporte a la formación de capital humano, investigación e innovación con enfoque territorial, fortaleciendo la vinculación con el medio, para contribuir a mejorar la salud de la región de Ñuble.</p>
+  </section>
+
+  <section id="lineamientos" class="container my-5">
+    <h2>Lineamientos Estratégicos</h2>
+    <ul>
+      <li>Fortalecer la vinculación bidireccional entre la Universidad del Bío-Bío con organismos públicos y privados de salud de la región mediante la formación e incorporación de tecnología e innovación.</li>
+      <li>Promover el desarrollo de proyectos, para el impulso de iniciativas innovadoras de acuerdo con las necesidades estratégicas del sector salud de la región.</li>
+      <li>Apoyar a las organizaciones de salud en el fomento de la innovación, la investigación y el desarrollo; a través del conocimiento y la incorporación de los avances tecnológicos.</li>
+    </ul>
+  </section>
+
+  <section id="componentes" class="container my-5">
+    <h2>Componentes del Polo de Salud</h2>
+    <ol>
+      <li>Carrera de Medicina, especialidades Médicas y carreras no médicas.</li>
+      <li>Centro de Simulación en Salud.</li>
+      <li>Centro Integral de Atención Comunitaria en Salud (CIAS).</li>
+      <li>Formación Capital Humano.</li>
+      <li>Centro Epidemiológico Regional.</li>
+      <li>Salud Digital.</li>
+      <li>Pedagogía Hospitalaria.</li>
+    </ol>
+  </section>
+
+  <section id="detalles" class="container my-5">
+    <h2>Detalles de los Componentes</h2>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Componente</th>
+        <th>Actores Involucrados</th>
+        <th>Beneficiarios</th>
+        <th>Actividades Desarrolladas</th>
+        <th>Tipo de Financiamiento</th>
+        <th>Monto</th>
+        <th>Evidencias</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Aquí puedes agregar filas con la información de cada componente -->
+      <tr>
+        <td>1. Nuevas carreras área salud</td>
+        <td>- Estudiantes de la Facultad de Ciencias de la Salud y de la Universidad del Bío-Bío</td>
+        <td>- Gobierno Regional de Ñuble - Servicio de Salud Ñuble - SEREMI de Salud de Ñuble</td>
+        <td>- Jornada de firma de convenio entre GORE-UBB - Mesas de trabajo con actores institucionales y locales para la generación de los proyectos de creación de las carreras - Estudios de demanda y p referencias de los estudiantes secundarios por carreras en el área de la salud - Jornada con representantes del Colegio Médico de Ñuble - Jornada con representantes de la Asociación de Facultaes de Medicina de Chile (ASSOFAMECH) - Operativos informativos con Seremi de Salud y Servicio de Salud Ñuble</td>
+        <td>Externo/GORE Ñuble</td>
+        <td>$12.524.692</td>
+        <td>- Convenio GORE-UBB - Aprobación de Escuela de Medicina y carrera de Química y Farmacia - UBB Región de Ñuble - Cons truc ción laboratorios para la Carrera de Química y Farmacia - UBB Región de Ñuble - Apertura de carrera de Medicina</td>
+      </tr>
+      <!-- Repite para cada componente -->
+      </tbody>
+    </table>
+  </section>
 </main>
+
+<footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Recursos</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary text-decoration-none" href="#">Políticas</a></li>
+        <li><a class="link-secondary text-decoration-none" href="#">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Sobre</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary text-decoration-none" href="#">Equipo</a></li>
+        <li><a class="link-secondary text-decoration-none" href="#">Ubicaciones</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
