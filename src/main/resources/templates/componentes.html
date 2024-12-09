@@ -1,20 +1,119 @@
 <!DOCTYPE html>
-<html lang="es" data-bs-theme="dark">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Polo de Salud Región de Ñuble</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link th:href="@{/css/stilenav.css}" rel="stylesheet"/>
-  <link th:href="@{/css/com.css}" rel="stylesheet"/>
-</head>
-<body>
+  <link th:href="@{/css/stilenav.css}" rel="stylesheet" />
+  <link th:href="@{/css/com.css}" rel="stylesheet" />
+  <style>
+    /* Estilo para la tabla */
+    .table {
+      background-color: #fff;
+      /* Fondo blanco */
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #000;
+      /* Letras en negro */
+    }
 
+    .table th,
+    .table td {
+      padding: 15px;
+      vertical-align: middle;
+      text-align: left;
+      color: #000;
+      /* Letras en negro */
+    }
+
+    .table-bordered {
+      border: 1px solid #ddd;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #f9f9f9;
+    }
+
+    /* Estilo para los encabezados de la tabla */
+    .table th {
+      background-color: #f1f1f1;
+      /* Fondo claro para los encabezados */
+      color: #000;
+      /* Letras en negro */
+    }
+
+    .table td {
+      color: #000;
+      /* Letras en negro */
+    }
+
+    /* Estilo general */
+    .container-section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.5rem;
+    }
+
+    /* Estilo para el encabezado */
+    .header {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilo para el pie de página */
+    footer {
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .fw-normal {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      color: #99ccff;
+      /* Azul más claro */
+    }
+
+    /* Estilo para los títulos */
+    .display-3 {
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #007bff;
+      /* Azul más oscuro para el primer título */
+    }
+
+    /* Estilo para el subtítulo "Impulsando el desarrollo en salud" */
+    .fw-normal {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      color: #99ccff;
+      /* Azul más claro para el subtítulo */
+    }
+
+    /* Estilo para el título Introducción, Lineamientos Estratégicos, Componentes del Polo de Salud y Detalles de los Componentes */
+    h2.display-3 {
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #007bff;
+    }
+  </style>
+</head>
+
+<body>
 
 <header class="header">
   <div class="logo">
     <a href="/polosalud/index">
-      <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="Logo Polo Salud">
+      <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top"
+           alt="Logo Polo Salud">
     </a>
   </div>
   <nav>
@@ -42,101 +141,93 @@
       <a class="nav-link" href="/polosalud/login">Registro</a>
     </div>
   </div>
-
 </header>
 
-
-
-
 <main>
-  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-    <div class="col-md-6 p-lg-5 mx-auto my-5">
-      <h1 class="display-3 fw-bold">Polo de Salud Región de Ñuble</h1>
-      <h3 class="fw-normal text-muted mb-3">Impulsando el desarrollo en salud</h3>
+  <div class="container mt-5">
+    <div class="container-section">
+      <h1 class="display-3 fw-bold text-center">Polo de Salud Región de Ñuble</h1>
+      <h3 class="display-3 fw-bold text-center">Impulsando el desarrollo en salud</h3>
+    </div>
+
+    <div class="container-section">
+      <h2 class="display-3 ">¿De donde nacemos?</h2>
+      <p class="text-negro"> El Polo de Salud, nace producto de un trabajo entre la Universidad y el Gobierno Regional
+        de Ñuble, y se
+        materializó a través de un convenio firmado el 8 de junio 2022, lo anterior respaldado por la Estrategia
+        Regional de Desarrollo 2020-2028.</p>
+      <p class="text-negro"> El objetivo del Polo es impulsar el desarrollo de iniciativas que aporte a la formación
+        de capital humano,
+        investigación e innovación con enfoque territorial, fortaleciendo la vinculación con el medio, para contribuir
+        a mejorar la salud de la región de Ñuble.</p>
+    </div>
+
+    <div class="container-section">
+      <h2 class="display-3 p-3">Lineamientos Estratégicos</h2>
+      <ul>
+        <li class="text-negro">Fortalecer la vinculación bidireccional entre la Universidad del Bío-Bío con organismos
+          públicos y
+          privados de salud de la región mediante la formación e incorporación de tecnología e innovación.</li>
+        <li class="text-negro">Promover el desarrollo de proyectos, para el impulso de iniciativas innovadoras de
+          acuerdo con las
+          necesidades estratégicas del sector salud de la región.</li>
+        <li class="text-negro">Apoyar a las organizaciones de salud en el fomento de la innovación, la investigación y
+          el desarrollo; a
+          través del conocimiento y la incorporación de los avances tecnológicos.</li>
+      </ul>
+    </div>
+
+    <div class="container-section">
+      <h2 class="display-3 p-3">Componentes del Polo de Salud</h2>
+      <ol>
+        <li class="text-negro">Carrera de Medicina, especialidades Médicas y carreras no médicas.</li>
+        <li class="text-negro">Centro de Simulación en Salud.</li>
+        <li class="text-negro">Centro Integral de Atención Comunitaria en Salud (CIAS).</li>
+        <li class="text-negro">Formación Capital Humano.</li>
+        <li class="text-negro">Centro Epidemiológico Regional.</li>
+        <li class="text-negro">Salud Digital.</li>
+        <li class="text-negro">Pedagogía Hospitalaria.</li>
+      </ol>
+    </div>
+
+    <div class="container-section">
+      <h2 class="display-3 p-3">Detalles de los Componentes</h2>
+
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Actores Involucrados</th>
+          <th>Beneficiarios</th>
+          <th>Actividades Desarrolladas</th>
+          <th>Tipo de Financiamiento</th>
+          <th>Monto</th>
+          <th>Evidencias</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1. Nuevas carreras área salud</td>
+          <td>- Estudiantes de la Facultad de Ciencias de la Salud y de la Universidad del Bío-Bío</td>
+          <td>- Gobierno Regional de Ñuble - Servicio de Salud Ñuble - SEREMI de Salud de Ñuble</td>
+          <td>- Jornada de firma de convenio entre GORE-UBB - Mesas de trabajo con actores institucionales y locales
+            para la generación de los proyectos de creación de las carreras - Estudios de demanda y preferencias de
+            los estudiantes secundarios por carreras en el área de la salud - Jornada con representantes del Colegio
+            Médico de Ñuble - Jornada con representantes de la Asociación de Facultaes de Medicina de Chile
+            (ASSOFAMECH) - Operativos informativos con Seremi de Salud y Servicio de Salud Ñuble</td>
+          <td>Externo/GORE Ñuble</td>
+          <td>$12.524.692</td>
+          <td>- Convenio GORE-UBB - Aprobación de Escuela de Medicina y carrera de Química y Farmacia - UBB Región
+            de Ñuble - Construcción laboratorios para la Carrera de Química y Farmacia - UBB Región de Ñuble -
+            Apertura de carrera de Medicina</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-  <section id="introduccion" class="container my-5">
-    <h2>Introducción</h2>
-    <p>El Polo de Salud, nace producto de un trabajo entre la Universidad y el Gobierno Regional de Ñuble, y se materializó a través de un convenio firmado el 8 de junio 2022, lo anterior respaldado por la Estrategia Regional de Desarrollo 2020-2028.</p>
-    <p>El objetivo del Polo es impulsar el desarrollo de iniciativas que aporte a la formación de capital humano, investigación e innovación con enfoque territorial, fortaleciendo la vinculación con el medio, para contribuir a mejorar la salud de la región de Ñuble.</p>
-  </section>
-
-  <section id="lineamientos" class="container my-5">
-    <h2>Lineamientos Estratégicos</h2>
-    <ul>
-      <li>Fortalecer la vinculación bidireccional entre la Universidad del Bío-Bío con organismos públicos y privados de salud de la región mediante la formación e incorporación de tecnología e innovación.</li>
-      <li>Promover el desarrollo de proyectos, para el impulso de iniciativas innovadoras de acuerdo con las necesidades estratégicas del sector salud de la región.</li>
-      <li>Apoyar a las organizaciones de salud en el fomento de la innovación, la investigación y el desarrollo; a través del conocimiento y la incorporación de los avances tecnológicos.</li>
-    </ul>
-  </section>
-
-  <section id="componentes" class="container my-5">
-    <h2>Componentes del Polo de Salud</h2>
-    <ol>
-      <li>Carrera de Medicina, especialidades Médicas y carreras no médicas.</li>
-      <li>Centro de Simulación en Salud.</li>
-      <li>Centro Integral de Atención Comunitaria en Salud (CIAS).</li>
-      <li>Formación Capital Humano.</li>
-      <li>Centro Epidemiológico Regional.</li>
-      <li>Salud Digital.</li>
-      <li>Pedagogía Hospitalaria.</li>
-    </ol>
-  </section>
-
-  <section id="detalles" class="container my-5">
-    <h2>Detalles de los Componentes</h2>
-    <table class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th>Componente</th>
-        <th>Actores Involucrados</th>
-        <th>Beneficiarios</th>
-        <th>Actividades Desarrolladas</th>
-        <th>Tipo de Financiamiento</th>
-        <th>Monto</th>
-        <th>Evidencias</th>
-      </tr>
-      </thead>
-      <tbody>
-      <!-- Aquí puedes agregar filas con la información de cada componente -->
-      <tr>
-        <td>1. Nuevas carreras área salud</td>
-        <td>- Estudiantes de la Facultad de Ciencias de la Salud y de la Universidad del Bío-Bío</td>
-        <td>- Gobierno Regional de Ñuble - Servicio de Salud Ñuble - SEREMI de Salud de Ñuble</td>
-        <td>- Jornada de firma de convenio entre GORE-UBB - Mesas de trabajo con actores institucionales y locales para la generación de los proyectos de creación de las carreras - Estudios de demanda y p referencias de los estudiantes secundarios por carreras en el área de la salud - Jornada con representantes del Colegio Médico de Ñuble - Jornada con representantes de la Asociación de Facultaes de Medicina de Chile (ASSOFAMECH) - Operativos informativos con Seremi de Salud y Servicio de Salud Ñuble</td>
-        <td>Externo/GORE Ñuble</td>
-        <td>$12.524.692</td>
-        <td>- Convenio GORE-UBB - Aprobación de Escuela de Medicina y carrera de Química y Farmacia - UBB Región de Ñuble - Cons truc ción laboratorios para la Carrera de Química y Farmacia - UBB Región de Ñuble - Apertura de carrera de Medicina</td>
-      </tr>
-      <!-- Repite para cada componente -->
-      </tbody>
-    </table>
-  </section>
 </main>
-
-<footer class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md">
-      <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Recursos</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary text-decoration-none" href="#">Políticas</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Contacto</a></li>
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Sobre</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary text-decoration-none" href="#">Equipo</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Ubicaciones</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

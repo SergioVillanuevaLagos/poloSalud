@@ -95,6 +95,6 @@ public class EventoControllerTest {
         assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatus());
     }
 
-    /*lol */
+
 
 }

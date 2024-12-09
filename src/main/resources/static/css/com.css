@@ -18,11 +18,11 @@ body {
 
 .navbar {
     position: sticky;
-    /*posición fija*/
-    top: 0;
-    /*distancia superior*/
-    z-index: 1;
-    /*posiciona el elemento sobre los demás*/
+/posición fija/
+top: 0;
+/distancia superior/
+z-index: 1;
+/posiciona el elemento sobre los demás/
 }
 
 .header {
@@ -89,8 +89,8 @@ body {
 .header .menu button {
     margin-left: 20px;
     font-weight: 700;
-    /*color de fondo*/
-    color: #50b4e4;
+/color de fondo/
+color: #50b4e4;
     padding: 9px 25px;
     background: #eceff1;
     border: none;
@@ -482,4 +482,17 @@ footer ul li a:hover {
 
 footer .text-body-secondary {
     color: #6c757d;
+}
+
+.display-3 {
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #007bff;
+
+}
+
+
+.text-negro {
+    color: #000000;
+    /* Color negro */
 }
