@@ -1,0 +1,108 @@
+/* carrusel.css */
+
+/* Ajustar el ancho del carrusel */
+.carousel {
+  width: 100%; /* Ocupa todo el ancho de la página */
+  height: 400px; /* Altura razonable */
+  margin: 0 auto; /* Centrar el carrusel */
+}
+
+/* Ajustar el tamaño de las imágenes dentro del carrusel */
+.carousel-item img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del carrusel */
+  height: 400px; /* Altura razonable */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+}
+
+/* Resto de tus estilos... */
+.carousel-control-color {
+  color: white;
+}
+
+.carousel-control-width {
+  width: 15%;
+}
+
+.carousel-control-opacity {
+  opacity: 0.5;
+}
+
+.carousel-control-hover-opacity {
+  opacity: 0.9;
+}
+
+.carousel-control-transition {
+  transition: opacity 0.15s ease;
+}
+
+.carousel-indicator-width {
+  width: 30px;
+}
+
+.carousel-indicator-height {
+  height: 3px;
+}
+
+.carousel-indicator-hit-area-height {
+  height: 10px;
+}
+
+.carousel-indicator-spacer {
+  margin-right: 3px;
+}
+
+.carousel-indicator-opacity {
+  opacity: 0.5;
+}
+
+.carousel-indicator-active-bg {
+  background-color: white;
+}
+
+.carousel-indicator-active-opacity {
+  opacity: 1;
+}
+
+.carousel-indicator-transition {
+  transition: opacity 0.6s ease;
+}
+
+.carousel-caption-width {
+  width: 70%;
+}
+
+.carousel-caption-color {
+  color: white;
+}
+
+.carousel-caption-padding-y {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.carousel-caption-spacer {
+  margin-bottom: 1.25rem;
+}
+
+.carousel-control-icon-width {
+  width: 2rem;
+}
+
+.carousel-control-prev-icon-bg {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
+}
+
+.carousel-control-next-icon-bg {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+}
+
+.carousel-transition-duration {
+  transition-duration: 0.6s;
+}
+
+.carousel-transition {
+  transition: transform 0.6s ease-in-out;
+}
+.carousel {
+  margin-bottom: 40px; /* Espacio entre el carrusel y las tarjetas */
+}

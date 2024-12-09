@@ -1,0 +1,105 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #d5f2f6; /* Fondo turquesa */
+    padding-top: 85px; /* Espacio para el navbar */
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* Tarjetas */
+.modulo-perfil {
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px;
+    width: 100%;
+    max-width: 350px; /* Ancho máximo de las tarjetas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.modulo-perfil:hover {
+    transform: translateY(-5px); /* Animación hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra en hover */
+}
+
+/* Espaciado para las filas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar las tarjetas */
+    gap: 20px; /* Espacio entre tarjetas */
+}
+
+/* Imágenes dentro de las tarjetas */
+.modulo-perfil img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Textos dentro de las tarjetas */
+.modulo-perfil h6 {
+    color: #333333; /* Texto oscuro */
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Estilos adicionales para los perfiles */
+.perfil-1 {
+    border: 2px solid #50b4e4; /* Azul claro */
+}
+
+.perfil-2 {
+    border: 2px solid #2ec4b6; /* Verde agua */
+}
+
+.perfil-3 {
+    border: 2px solid #e63946; /* Rojo */
+}
+
+.perfil-4 {
+    border: 2px solid #ffbc0e; /* Amarillo */
+}
+
+.perfil-5 {
+    border: 2px solid #a457c5; /* Morado */
+}
+
+.perfil-6 {
+    border: 2px solid #0081a7; /* Azul oscuro */
+}
+
+.perfil-7 {
+    border: 2px solid #f4a261; /* Naranja */
+}
+
+/* Ajustes responsivos */
+@media screen and (max-width: 768px) {
+    .modulo-perfil {
+        flex: 0 1 90%; /* Ocupa casi todo el ancho en pantallas pequeñas */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .modulo-perfil {
+        flex: 0 1 100%; /* Ocupa todo el ancho en pantallas muy pequeñas */
+    }
+}

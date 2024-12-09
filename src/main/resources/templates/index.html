@@ -5,45 +5,102 @@
     <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css"/>
     <script th:src="@{/js/jquery-3.7.1.min.js}" src="../static/js/jquery-3.7.1.min.js"></script>
     <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+    <link th:href="@{/css/carrusel.css}" rel="stylesheet"/>
+    <link th:href="@{/css/stilenav.css}" rel="stylesheet"/>
+    <link th:href="@{/css/card.css}" rel="stylesheet"/>
+
 </head>
+
 <body>
 
-<h1>Polo de salud</h1>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a>
-                <a class="nav-link" href="#">Centros</a>
-                <a class="nav-link" href="/calendario">Calendario</a>
-                <a class="nav-link" href="#">Noticias</a>
-                <a class="nav-link" href="#">Facultades</a>
-                <a class="nav-link" href="#">Colaboradores</a>
-                <a class="nav-link" href="/polosalud/login">Registro</a>
+<header class="header">
+    <div class="logo">
+        <a href="/polosalud/index">
+            <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="Logo Polo Salud">
+        </a>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a></li>
+            <li><a class="nav-link" href="/calendario">Calendario</a></li>
+            <li><a class="nav-link" href="#">Noticias</a></li>
+            <li><a class="nav-link" href="/polosalud/colab">Facultades</a></li>
+            <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+            <li><a class="nav-link" href="#">Hablemos</a></li>
+            <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
+        </ul>
+    </nav>
+
+    <a onclick="openNav()" class="menu" href="/polosalud/index"><button>Menu</button></a>
+    <div id="mobile-menu" class="overlay">
+        <a onclick="closeNav()" href="" class="close">&times;</a>
+        <div class="overlay-content">
+            <a class="nav-link" aria-current="page" href="/polosalud/index">Inicio</a>
+            <a class="nav-link" href="/calendario">Calendario</a>
+            <a class="nav-link" href="#">Noticias</a>
+            <a class="nav-link" href="#">Facultades</a>
+            <a class="nav-link" href="#">Colaboradores</a>
+            <a class="nav-link" href="#">Hablemos</a>
+            <a class="nav-link" href="/polosalud/login">Registro</a>
+        </div>
+    </div>
+    <div class="right-image">
+        <a href="/otra-pagina">
+            <img th:src="@{/imagenes/cat-busy.gif}" class="card-img-top" alt="Gato ocupado">
+        </a>
+    </div>
+</header>
+
+<div id="carouselExampleCaptions" class="carousel slide" style="width: 100%; height: 400px;">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" th:each="publicacion, iterStat : ${publicaciones}" th:if="${iterStat.first}">
+            <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
+                <p th:text="${publicacion.contenido}">Contenido de la Publicación</p>
+            </div>
+        </div>
+        <div class="carousel-item" th:each="publicacion, iterStat : ${publicaciones}" th:if="${!iterStat.first}">
+            <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
+                <p th:text="${publicacion.contenido}">Contenido de la Publicación</p>
             </div>
         </div>
     </div>
-</nav>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="card" style="width: 18rem;">
-                <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Prueba uno</h5>
-                    <p class="card-text">Si se logra ver este texto esta funcionando bien.</p>
-                    <a href="#" class="btn btn-primary">sig.</a>
+        <div class="col-12 col-md-6 col-lg-4 mb-4" th:each="publicacion : ${publicaciones}">
+            <a th:href="@{'/publicaciones/' + ${publicacion.idPublicacion}}" class="card-link">
+                <div class="card">
+                    <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${publicacion.titulo}">Título de la Publicación</h5>
+                        <p class="card-text" th:text="${publicacion.contenido}">Contenido de la Publicación</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
+
+<script th:src="@{/js/carrusel.js}" defer></script>
 
 </body>
 </html>
