@@ -48,6 +48,7 @@
         <div class="content">
             <h2 th:text="${noticia.subtitulo}">Subtítulo de la noticia</h2>
             <p th:text="'Publicado: ' + ${#dates.format(noticia.fechPublicacion, 'dd/MM/yyyy')}">Fecha de publicación: </p>
+            <p th:text="'Etiquetas: ' + ${noticia.categoria}">Categoría: </p>
         <p th:utext="${#strings.replace(noticia.contenido, '\n', '<br>')}">Contenido de la noticia</p>
 
         </div>
