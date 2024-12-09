@@ -58,15 +58,17 @@
         <div class="carousel-item active" th:each="publicacion, iterStat : ${publicaciones}" th:if="${iterStat.first}">
             <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
-                <p th:text="${publicacion.contenido}">Contenido de la Publicación</p>
+                <a th:href="@{'/noticia?id=' + ${publicacion.idPublicacion}}" class="text-white">
+                    <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
+                </a>
             </div>
         </div>
         <div class="carousel-item" th:each="publicacion, iterStat : ${publicaciones}" th:if="${!iterStat.first}">
             <img th:src="@{/imagenes/cat-busy.gif}" src="../static/imagenes/cat-busy.gif" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
-                <p th:text="${publicacion.contenido}">Contenido de la Publicación</p>
+                <a th:href="@{'/noticia?id=' + ${publicacion.idPublicacion}}" class="text-white">
+                    <h5 th:text="${publicacion.titulo}">Título de la Publicación</h5>
+                </a>
             </div>
         </div>
     </div>
