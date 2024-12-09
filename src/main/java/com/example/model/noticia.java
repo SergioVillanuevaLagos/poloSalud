@@ -1,11 +1,12 @@
 package com.example.model;
 
 import jakarta.persistence.*;
+import java.util.Base64;
 import java.util.Date;
 
 @Entity
 @Table(name = "publicacion")
-public class publicacion {
+public class noticia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_publi")
@@ -16,7 +17,6 @@ public class publicacion {
 
     @Column(name = "arch_adj", columnDefinition = "BLOB")
     private byte[] archivoAdjunto;
-    
 
     @Column(name = "URL_publi", length = 500)
     private String urlPublicacion;
@@ -109,5 +109,13 @@ public class publicacion {
 
     public void setIdAdmin(Integer idAdmin) {
         this.idAdmin = idAdmin;
+    }
+
+    // Método para obtener la URL de la imagen en base64
+    public String getImagenUrl() {
+        if (archivoAdjunto != null) {
+            return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(archivoAdjunto);
+        }
+        return null;
     }
 }

@@ -2,7 +2,7 @@ package com.example.controller;
 
 
 import com.example.model.publicacion;
-import com.example.service.PublicacionService;
+import com.example.service.publicacionService1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.util.List;
 public class PublicacionController {
 
     @Autowired
-    private PublicacionService publicacionService;
+    private publicacionService1 publicacionService;
     @GetMapping("/")
     public String index(Model model) {
         List<publicacion> publicaciones = publicacionService.obtenerPublicacionesOrdenadas();

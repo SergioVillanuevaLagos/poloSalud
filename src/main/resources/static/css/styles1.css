@@ -1,0 +1,182 @@
+/* ============================================
+   GLOBAL STYLES
+============================================ */
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    background-color: #d5f2f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ============================================
+   HEADER
+============================================ */
+header {
+    background-color: #5CB8E4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header .btn button, .header .menu button {
+    margin-left: 20px;
+    font-weight: 700;
+    color: #50b4e4;
+    padding: 9px 25px;
+    background: #eceff1;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.btn button:hover {
+    background-color: #e0f7ff;
+}
+
+
+/* ============================================
+   MAIN CONTENT
+============================================ */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, textarea, button {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #5CB8E4;
+    color: #fff;
+    margin-top: 20px;
+}
+.noticia-contenido {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+.noticia-titulo {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.noticia-imagen {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+/* Estilo para la lista de noticias */
+#noticias-lista-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.noticia-titulo {
+    font-weight: bold;
+}
+
+.eliminar-boton {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.eliminar-boton:hover {
+    background-color: darkred;
+}
+
+@media (min-width: 768px) {
+    #mobile-menu {
+        display: none;
+    }
+}
+

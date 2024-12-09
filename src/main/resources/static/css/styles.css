@@ -1,0 +1,283 @@
+/* ============================================
+   GLOBAL STYLES
+============================================ */
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    background-color: #d5f2f6;
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0;
+    color: #333;
+}
+
+/* ============================================
+   HEADER
+============================================ */
+header {
+    background-color: #5CB8E4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header .btn button, .header .menu button {
+    margin-left: 20px;
+    font-weight: 700;
+    color: #50b4e4;
+    padding: 9px 25px;
+    background: #eceff1;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.btn button:hover {
+    background-color: #e0f7ff;
+}
+
+/* ============================================
+   MAIN CONTENT
+============================================ */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-container h1 {
+    color: #333;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.content h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.content p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Espaciado entre párrafos */
+#paragraph p {
+    margin: 10px 0; /* Espaciado entre párrafos */
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #5CB8E4;
+    color: #fff;
+    margin-top: 20px;
+}
+
+/* ============================================
+   SIDEBAR
+============================================ */
+.sidebar {
+    position: fixed;
+    top: 30%; /* Ajusta según sea necesario */
+    left: 0;
+    transform: translateY(-30%);
+    background-color: #5CB8E4;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 5px;
+    gap: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .sidebar-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco detrás del ícono */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar-btn:hover {
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+/* ============================================
+   BUTTON STYLES
+============================================ */
+.edit-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-buttons button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.edit-buttons .edit-title {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.edit-buttons .edit-content {
+    background-color: #28A745;
+    color: #fff;
+}
+
+/* ============================================
+   MODAL STYLES
+============================================ */
+.modal {
+    display: none; /* Por defecto, el modal está oculto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+.modal-content {
+    background-color: #007BFF;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 70%;
+    max-width: 600px;
+    min-height: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.modal-content input, .modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28A745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal.show .modal-content {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal.hide .modal-content {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* ============================================
+   ANIMATIONS
+============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
+@media (min-width: 768px) {
+    #mobile-menu {
+        display: none;
+    }
+}

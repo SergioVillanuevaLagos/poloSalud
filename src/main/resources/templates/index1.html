@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+    <link rel="stylesheet" href="/css/styles1.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+          <a href="/polosalud/index">
+            <img th:src="@{/imagenes/logoPoloSalud.png}" src="../static/imagenes/logoPoloSalud.png" class="card-img-top" alt="...">
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a class="nav-link" href="/polosalud/index">Inicio</a></li>
+            <li><a class="nav-link" href="#">Calendario</a></li>
+            <li><a class="nav-link" href="#">Noticias</a></li>
+            <li><a class="nav-link" href="#">Facultades</a></li>
+            <li><a class="nav-link" href="https://hospitaldechillan.cl/web/">Colaboradores</a></li>
+            <li><a class="nav-link" href="/polosalud/login">Registro</a></li>
+          </ul>
+        </nav>
+        <a class="btn" href="#"><button>Contactanos</button></a>
+    </header>
+
+    <main>
+        <h2>Crear Noticia</h2>
+        <form id="form-noticia" enctype="multipart/form-data">
+            <label>Título: <input type="text" id="titulo" required></label>
+            <label>Subtítulo: <input type="text" id="subtitulo" required></label>
+            <label>Contenido: <textarea id="contenido" rows="5" required></textarea></label>
+            <label>Categoría: <input type="text" id="categoria" required></label>
+            <label>Archivo Adjunto: <input type="file" id="archivoAdjunto" required></label>
+            <label>URL Publicación: <input type="url" id="urlPublicacion" required></label>
+            <label>Fecha Publicación: <input type="date" id="fechPublicacion" required></label>
+            <label>ID Administrador: <input type="number" id="idAdmin" required></label>
+            <button type="submit">Crear</button>
+        </form>
+
+        <div id="resultado"></div>
+        <h2>Lista de Noticias</h2>
+        <ul id="noticias-lista-items"></ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NoticiasApp</p>
+    </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
