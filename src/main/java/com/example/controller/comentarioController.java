@@ -1,11 +1,14 @@
 package com.example.controller;
 
 import com.example.model.comentario;
+import com.example.model.usuario;
 import com.example.service.ComentarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.servlet.http.HttpSession;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -21,10 +24,16 @@ public class comentarioController {
 
     // Endpoint para crear un comentario
     @PostMapping("/crear")
-    public ResponseEntity<Map<String, Object>> crearComentario(@RequestBody Map<String, String> params) {
+    public ResponseEntity<Map<String, Object>> crearComentario(@RequestBody Map<String, String> params, HttpSession session) {
+        // Verificar si el usuario está autenticado
+        usuario usuarioAutenticado = (usuario) session.getAttribute("user");
+        if (usuarioAutenticado == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
         String contenido = params.get("contenido");
         int idPublicacion = Integer.parseInt(params.get("idPublicacion"));
-        int idUsuario = Integer.parseInt(params.get("idUsuario"));
+        int idUsuario = usuarioAutenticado.getIdUsuario(); // Usar el ID del usuario autenticado
 
         comentario nuevoComentario = comentarioService.crearComentario(contenido, idPublicacion, idUsuario);
 
@@ -64,7 +73,18 @@ public class comentarioController {
 
     // Endpoint para eliminar un comentario
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Void> eliminarComentario(@PathVariable int id) {
+    public ResponseEntity<Void> eliminarComentario(@PathVariable int id, HttpSession session) {
+        // Verificar si el usuario está autenticado
+        usuario usuarioAutenticado = (usuario) session.getAttribute("user");
+        if (usuarioAutenticado == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // Verificar si el usuario tiene el rol de administrador (idRol == 1)
+        if (usuarioAutenticado.getRol().getIdRol() != 1) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
         comentarioService.eliminarComentario(id);
         return ResponseEntity.noContent().build();
     }

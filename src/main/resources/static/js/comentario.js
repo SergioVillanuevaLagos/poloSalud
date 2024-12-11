@@ -1,9 +1,25 @@
 $(document).ready(function () {
-    const idUsuario = 1; // ID de usuario predeterminado
+    let idUsuario = null; // Variable para almacenar el ID del usuario autenticado
     const idPublicacion = $('#idPublicacion').val(); // Obtener el ID de la publicación desde el HTML
 
-    // Cargar comentarios al cargar la página
-    cargarComentarios(idPublicacion);
+    // Verificar si el usuario está autenticado y obtener su ID
+    async function verificarAutenticacion() {
+        try {
+            const response = await fetch("/api/usuario/autenticado"); // Endpoint para obtener el usuario autenticado
+            if (response.ok) {
+                const usuario = await response.json();
+                idUsuario = usuario.id; // Almacenar el ID del usuario autenticado
+                cargarComentarios(idPublicacion); // Cargar comentarios si el usuario está autenticado
+            } else {
+                console.warn("Usuario no autenticado. Acceso restringido.");
+            }
+        } catch (error) {
+            console.error("Error al verificar autenticación:", error);
+        }
+    }
+
+    // Llamar a la función para verificar autenticación al cargar la página
+    verificarAutenticacion();
 
     // Manejador para agregar un nuevo comentario
     $('#form-comentario').on('submit', async function (event) {
@@ -15,14 +31,19 @@ $(document).ready(function () {
             return;
         }
 
+        if (!idUsuario) {
+            alert('Debes iniciar sesión para agregar un comentario.');
+            return;
+        }
+
         try {
             const response = await fetch("/api/comentarios/crear", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    contenido, 
-                    idPublicacion: idPublicacion, 
-                    idUsuario: idUsuario 
+                    contenido,
+                    idPublicacion: idPublicacion,
+                    idUsuario: idUsuario, // Enviar el ID del usuario autenticado
                 }),
             });
 
@@ -96,9 +117,16 @@ $(document).ready(function () {
                 method: "DELETE",
             });
 
-            if (!response.ok) throw new Error("Error al eliminar comentario");
-
-            $(`li[data-id="${id}"]`).remove(); // Eliminar visualmente el comentario
+            if (!response.ok) {
+                const error = await response.json();
+                if (error.message === "No tienes permiso para eliminar este comentario") {
+                    alert("No tienes permiso para eliminar este comentario.");
+                } else {
+                    throw new Error("Error al eliminar comentario");
+                }
+            } else {
+                $(`li[data-id="${id}"]`).remove(); // Eliminar visualmente el comentario
+            }
         } catch (error) {
             console.error("Error al eliminar comentario:", error);
         }

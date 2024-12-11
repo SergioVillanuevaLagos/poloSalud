@@ -1,0 +1,365 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class ComentarioServiceImpl {
+  + eliminarComentario(int): comentario
+  + obtenerComentariosPorPublicacion(int): List<comentario>
+  + crearComentario(String, int, int): comentario
+}
+class ComentarioServiceImplTest {
+  ~ testCrearComentario(): void
+  ~ testCrearComentarioUsuarioNoEncontrado(): void
+  ~ testCrearComentarioPublicacionNoEncontrada(): void
+  ~ testEliminarComentarioNoEncontrado(): void
+  ~ testEliminarComentario(): void
+  ~ setUp(): void
+  ~ testObtenerComentariosPorPublicacionNoEncontrada(): void
+  ~ testObtenerComentariosPorPublicacion(): void
+}
+class ContactController {
+  + mostrarFormulario(): String
+}
+class ControladoreBasico {
+  + nav(Model): String
+  + login(Model): String
+  + ini(Model): String
+  + verPublicacion(Integer, Model): String
+  + contac(Model): String
+  + Comienzo(Model): String
+  + colab(Model): String
+}
+class EventoControllerTest {
+  ~ siInvocoEliminarEventoPorIdDebeDevolverStatusNoContent(): void
+  ~ setup(): void
+  ~ siInvocoListarEventosDebeDevolverStatusOkYListaDeEventos(): void
+}
+class EventoServiceImplTest {
+  ~ testCrearEventoConDatosCompletos(): void
+  ~ testObtenerTodosLosEventosVacio(): void
+  ~ testObtenerEventoPorIdNoExistente(): void
+  ~ testCrearEvento(): void
+  ~ testObtenerTodosLosEventos(): void
+  ~ testEliminarEvento(): void
+  ~ setUp(): void
+  ~ testObtenerEventoPorIdExistente(): void
+  ~ testEliminarEventoNoExistente(): void
+}
+class Facultad {
+  - descripcionFacultad: String
+  - nombreFacultad: String
+  - idFacultad: Integer
+  - departamento: departamento
+   idFacultad: Integer
+   nombreFacultad: String
+   descripcionFacultad: String
+   departamento: departamento
+}
+class GlobalExceptionHandler {
+  + handleException(Exception): ResponseEntity<String>
+}
+class MainCalendarioController {
+  + mostrarCalendario(): String
+  + xd(): String
+  + mostrarCalendarioUsurio(): String
+}
+class MainCalendarioControllerTest {
+  ~ siInvocoMostrarCalendarioUsuarioDebeDevolverVistaCalendarioUsuario(): void
+  ~ siInvocoMostrarCalendarioDebeDevolverVistaCalendarioAdmin(): void
+  ~ setup(): void
+  ~ siInvocoRutaInexistenteDebeDevolverError404(): void
+  ~ siInvocoMostrarCalendarioConMetodoPostDebeDevolverError405(): void
+  ~ siInvocoMostrarCalendarioConParametroDebeDevolverVistaCalendarioAdmin(): void
+  ~ siInvocoXdDebeDevolverVistaXd(): void
+  ~ siInvocoMostrarCalendarioUsuarioConParametroDebeDevolverVistaCalendarioUsuario(): void
+  ~ siInvocoXdConParametroDebeDevolverVistaXd(): void
+}
+interface NoticiaRepository << interface >>
+interface NoticiaService << interface >> {
+  + eliminarNoticia(Integer): void
+  + obtenerTodasLasNoticias(): List<publicacion>
+  + obtenerNoticiaPorId(Integer): publicacion
+  + actualizarSubtituloYContenido(Integer, String, String): publicacion
+  + crearNoticia(String, String, String, String, byte[], String, Date, Integer): publicacion
+  + actualizarNoticia(Integer, String, String, String, byte[], String, Date, Integer): publicacion
+  + actualizarTitulo(Integer, String): publicacion
+}
+class NoticiaServiceImpl {
+  + actualizarTitulo(Integer, String): publicacion
+  + actualizarSubtituloYContenido(Integer, String, String): publicacion
+  + obtenerTodasLasNoticias(): List<publicacion>
+  + actualizarNoticia(Integer, String, String, String, byte[], String, Date, Integer): publicacion
+  + eliminarNoticia(Integer): void
+  + obtenerNoticiaPorId(Integer): publicacion
+  + crearNoticia(String, String, String, String, byte[], String, Date, Integer): publicacion
+}
+class NoticiaServiceImplTest {
+  ~ testCrearNoticia(): void
+  ~ testActualizarSubtituloYContenidoNoEncontrada(): void
+  ~ testActualizarTituloNoEncontrada(): void
+  ~ testActualizarNoticia(): void
+  ~ testActualizarNoticiaNoEncontrada(): void
+  ~ testObtenerNoticiaPorIdNoEncontrada(): void
+  ~ testActualizarTitulo(): void
+  ~ testEliminarNoticia(): void
+  ~ testObtenerNoticiaPorId(): void
+  ~ setUp(): void
+  ~ testObtenerTodasLasNoticias(): void
+  ~ testActualizarSubtituloYContenido(): void
+}
+class NoticiasController {
+  + obtenerTodasLasNoticias(): List<publicacion>
+  + eliminarNoticia(Integer): ResponseEntity<String>
+  + crearNoticia(String, String, String, String, MultipartFile, String, String, Integer): publicacion
+}
+class PagnoticiasController {
+  + mostrarPagNoticias(Integer, Model): String
+}
+class PoloSaludApplication {
+  + main(String[]): void
+}
+class PoloSaludApplicationTests {
+  ~ contextLoads(): void
+}
+class Prueba {
+  + Prueba1(): String
+}
+class PublicacionController {
+  + guardarPublicacion(publicacion): String
+  + mostrarFormularioNuevaPublicacion(Model): String
+  + verPublicacion(Integer, Model): String
+  + index(Model): String
+  + polosaludIndex(Model): String
+  + eliminarPublicacion(Integer): String
+  + listarPublicaciones(Model): String
+}
+interface PublicacionRepository << interface >> {
+  + findAllByOrderByFechPublicacionDesc(): List<publicacion>
+}
+class PublicacionService {
+  + getPublicacionById(Integer): Optional<publicacion>
+  + createPublicacion(publicacion): publicacion
+  + updatePublicacion(Integer, publicacion): publicacion
+  + deletePublicacion(Integer): void
+   allPublicaciones: List<publicacion>
+}
+class PublicacionServiceTest {
+  ~ testGetPublicacionById(): void
+  ~ testDeletePublicacion(): void
+  ~ testCreatePublicacion(): void
+  ~ setUp(): void
+  ~ testUpdatePublicacionNotFound(): void
+  ~ testUpdatePublicacion(): void
+  ~ testGetPublicacionByIdNotFound(): void
+  ~ testGetAllPublicaciones(): void
+}
+class Rol {
+  - idRol: Integer
+  - nombreRol: String
+   idRol: Integer
+   nombreRol: String
+}
+class UserController {
+  + loginUser(usuario): ResponseEntity<Map<String, String>>
+  + showLoginPage(): ResponseEntity<String>
+  + home(): ResponseEntity<String>
+  + registerUser(usuario): ResponseEntity<Map<String, String>>
+  + logout(): ResponseEntity<Map<String, String>>
+  + listAllUsers(): ResponseEntity<List<usuario>>
+   currentRequest: HttpServletRequest
+}
+interface UserRepository << interface >> {
+  + existsByCorreoElectronico(String): boolean
+  + findByCorreoElectronico(String): usuario
+}
+class UserService {
+  + saveUser(usuario): usuario
+  + validatePassword(String, String): boolean
+  + findByEmail(String): usuario
+  + deleteUser(Integer): void
+  + updateUser(usuario): usuario
+  + listAllUser(): List<usuario>
+}
+class UserServiceTest {
+  ~ testListAllUser(): void
+  ~ testFindByEmail(): void
+  ~ testSaveUserEmailAlreadyExists(): void
+  ~ testValidatePasswordSuccess(): void
+  ~ testValidatePasswordWrongPassword(): void
+  ~ setUp(): void
+  ~ testSaveUserSuccess(): void
+  ~ testValidatePasswordUserNotFound(): void
+}
+class WebConfig {
+  + viewResolver(): ThymeleafViewResolver
+  + templateResolver(): SpringResourceTemplateResolver
+  + templateEngine(): SpringTemplateEngine
+  + addCorsMappings(CorsRegistry): void
+}
+class colaboradores {
+  - idColaborador: int
+  - usoMonto: String
+  - nombreColaborador: String
+  - resumenColaborador: String
+  - monto: int
+  - actividades: String
+  - evidencias: String
+  - tipoFinanciamiento: String
+  - beneficiosInternos: String
+  - beneficiosExternos: String
+   evidencias: String
+   actividades: String
+   beneficiosExternos: String
+   tipoFinanciamiento: String
+   nombreColaborador: String
+   idColaborador: int
+   resumenColaborador: String
+   usoMonto: String
+   beneficiosInternos: String
+   monto: int
+}
+class comentario {
+  - idComenentario: int
+  - comentario: String
+  - publicacion: publicacion
+  - creaComentario: LocalDateTime
+  - usuario: usuario
+   comentario: String
+   idComenentario: int
+   publicacion: publicacion
+   usuario: usuario
+   creaComentario: LocalDateTime
+}
+class comentarioController {
+  + obtenerComentariosPorPublicacion(int): ResponseEntity<List<Map<String, Object>>>
+  + crearComentario(Map<String, String>): ResponseEntity<Map<String, Object>>
+  + eliminarComentario(int): ResponseEntity<Void>
+}
+class comentarioControllerTest {
+  ~ setUp(): void
+  ~ testObtenerComentariosPorPublicacion_Success(): void
+  ~ testObtenerComentariosPorPublicacion_NoComments(): void
+  ~ testCrearComentario_Success(): void
+  ~ testEliminarComentario_Success(): void
+}
+interface comentarioRepository << interface >> {
+  + findByPublicacion(publicacion): List<comentario>
+}
+interface comentarioService << interface >> {
+  + crearComentario(String, int, int): comentario
+  + obtenerComentariosPorPublicacion(int): List<comentario>
+  + eliminarComentario(int): comentario
+}
+class departamento
+class evento {
+  - fecha_evento: LocalDateTime
+  - idAdmin: int
+  - notificacion: String
+  - ID_evento: int
+  - descripcion: String
+  - direccion: String
+   descripcion: String
+   idAdmin: int
+   direccion: String
+   notificacion: String
+   fecha_evento: LocalDateTime
+   ID_evento: int
+}
+class eventoController {
+  + eliminarEvento(int): ResponseEntity<Void>
+  + obtenerEventoPorId(int): ResponseEntity<evento>
+  + crearEvento(Map<String, String>): ResponseEntity<evento>
+  + obtenerTodosLosEventos(): ResponseEntity<List<Map<String, Object>>>
+}
+interface eventoRepository << interface >>
+interface eventoService << interface >> {
+  + obtenerEventoPorId(int): evento
+  + eliminarEvento(int): void
+  + crearEvento(String, String, LocalDateTime, String, int): evento
+  + obtenerTodosLosEventos(): List<evento>
+}
+class eventoServiceImpl {
+  + obtenerTodosLosEventos(): List<evento>
+  + eliminarEvento(int): void
+  + crearEvento(String, String, LocalDateTime, String, int): evento
+  + obtenerEventoPorId(int): evento
+}
+class noticia {
+  - subtitulo: String
+  - titulo: String
+  - fechPublicacion: Date
+  - urlPublicacion: String
+  - categoria: String
+  - contenido: String
+  - idPublicacion: Integer
+  - archivoAdjunto: byte[]
+  - idAdmin: Integer
+   contenido: String
+   subtitulo: String
+   urlPublicacion: String
+   archivoAdjunto: byte[]
+   idPublicacion: Integer
+   imagenUrl: String
+   fechPublicacion: Date
+   titulo: String
+   idAdmin: Integer
+   categoria: String
+}
+class publicacion {
+  - contenido: String
+  - subtitulo: String
+  - idAdmin: Integer
+  - idPublicacion: Integer
+  - urlPublicacion: String
+  - titulo: String
+  - archivoAdjunto: byte[]
+  - categoria: String
+  - fechPublicacion: Date
+   contenido: String
+   subtitulo: String
+   urlPublicacion: String
+   archivoAdjunto: byte[]
+   idPublicacion: Integer
+   imagenUrl: String
+   fechPublicacion: Date
+   titulo: String
+   idAdmin: Integer
+   categoria: String
+}
+class publicacionService1 {
+  + obtenerPublicacionPorId(Integer): publicacion
+  + obtenerPublicacionesOrdenadas(): List<publicacion>
+  + guardarPublicacion(publicacion): publicacion
+  + eliminarPublicacion(Integer): void
+}
+class publicacionService1Test {
+  ~ testEliminarPublicacion(): void
+  ~ testObtenerPublicacionPorIdNoEncontrada(): void
+  ~ testObtenerPublicacionPorId(): void
+  ~ setUp(): void
+  ~ testObtenerPublicacionesOrdenadas(): void
+  ~ testEliminarPublicacionNoExistente(): void
+  ~ testGuardarPublicacionConDatosCompletos(): void
+  ~ testGuardarPublicacion(): void
+  ~ testObtenerPublicacionesOrdenadasVacia(): void
+}
+class usuario {
+  - idUsuario: Integer
+  - correoElectronico: String
+  - rol: Rol
+  - nombreUsuario: String
+  - idDepartamento: Integer
+  - contraseña: String
+   correoElectronico: String
+   contraseña: String
+   idDepartamento: Integer
+   nombreUsuario: String
+   rol: Rol
+   idUsuario: Integer
+}
+interface usuarioRepository << interface >>
+
+ComentarioServiceImpl         -[#008200,dashed]-^  comentarioService            
+@enduml
