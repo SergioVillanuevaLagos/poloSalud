@@ -34,13 +34,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> loginUser(@RequestBody usuario user) {
-        HttpSession session = getCurrentRequest().getSession(); // Obtiene la sesión desde HttpServletRequest
+    public ResponseEntity<Map<String, String>> loginUser(@RequestBody usuario user, HttpSession session) {
         try {
             usuario foundUser = userService.findByEmail(user.getCorreoElectronico());
             Map<String, String> response = new HashMap<>();
             if (foundUser != null && userService.validatePassword(user.getCorreoElectronico(), user.getContraseña())) {
-                session.setAttribute("user", foundUser);
+                session.setAttribute("user", foundUser); // Establecer el usuario en la sesión
                 response.put("status", "success");
                 response.put("message", "Inicio de sesión exitoso");
                 return ResponseEntity.ok(response);
@@ -86,7 +85,8 @@ public class UserController {
         }
         return ResponseEntity.ok("index"); // Retorna la vista de inicio después de iniciar sesión
     }
-    //configuracion de la salida de seccion
+
+    // Configuración de la salida de sesión
     @GetMapping("/logout")
     public ResponseEntity<Map<String, String>> logout() {
         HttpSession session = getCurrentRequest().getSession();
@@ -99,6 +99,11 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<List<usuario>> listAllUsers() {
+        HttpSession session = getCurrentRequest().getSession();
+        usuario user = (usuario) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
         List<usuario> users = userService.listAllUser();
         return ResponseEntity.ok(users);
     }

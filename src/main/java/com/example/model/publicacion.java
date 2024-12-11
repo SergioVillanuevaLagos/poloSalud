@@ -15,7 +15,7 @@ public class publicacion {
     @Column(name = "categoria", length = 500)
     private String categoria;
 
-    @Column(name = "arch_adj", columnDefinition = "BLOB")
+    @Column(name = "arch_adj", columnDefinition = "LONGBLOB")
     private byte[] archivoAdjunto;
     
 
